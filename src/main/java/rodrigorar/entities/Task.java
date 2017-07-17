@@ -3,7 +3,9 @@ package rodrigorar.entities;
 import rodrigorar.utils.IdGenerator;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 
-public class Task {
+public class Task
+implements
+IEntity {
     private String _id;
     private String _title;
     private String _description;

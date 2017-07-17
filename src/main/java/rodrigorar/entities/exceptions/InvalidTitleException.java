@@ -1,7 +1,8 @@
 package rodrigorar.entities.exceptions;
 
 public class InvalidTitleException
-extends Exception {
+extends
+Exception {
 
     public InvalidTitleException(String message) {
         super(message);
