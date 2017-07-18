@@ -1,4 +1,4 @@
-package rodrigorar;
+package rodrigorar.entities;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
