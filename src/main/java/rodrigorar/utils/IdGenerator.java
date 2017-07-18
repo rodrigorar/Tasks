@@ -20,4 +20,11 @@ public class IdGenerator {
         taskId.append(numberId);
         return taskId.toString();
     }
+
+    public String generateTaskListId() {
+        StringBuilder taskListId = new StringBuilder("tasklist-");
+        long numberId = (long)(Math.random() * 1000000000);
+        taskListId.append(numberId);
+        return taskListId.toString();
+    }
 }
