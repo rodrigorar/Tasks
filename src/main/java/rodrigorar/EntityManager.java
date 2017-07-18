@@ -1,7 +1,11 @@
 package rodrigorar;
 
+import rodrigorar.entities.Task;
+import rodrigorar.entities.TaskList;
+
 public class EntityManager {
     private static EntityManager _instance;
+    private TaskList _taskList;
 
     public static EntityManager getInstance() {
         if (_instance == null) {
@@ -11,20 +15,19 @@ public class EntityManager {
     }
 
     private EntityManager() {
-        // Code
+        load();
     }
 
     public void newTask(String title, String description) {
-        // Code
+        Task newTask = new Task(title, description);
     }
 
     public Task getTask(String taskId) {
-        // Code
-        return null;
+        return _taskList.getTask(taskId);
     }
 
     public void removeTask(String taskId) {
-        // Code
+        _taskList.removeTask(taskId);
     }
 
     public void save() {
@@ -32,7 +35,9 @@ public class EntityManager {
     }
 
     public void load() {
-        // Code
+        // Needs to be updated to be able to load the task list from
+        // the persitence.
+        _taskList = new TaskList();
     }
 
 }
