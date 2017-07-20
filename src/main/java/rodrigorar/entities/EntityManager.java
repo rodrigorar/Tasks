@@ -3,6 +3,7 @@ package rodrigorar.entities;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.data.PersistenceManager;
 
 public class EntityManager {
     private static EntityManager _instance;
@@ -45,13 +46,13 @@ public class EntityManager {
     }
 
     public void save() {
-        // Code
+        PersistenceManager manager = PersistenceManager.getInstance();
+        manager.saveTaskList(_taskList);
     }
 
     public void load() {
-        // Needs to be updated to be able to load the task list from
-        // the persitence.
-        _taskList = new TaskList();
+        PersistenceManager manager = PersistenceManager.getInstance();
+        _taskList = manager.loadTaskList();
     }
 
 }

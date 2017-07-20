@@ -73,6 +73,7 @@ JFrame {
 
         _description.setLineWrap(true);
         _description.setWrapStyleWord(true);
+        _description.setRows(3);
         _description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         _description.setMaximumSize(new Dimension(2000, 60));
 
@@ -101,6 +102,7 @@ JFrame {
                 } catch (InvalidTitleException exception) {
                     exception.printStackTrace();
                 }
+                _manager.save();
                 _parentWindow.updateList();
                 dispose();
             }
