@@ -8,27 +8,38 @@ import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.DefaultListModel;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
 
+import rodrigorar.entities.Task;
+import rodrigorar.entities.TaskList;
+import rodrigorar.entities.EntityManager;
+
+
 public class MainWindow
 extends
 JFrame {
+    private MainWindow _instance;
+    private JList _taskList;
 
     public MainWindow() {
+        _taskList = new JList<String>();
+        _instance = this;
         initUI();
     }
 
     public JPanel createButtonPanel() {
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.Y_AXIS));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
         JButton newTask = new JButton("New Task");
         newTask.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println("New Task");
+                TaskWindow window = new TaskWindow(_instance);
+                window.setVisible(true);
             }
         });
 
@@ -40,34 +51,65 @@ JFrame {
             }
         });
 
-        buttonPanel.add(newTask);
-        buttonPanel.add(Box.createRigidArea(new Dimension(0, 10)));
-        buttonPanel.add(searchTask);
-        buttonPanel.add(Box.createVerticalGlue());
+        panel.add(newTask);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(searchTask);
+        panel.add(Box.createVerticalGlue());
 
-        return buttonPanel;
+        return panel;
+    }
+
+    public void updateList() {
+        EntityManager manager = EntityManager.getInstance();
+        TaskList list = manager.getTaskList();
+
+        DefaultListModel model = new DefaultListModel();
+
+        for (Task iterator : list.getAllTasks()) {
+            model.addElement(iterator.getTitle());
+        }
+
+        _taskList.setModel(model);
+        System.out.println("Updating List");
+    }
+
+    public JList<String> createList() {
+        updateList();
+
+        return _taskList;
+    }
+
+    public JPanel createListPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
+        JScrollPane scrollPane = new JScrollPane(createList());
+
+        panel.add(scrollPane);
+
+        return panel;
     }
 
     public JPanel createLayout() {
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new BoxLayout(mainPanel, BoxLayout.X_AXIS));
-        mainPanel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
         JList taskList = new JList();
 
         JScrollPane scrollPane = new JScrollPane(taskList);
 
-        mainPanel.add(createButtonPanel());
-        mainPanel.add(Box.createRigidArea(new Dimension(10, 0)));
-        mainPanel.add(scrollPane);
+        panel.add(createButtonPanel());
+        panel.add(Box.createRigidArea(new Dimension(10, 0)));
+        panel.add(scrollPane);
 
-        return mainPanel;
+        return panel;
     }
 
     public void initUI() {
         add(createLayout());
         setTitle("Tasks");
-        setSize(500, 600);
+        setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
