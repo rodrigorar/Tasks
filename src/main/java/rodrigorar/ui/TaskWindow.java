@@ -35,8 +35,10 @@ JFrame {
     public TaskWindow(MainWindow parentWindow, Task task) {
         init(parentWindow);
         _task = task;
+        _title.setText(_task.getTitle());
+        _description.setText(_task.getDescription());
         _title.disable();
-        _title.disable();
+        _description.disable();
         initUI();
     }
 

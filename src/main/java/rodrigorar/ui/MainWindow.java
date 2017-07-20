@@ -3,6 +3,8 @@ package rodrigorar.ui;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
@@ -77,6 +79,25 @@ JFrame {
     public JPanel createListPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
+        JList list = updateList();
+        list.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                EntityManager manager = EntityManager.getInstance();
+                int index = _list.locationToIndex(event.getPoint());
+                TaskWindow window = new TaskWindow(_instance, manager.getTask((String)_list.getModel().getElementAt(index)));
+                window.setVisible(true);
+            }
+
+            @Override public void mouseExited(MouseEvent event) {}
+
+            @Override public void mouseEntered(MouseEvent event) {}
+
+            @Override public void mouseReleased(MouseEvent event) {}
+
+            @Override public void mousePressed(MouseEvent event) {}
+        });
 
         JScrollPane scrollPane = new JScrollPane(updateList());
 
