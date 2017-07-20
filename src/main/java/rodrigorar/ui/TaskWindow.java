@@ -16,7 +16,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 import rodrigorar.entities.exceptions.InvalidTitleException;
-import rodrigorar.ui.Labels;
+import rodrigorar.utils.Labels;
 
 public class TaskWindow
 extends
@@ -102,6 +102,7 @@ JFrame {
                     exception.printStackTrace();
                 }
                 _parentWindow.updateList();
+                dispose();
             }
         });
 

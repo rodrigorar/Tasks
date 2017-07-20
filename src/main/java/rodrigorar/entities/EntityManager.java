@@ -19,15 +19,17 @@ public class EntityManager {
         load();
     }
 
-    public void newTask(String title, String description) {
+    public Task newTask(String title, String description) {
+        Task newTask = null;
+
         try {
-            System.out.println("Creating New Task");
-            Task newTask = new Task(title, description);
+            newTask = new Task(title, description);
             _taskList.addTask(newTask);
         } catch (InvalidTitleException exception) {
             exception.printStackTrace();
         }
 
+        return newTask;
     }
 
     public Task getTask(String taskId) {

@@ -9,6 +9,7 @@ import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
 import javax.swing.DefaultListModel;
+import javax.swing.ListModel;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
@@ -22,10 +23,10 @@ public class MainWindow
 extends
 JFrame {
     private MainWindow _instance;
-    private JList _taskList;
+    private JList _list;
 
     public MainWindow() {
-        _taskList = new JList<String>();
+        _list = new JList(new DefaultListModel());
         _instance = this;
         initUI();
     }
@@ -59,31 +60,25 @@ JFrame {
         return panel;
     }
 
-    public void updateList() {
+    public JList updateList() {
+        DefaultListModel<String> model = (DefaultListModel<String>)_list.getModel();
         EntityManager manager = EntityManager.getInstance();
         TaskList list = manager.getTaskList();
 
-        DefaultListModel model = new DefaultListModel();
+        model.clear();
 
-        for (Task iterator : list.getAllTasks()) {
-            model.addElement(iterator.getTitle());
+        for (Task task : list.getAllTasks()) {
+            model.addElement(task.getTitle());
         }
 
-        _taskList.setModel(model);
-        System.out.println("Updating List");
-    }
-
-    public JList<String> createList() {
-        updateList();
-
-        return _taskList;
+        return _list;
     }
 
     public JPanel createListPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-        JScrollPane scrollPane = new JScrollPane(createList());
+        JScrollPane scrollPane = new JScrollPane(updateList());
 
         panel.add(scrollPane);
 
@@ -95,13 +90,9 @@ JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        JList taskList = new JList();
-
-        JScrollPane scrollPane = new JScrollPane(taskList);
-
         panel.add(createButtonPanel());
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        panel.add(scrollPane);
+        panel.add(createListPanel());
 
         return panel;
     }
