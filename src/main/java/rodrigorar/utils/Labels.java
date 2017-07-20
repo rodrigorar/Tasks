@@ -1,4 +1,4 @@
-package rodrigorar.ui;
+package rodrigorar.utils;
 
 public final class Labels {
     public static final String SAVE = "Save";
