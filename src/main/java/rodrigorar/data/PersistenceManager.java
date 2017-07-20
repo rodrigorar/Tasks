@@ -1,5 +1,8 @@
 package rodrigorar.data;
 
+import rodrigorar.entities.Task;
+import rodrigorar.entities.TaskList;
+
 public class PersistenceManager {
     private static PersistenceManager _instance;
 

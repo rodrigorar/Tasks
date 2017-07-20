@@ -2,6 +2,7 @@ package rodrigorar.entities;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
+import rodrigorar.entities.exceptions.InvalidTitleException;
 
 public class EntityManager {
     private static EntityManager _instance;
@@ -19,7 +20,14 @@ public class EntityManager {
     }
 
     public void newTask(String title, String description) {
-        Task newTask = new Task(title, description);
+        try {
+            System.out.println("Creating New Task");
+            Task newTask = new Task(title, description);
+            _taskList.addTask(newTask);
+        } catch (InvalidTitleException exception) {
+            exception.printStackTrace();
+        }
+
     }
 
     public Task getTask(String taskId) {
@@ -28,6 +36,10 @@ public class EntityManager {
 
     public void removeTask(String taskId) {
         _taskList.removeTask(taskId);
+    }
+
+    public TaskList getTaskList() {
+        return _taskList;
     }
 
     public void save() {
