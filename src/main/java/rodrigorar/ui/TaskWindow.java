@@ -16,46 +16,42 @@ import javax.swing.BorderFactory;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.ui.Labels;
 
 public class TaskWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
+    private EntityManager _manager;
     private Task _task;
     private JTextArea _title;
     private JTextArea _description;
 
     public TaskWindow(MainWindow parentWindow) {
-        try {
-            _parentWindow = parentWindow;
-            _task = new Task("Title");
-            _title = new JTextArea();
-            _description = new JTextArea();
-            initUI();
-        } catch (InvalidTitleException exception) {
-            exception.printStackTrace();
-        }
+        init(parentWindow);
+        initUI();
     }
 
     public TaskWindow(MainWindow parentWindow, Task task) {
-        _parentWindow = parentWindow;
+        init(parentWindow);
         _task = task;
-        _title = new JTextArea();
         _title.disable();
-        _description = new JTextArea();
         _title.disable();
         initUI();
     }
 
-    public JPanel createLayout() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
-        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+    private void init(MainWindow parentWindow) {
+        _parentWindow = parentWindow;
+        _title = new JTextArea();
+        _description = new JTextArea();
+        _manager = EntityManager.getInstance();
+    }
 
+    private JPanel createTitlePanel() {
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
 
-        JLabel titleLabel = new JLabel("Title:");
+        JLabel titleLabel = new JLabel(Labels.TITLE);
 
         _title.setLineWrap(true);
         _title.setWrapStyleWord(true);
@@ -66,10 +62,14 @@ JFrame {
         titlePanel.add(Box.createRigidArea(new Dimension(10, 0)));
         titlePanel.add(_title);
 
+        return titlePanel;
+    }
+
+    private JPanel createDescriptionPanel() {
         JPanel descriptionPanel = new JPanel();
         descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.X_AXIS));
 
-        JLabel descriptionLabel = new JLabel("Description:");
+        JLabel descriptionLabel = new JLabel(Labels.DESCRIPTION);
 
         _description.setLineWrap(true);
         _description.setWrapStyleWord(true);
@@ -80,19 +80,32 @@ JFrame {
         descriptionPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         descriptionPanel.add(_description);
 
+        return descriptionPanel;
+    }
+
+    private JPanel createButtonPanel() {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 
-        JButton save = new JButton("Save");
+        JButton save = new JButton(Labels.SAVE);
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println(_title.getText().trim());
-                System.out.println(_description.getText().trim());
+                try {
+                    if (_task == null) {
+                        _task = _manager.newTask(_title.getText().trim(), _description.getText().trim());
+                    } else {
+                        _task.setTitle(_title.getText().trim());
+                        _task.setDescription(_description.getText().trim());
+                    }
+                } catch (InvalidTitleException exception) {
+                    exception.printStackTrace();
+                }
+                _parentWindow.updateList();
             }
         });
 
-        JButton edit = new JButton("Edit");
+        JButton edit = new JButton(Labels.EDIT);
         edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -111,18 +124,26 @@ JFrame {
         buttonPanel.add(Box.createRigidArea(new Dimension(10, 0)));
         buttonPanel.add(edit);
 
-        panel.add(titlePanel);
+        return buttonPanel;
+    }
+
+    private JPanel createLayout() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+
+        panel.add(createTitlePanel());
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(descriptionPanel);
+        panel.add(createDescriptionPanel());
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonPanel);
+        panel.add(createButtonPanel());
 
         return panel;
     }
 
-    public void initUI() {
+    private void initUI() {
         add(createLayout());
-        setTitle("Task");
+        setTitle(Labels.TASK);
         setSize(500, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
