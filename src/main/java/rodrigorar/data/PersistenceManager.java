@@ -25,9 +25,7 @@ public class PersistenceManager {
         return _instance;
     }
 
-    private PersistenceManager() {
-        // Code
-    }
+    private PersistenceManager() { /* Empty Constructor */ }
 
     public TaskList loadTaskList() {
         TaskList loadedTaskList = new TaskList();
