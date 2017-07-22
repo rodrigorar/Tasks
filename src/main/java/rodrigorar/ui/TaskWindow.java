@@ -37,8 +37,10 @@ JFrame {
         _task = task;
         _title.setText(_task.getTitle());
         _description.setText(_task.getDescription());
-        _title.disable();
-        _description.disable();
+        _title.setEnabled(false);
+        _title.setDisabledTextColor(Color.BLACK);
+        _description.setEnabled(false);
+        _description.setDisabledTextColor(Color.BLACK);
         initUI();
     }
 
@@ -115,11 +117,11 @@ JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (_title.isEnabled() && _description.isEnabled()) {
-                    _title.disable();
-                    _description.disable();
+                    _title.setEnabled(false);
+                    _description.setEnabled(false);
                 } else {
-                    _title.enable();
-                    _description.enable();
+                    _title.setEnabled(true);
+                    _description.setEnabled(true);
                 }
             }
         });
