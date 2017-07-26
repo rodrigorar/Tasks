@@ -19,7 +19,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.EntityManager;
-
+import rodrigorar.utils.Labels;
 
 public class MainWindow
 extends
@@ -37,7 +37,7 @@ JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
 
-        JButton newTask = new JButton("New Task");
+        JButton newTask = new JButton(Labels.NEW_TASK);
         newTask.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -46,11 +46,12 @@ JFrame {
             }
         });
 
-        JButton searchTask = new JButton("Search");
+        JButton searchTask = new JButton(Labels.SEARCH);
         searchTask.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println("Search for Task");
+                SearchWindow window = new SearchWindow(_instance);
+                window.setVisible(true);
             }
         });
 
@@ -120,7 +121,7 @@ JFrame {
 
     public void initUI() {
         add(createLayout());
-        setTitle("Tasks");
+        setTitle(Labels.TASK);
         setSize(500, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
