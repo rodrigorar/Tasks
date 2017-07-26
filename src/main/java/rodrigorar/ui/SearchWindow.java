@@ -13,6 +13,7 @@ import javax.swing.Box;
 import javax.swing.BorderFactory;
 
 import rodrigorar.utils.Labels;
+import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 
 public class SearchWindow
@@ -20,11 +21,47 @@ extends
 JFrame {
     private MainWindow _parentWindow;
     private JTextArea _searchBox;
+    private EntityManager _entityManager;
 
     public SearchWindow(MainWindow parentWindow) {
         _parentWindow = parentWindow;
+        _entityManager = EntityManager.getInstance();
         _searchBox = new JTextArea();
         initUI();
+    }
+
+    public JPanel createSearchArea() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
+        _searchBox.setLineWrap(true);
+        _searchBox.setWrapStyleWord(true);
+        _searchBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
+        _searchBox.setMaximumSize(new Dimension(2000, 20));
+
+        panel.add(_searchBox);
+
+        return panel;
+    }
+
+    public JPanel createButtonPanel() {
+        JPanel panel = new JPanel();
+        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+
+        JButton searchButton = new JButton(Labels.SEARCH);
+        searchButton.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                Task task = _entityManager.getTask(_searchBox.getText());
+                TaskWindow window = new TaskWindow(_parentWindow, task);
+                window.setVisible(true);
+            }
+        });
+
+        panel.add(Box.createHorizontalGlue());
+        panel.add(searchButton);
+
+        return panel;
     }
 
     public JPanel createLayout() {
@@ -32,33 +69,9 @@ JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        _searchBox.setLineWrap(true);
-        _searchBox.setWrapStyleWord(true);
-        _searchBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        _searchBox.setMaximumSize(new Dimension(2000, 20));
-
-        JPanel searchPanel = new JPanel();
-        searchPanel.setLayout(new BoxLayout(searchPanel, BoxLayout.X_AXIS));
-
-        searchPanel.add(_searchBox);
-
-        JButton search = new JButton(Labels.SEARCH);
-        search.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                System.out.println("Search for Task");
-            }
-        });
-
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
-
-        buttonPanel.add(Box.createHorizontalGlue());
-        buttonPanel.add(search);
-
-        panel.add(searchPanel);
+        panel.add(createSearchArea());
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(buttonPanel);
+        panel.add(createButtonPanel());
 
         return panel;
     }
