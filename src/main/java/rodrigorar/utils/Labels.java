@@ -8,4 +8,6 @@ public final class Labels {
     public static final String TASK = "Task";
     public static final String TASKS = "Tasks";
     public static final String TASK_LIST = "Task List";
+    public static final String NEW_TASK = "New Task";
+    public static final String SEARCH = "Search";
 }
