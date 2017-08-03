@@ -41,6 +41,10 @@ public class EntityManager {
         _taskList.removeTask(taskId);
     }
 
+    public void removeTask(Task task) {
+        _taskList.removeTask(task);
+    }
+
     public TaskList getTaskList() {
         return _taskList;
     }

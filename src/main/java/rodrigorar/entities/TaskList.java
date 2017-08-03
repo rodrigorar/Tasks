@@ -40,11 +40,14 @@ IEntity {
         return _tasks;
     }
 
-    public void removeTask(String taskId) {
-        Task task = getTask(taskId);
-
+    public void removeTask(Task task) {
         if (task != null) {
             _tasks.remove(task);
         }
+    }
+
+    public void removeTask(String taskId) {
+        Task task = getTask(taskId);
+        removeTask(task);
     }
 }

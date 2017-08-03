@@ -5,11 +5,15 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
 import java.awt.event.MouseEvent;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JList;
 import javax.swing.JScrollPane;
 import javax.swing.JButton;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
 import javax.swing.DefaultListModel;
 import javax.swing.ListModel;
 import javax.swing.BoxLayout;
@@ -86,15 +90,27 @@ JFrame {
         list.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
+                EntityManager manager = EntityManager.getInstance();
+                int index = _list.locationToIndex(event.getPoint());
+                Task task =  manager.getTask((String)_list.getModel().getElementAt(index));
+
                 if (event.getButton() == MouseEvent.BUTTON1
-                    && event.getClickCount() == CLICKS) {
-                    EntityManager manager = EntityManager.getInstance();
-                    int index = _list.locationToIndex(event.getPoint());
-                    TaskWindow window = new TaskWindow(_instance, manager.getTask((String)_list.getModel().getElementAt(index)));
+                    && event.getClickCount() == CLICKS) {;
+                    TaskWindow window = new TaskWindow(_instance, task);
                     window.setVisible(true);
                 } else if (event.getButton() == MouseEvent.BUTTON3) {
-                    System.out.println("Tasks Options Menu");
-                    // Add delete option for the task.
+                    JPopupMenu menu = new JPopupMenu();
+                    JMenuItem deleteItem = new JMenuItem(Labels.DELETE);
+                    deleteItem.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            manager.removeTask(task);
+                            updateList();
+                        }
+                    });
+
+                    menu.add(deleteItem);
+                    menu.show(list, event.getPoint().x, event.getPoint().y);
                 }
             }
 
@@ -128,6 +144,15 @@ JFrame {
 
     public void initUI() {
         add(createLayout());
+
+        this.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosing(WindowEvent event) {
+                EntityManager manager = EntityManager.getInstance();
+                manager.save();
+            }
+        });
+
         setTitle(Labels.TASK);
         setSize(500, 300);
         setLocationRelativeTo(null);
