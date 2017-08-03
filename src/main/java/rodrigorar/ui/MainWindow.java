@@ -24,6 +24,7 @@ import rodrigorar.utils.Labels;
 public class MainWindow
 extends
 JFrame {
+    public static final int CLICKS = 2;
     private MainWindow _instance;
     private JList _list;
 
@@ -85,10 +86,16 @@ JFrame {
         list.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                EntityManager manager = EntityManager.getInstance();
-                int index = _list.locationToIndex(event.getPoint());
-                TaskWindow window = new TaskWindow(_instance, manager.getTask((String)_list.getModel().getElementAt(index)));
-                window.setVisible(true);
+                if (event.getButton() == MouseEvent.BUTTON1
+                    && event.getClickCount() == CLICKS) {
+                    EntityManager manager = EntityManager.getInstance();
+                    int index = _list.locationToIndex(event.getPoint());
+                    TaskWindow window = new TaskWindow(_instance, manager.getTask((String)_list.getModel().getElementAt(index)));
+                    window.setVisible(true);
+                } else if (event.getButton() == MouseEvent.BUTTON3) {
+                    System.out.println("Tasks Options Menu");
+                    // Add delete option for the task.
+                }
             }
 
             @Override public void mouseExited(MouseEvent event) {}
