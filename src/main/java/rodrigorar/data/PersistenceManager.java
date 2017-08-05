@@ -1,4 +1,4 @@
-package rodrigorar.data;
+    package rodrigorar.data;
 
 import java.io.File;
 import java.io.FileWriter;

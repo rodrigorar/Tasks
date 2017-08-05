@@ -1,6 +1,7 @@
 package rodrigorar.ui;
 
 import java.awt.Dimension;
+import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import java.awt.event.MouseListener;
@@ -40,7 +41,7 @@ JFrame {
 
     public JPanel createButtonPanel() {
         JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
+        panel.setLayout(new GridLayout(6, 1, 0, 5));
 
         JButton newTask = new JButton(Labels.NEW_TASK);
         newTask.addActionListener(new ActionListener() {
@@ -61,9 +62,7 @@ JFrame {
         });
 
         panel.add(newTask);
-        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(searchTask);
-        panel.add(Box.createVerticalGlue());
 
         return panel;
     }
