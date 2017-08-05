@@ -39,7 +39,7 @@ JFrame {
         initUI();
     }
 
-    public JPanel createButtonPanel() {
+    private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 0, 5));
 
@@ -81,7 +81,7 @@ JFrame {
         return _list;
     }
 
-    public JPanel createListPanel() {
+    private JPanel createListPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
@@ -129,7 +129,7 @@ JFrame {
         return panel;
     }
 
-    public JPanel createLayout() {
+    private JPanel createLayout() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -141,9 +141,7 @@ JFrame {
         return panel;
     }
 
-    public void initUI() {
-        add(createLayout());
-
+    private void windowEvents() {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
@@ -151,7 +149,11 @@ JFrame {
                 manager.save();
             }
         });
+    }
 
+    private void initUI() {
+        add(createLayout());
+        windowEvents();
         setTitle(Labels.TASK);
         setSize(500, 300);
         setLocationRelativeTo(null);

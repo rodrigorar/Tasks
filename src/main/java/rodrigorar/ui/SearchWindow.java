@@ -30,7 +30,7 @@ JFrame {
         initUI();
     }
 
-    public JPanel createSearchArea() {
+    private JPanel createSearchArea() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
@@ -44,7 +44,7 @@ JFrame {
         return panel;
     }
 
-    public JPanel createButtonPanel() {
+    private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
@@ -64,7 +64,7 @@ JFrame {
         return panel;
     }
 
-    public JPanel createLayout() {
+    private JPanel createLayout() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -76,7 +76,7 @@ JFrame {
         return panel;
     }
 
-    public void initUI() {
+    private void initUI() {
         add(createLayout());
         setTitle(Labels.SEARCH);
         setSize(300, 100);
