@@ -4,6 +4,7 @@ import org.jdom2.Element;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.data.utils.JDOMUtils;
 
 public class TaskData
 implements
@@ -14,14 +15,13 @@ IData<Task> {
 
     @Override
     public Element save(Task task) {
-        Element titleElement = new Element(TITLE);
-        titleElement.setText(task.getTitle());
-
-        Element descriptionElement = new Element(DESCRIPTION);
-        descriptionElement.setText(task.getDescription());
-
+        JDOMUtils jdomUtils = new JDOMUtils();
         Element taskElement = new Element(TASK);
+
+        Element titleElement = jdomUtils.buildStringElement(TITLE, task.getTitle());
         taskElement.addContent(titleElement);
+
+        Element descriptionElement = jdomUtils.buildStringElement(DESCRIPTION, task.getTitle());
         taskElement.addContent(descriptionElement);
 
         return taskElement;
