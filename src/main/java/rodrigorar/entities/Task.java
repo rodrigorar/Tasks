@@ -2,6 +2,7 @@ package rodrigorar.entities;
 
 import rodrigorar.utils.IdGenerator;
 import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.entities.interfaces.IEntity;
 
 public class Task
 implements

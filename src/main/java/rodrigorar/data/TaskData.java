@@ -2,6 +2,7 @@ package rodrigorar.data;
 
 import org.jdom2.Element;
 
+import rodrigorar.data.interfaces.IData;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.utils.JDOMBuilder;

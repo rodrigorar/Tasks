@@ -3,6 +3,7 @@ package rodrigorar.entities;
 import java.util.List;
 import java.util.LinkedList;
 
+import rodrigorar.entities.interfaces.IEntity;
 import rodrigorar.utils.IdGenerator;
 
 public class TaskList

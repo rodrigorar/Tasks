@@ -1,4 +1,4 @@
-package rodrigorar.data;
+package rodrigorar.data.interfaces;
 
 import org.jdom2.Element;
 
