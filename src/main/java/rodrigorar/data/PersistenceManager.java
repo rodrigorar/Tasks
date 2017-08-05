@@ -32,62 +32,6 @@ public class PersistenceManager {
 
     private PersistenceManager() { /* Empty Constructor */ }
 
-    public Element buildTaskElement(Task task) {
-        Element titleElement = new Element(TITLE);
-        titleElement.setText(task.getTitle());
-
-        Element descriptionElement = new Element(DESCRIPTION);
-        descriptionElement.setText(task.getDescription());
-
-        Element taskElement = new Element(TASK);
-        taskElement.addContent(titleElement);
-        taskElement.addContent(descriptionElement);
-
-        return taskElement;
-    }
-
-    public Task buildTaskObject(Element taskElement) {
-        Task task = null;
-
-        try {
-            Element titleElement = taskElement.getChild("title");
-            String title = titleElement.getText().trim();
-
-            Element descriptionElement = taskElement.getChild("description");
-            String description = descriptionElement.getText().trim();
-
-            task = new Task(title);
-            task.setDescription(description);
-        } catch (InvalidTitleException exception) {
-            exception.printStackTrace();
-        }
-
-        return task;
-    }
-
-    public Element buildTaskListElement(TaskList taskList) {
-        Element taskListElement = new Element(TASK_LIST);
-
-        for (Task task : taskList.getAllTasks()) {
-            Element taskElement = buildTaskElement(task);
-            taskListElement.addContent(taskElement);
-        }
-
-        return taskListElement;
-    }
-
-    public TaskList buildTaskListObject(Element taskListElement) {
-        TaskList taskList = new TaskList();
-        List<Element> taskElements = taskListElement.getChildren();
-
-        for (Element taskElement : taskElements) {
-            Task task = buildTaskObject(taskElement);
-            taskList.addTask(task);
-        }
-
-        return taskList;
-    }
-
     public TaskList loadTaskList() {
         TaskList loadedTaskList = null;
 
@@ -98,7 +42,8 @@ public class PersistenceManager {
             Document document = (Document)builder.build(xmlFile);
             Element taskListElement = document.getRootElement();
 
-            loadedTaskList = buildTaskListObject(taskListElement);
+            TaskListData listData = new TaskListData();
+            loadedTaskList = listData.load(taskListElement);
         } catch (IOException  | JDOMException exception) {
             exception.printStackTrace();
         }
@@ -108,7 +53,8 @@ public class PersistenceManager {
 
     public void saveTaskList(TaskList taskList) {
         try {
-            Element taskListElement = buildTaskListElement(taskList);
+            TaskListData listData = new TaskListData();
+            Element taskListElement = listData.save(taskList);
             Document document = new Document(taskListElement);
             XMLOutputter outputter = new XMLOutputter();
 
