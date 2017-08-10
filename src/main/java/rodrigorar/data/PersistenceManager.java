@@ -30,14 +30,15 @@ import org.jdom2.input.SAXBuilder;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.utils.AppConfig;
 
 public class PersistenceManager {
     public static final String TITLE = "title";
     public static final String DESCRIPTION = "description";
     public static final String TASK = "task";
     public static final String TASK_LIST = "task_list";
-    public static final String DATA = "/home/rodrigo/tasks.xml";
     private static PersistenceManager _instance;
+    private AppConfig _config;
 
     public static PersistenceManager getInstance() {
         if (_instance == null) {
@@ -46,13 +47,15 @@ public class PersistenceManager {
         return _instance;
     }
 
-    private PersistenceManager() { /* Empty Constructor */ }
+    private PersistenceManager() {
+        _config = AppConfig.getInstance();
+    }
 
     public TaskList loadTaskList() {
         TaskList loadedTaskList = null;
 
         SAXBuilder builder = new SAXBuilder();
-        File xmlFile = new File("/home/rodrigo/tasks.xml");
+        File xmlFile = new File(_config.getDataDirectory());
 
         try {
             Document document = (Document)builder.build(xmlFile);
@@ -75,7 +78,7 @@ public class PersistenceManager {
             XMLOutputter outputter = new XMLOutputter();
 
             outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter("/home/rodrigo/tasks.xml"));
+            outputter.output(document, new FileWriter(_config.getDataDirectory()));
         } catch (IOException exception) {
             exception.printStackTrace();
         }
