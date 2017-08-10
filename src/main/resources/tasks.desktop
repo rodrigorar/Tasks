@@ -1,0 +1,7 @@
+[Desktop Entry]
+Encoding=UTF-8
+Name=Tasks
+Exec=java /home/$USER/.tasks/tasks-0.1.jar
+Icon=/home/$USER/.tasks/icon.png
+Terminal=false
+Categories=Office;
