@@ -1,7 +1,8 @@
 [Desktop Entry]
 Encoding=UTF-8
 Name=Tasks
-Exec=java /home/$USER/.tasks/tasks-0.1.jar
-Icon=/home/$USER/.tasks/icon.png
+Type=Application
+Exec=tasks.sh
+Icon=/usr/share/pixmaps/tasks.png
 Terminal=false
 Categories=Office;

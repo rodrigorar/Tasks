@@ -1,4 +1,3 @@
-## Initial Setup Script for tasks application.
+#!/bin/bash
 
-mkdir /home/$USER/.tasks
-cp src/main/resources/base_data_file.xml /home/$USER/.tasks/tasks.xml
+java -jar /home/$USER/.tasks/tasks-0.1.jar
