@@ -32,7 +32,7 @@ public class AppConfig {
     private AppConfig() {
         _username = System.getProperty("user.name");
         _baseDirectory = "/home/" + _username + "/.tasks";
-        _dataDirectory = "/home/" + _username + "/tasks.xml";
+        _dataDirectory = "/home/" + _username + "/.tasks/tasks.xml";
     }
 
     public String getBaseDirectory() {
