@@ -38,7 +38,7 @@ IData<Task> {
         Element titleElement = jdomUtils.buildStringElement(TITLE, task.getTitle());
         taskElement.addContent(titleElement);
 
-        Element descriptionElement = jdomUtils.buildStringElement(DESCRIPTION, task.getTitle());
+        Element descriptionElement = jdomUtils.buildStringElement(DESCRIPTION, task.getDescription());
         taskElement.addContent(descriptionElement);
 
         return taskElement;
