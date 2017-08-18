@@ -24,6 +24,7 @@ function create_jar() {
 	mvn compile
 	mvn package
 	cp target/$build.jar $build
+	cp --recursive target/dependency-jars $build
 	mvn clean
 }
 

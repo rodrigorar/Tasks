@@ -19,6 +19,7 @@ function install() {
     echo "Installing the application..."
     cp resources/base_data_file.xml /home/$USER/.tasks/tasks.xml
     cp tasks-0.1.jar /home/$USER/.tasks
+    cp --recursive dependency-jars /home/$USER/.tasks
     sudo cp resources/tasks.png /usr/share/pixmaps
     sudo cp resources/tasks.desktop /usr/share/applications
     sudo cp resources/tasks.sh /usr/bin/
@@ -26,7 +27,7 @@ function install() {
 
 function uninstall() {
     echo "Uninstalling the application..."
-    rm /home/$USER/tasks-0.1.jar
+    rm /home/$USER/.tasks/tasks-0.1.jar
     sudo rm /usr/share/pixmaps/tasks.png
     sudo rm /usr/share/applications/tasks.desktop
     sudo rm /usr/bin/tasks.sh
