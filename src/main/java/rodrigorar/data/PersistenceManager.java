@@ -29,6 +29,7 @@ import org.jdom2.input.SAXBuilder;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
+import rodrigorar.entities.AppConfigurations;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.utils.AppConfig;
 
@@ -82,5 +83,15 @@ public class PersistenceManager {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public AppConfigurations loadAppConfigurations() {
+        // TODO: Implement the loading of the configurations of the app.
+
+        return null;
+    }
+
+    public void saveAppConfigurations(AppConfigurations configs) {
+        // TODO: Implement the persistence of the app configs.
     }
 }

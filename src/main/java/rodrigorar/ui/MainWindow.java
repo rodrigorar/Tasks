@@ -77,8 +77,17 @@ JFrame {
             }
         });
 
+        JButton settings = new JButton(Labels.SETTINGS);
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                System.out.println("Settings Window Activated");
+            }
+        });
+
         panel.add(newTask);
         panel.add(searchTask);
+        panel.add(settings);
 
         return panel;
     }
