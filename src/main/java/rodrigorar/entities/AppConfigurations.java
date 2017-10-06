@@ -27,6 +27,6 @@ public class AppConfigurations {
     }
 
     public String getDataDirectory() {
-        return _baseDirectory;
+        return _dataDirectory;
     }
 }

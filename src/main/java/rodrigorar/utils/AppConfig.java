@@ -17,7 +17,7 @@
 package rodrigorar.utils;
 
 public class AppConfig {
-    public static final String DIR = "settings.xml";
+    public static final String CONFIG_FILE = "settings.xml";
     private static AppConfig _instance;
     private String _username;
     private String _baseDirectory;
