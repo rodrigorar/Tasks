@@ -24,6 +24,7 @@ public final class Constants {
 
     public static class Labels {
         public static final String SAVE = "Save";
+        public static final String CANCEL = "Cancel";
         public static final String EDIT = "Edit";
         public static final String DESCRIPTION = "Description";
         public static final String TITLE = "Title";
@@ -34,6 +35,8 @@ public final class Constants {
         public static final String SEARCH = "Search";
         public static final String DELETE = "Delete";
         public static final String SETTINGS = "Settings";
+        public static final String CHOOSE_FILE = "Choose Data File";
+        public static final String FILE_BROWSER = "File Browser";
     }
 
     public static class XMLLabels {

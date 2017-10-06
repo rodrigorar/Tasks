@@ -81,7 +81,8 @@ JFrame {
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println("Settings Window Activated");
+                SettingsWindow window = new SettingsWindow(_instance);
+                window.setVisible(true);
             }
         });
 

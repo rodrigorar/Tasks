@@ -68,6 +68,7 @@ public class EntityManager {
 
     public void save() {
         PersistenceManager manager = PersistenceManager.getInstance();
+        manager.saveAppConfigurations(AppConfigurations.getInstance());
         manager.saveTaskList(_taskList);
     }
 
