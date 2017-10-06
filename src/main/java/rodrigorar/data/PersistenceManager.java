@@ -32,13 +32,9 @@ import rodrigorar.entities.TaskList;
 import rodrigorar.entities.AppConfigurations;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.AppConfigurationsData;
-import rodrigorar.utils.AppConfig;
+import rodrigorar.utils.Constants.Configurations;
 
 public class PersistenceManager {
-    public static final String TITLE = "title";
-    public static final String DESCRIPTION = "description";
-    public static final String TASK = "task";
-    public static final String TASK_LIST = "task_list";
     private static PersistenceManager _instance;
 
     public static PersistenceManager getInstance() {
@@ -89,10 +85,10 @@ public class PersistenceManager {
         AppConfigurations configs = null;
 
         SAXBuilder builder = new SAXBuilder();
-        File configFile = new File(AppConfig.CONFIG_FILE);
-        System.out.println("Opened File");
+        File configFile = new File(Configurations.SETTINGS);
+        
         try {
-            Document document = (Document)builder.build(AppConfig.CONFIG_FILE);
+            Document document = (Document)builder.build(Configurations.SETTINGS);
             Element configElement = document.getRootElement();
 
             AppConfigurationsData configData = new AppConfigurationsData();
@@ -112,7 +108,7 @@ public class PersistenceManager {
             XMLOutputter outputter = new XMLOutputter();
 
             outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter(AppConfig.CONFIG_FILE));
+            outputter.output(document, new FileWriter(Configurations.SETTINGS));
         } catch (IOException exception) {
             exception.printStackTrace();
         }

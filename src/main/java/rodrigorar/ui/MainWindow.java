@@ -40,7 +40,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.EntityManager;
-import rodrigorar.utils.Labels;
+import rodrigorar.utils.Constants.Labels;
 
 public class MainWindow
 extends

@@ -21,24 +21,22 @@ import org.jdom2.Element;
 import rodrigorar.data.interfaces.IData;
 import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.entities.AppConfigurations;
+import rodrigorar.utils.Constants.XMLLabels;
 
 public class AppConfigurationsData
 implements
 IData<AppConfigurations> {
-    public static final String CONFIGS = "configs";
-    public static final String BASE_DIRECTORY = "base_directory";
-    public static final String DATA_DIRECTORY = "data_directory";
 
     public Element save(AppConfigurations configs) {
         JDOMBuilder jdomUtils = new JDOMBuilder();
-        Element configsElement = new Element(CONFIGS);
+        Element configsElement = new Element(XMLLabels.CONFIGS);
 
         Element baseDirectory =
-            jdomUtils.buildStringElement(BASE_DIRECTORY, configs.getBaseDirectory());
+            jdomUtils.buildStringElement(XMLLabels.BASE_DIRECTORY, configs.getBaseDirectory());
         configsElement.addContent(baseDirectory);
 
         Element dataDirectory =
-            jdomUtils.buildStringElement(DATA_DIRECTORY, configs.getDataDirectory());
+            jdomUtils.buildStringElement(XMLLabels.DATA_DIRECTORY, configs.getDataDirectory());
         configsElement.addContent(dataDirectory);
 
         return configsElement;
@@ -47,17 +45,14 @@ IData<AppConfigurations> {
     public AppConfigurations load(Element configsElement) {
         AppConfigurations configs = AppConfigurations.getInstance();
 
-        Element baseDirectoryElement = configsElement.getChild(BASE_DIRECTORY);
+        Element baseDirectoryElement = configsElement.getChild(XMLLabels.BASE_DIRECTORY);
         String baseDirectory = baseDirectoryElement.getText().trim();
 
-        Element dataDirectoryElement = configsElement.getChild(DATA_DIRECTORY);
+        Element dataDirectoryElement = configsElement.getChild(XMLLabels.DATA_DIRECTORY);
         String dataDirectory = dataDirectoryElement.getText().trim();
-        
+
         configs.setBaseDirectory(baseDirectory);
         configs.setDataDirectory(dataDirectory);
-
-        System.out.println("Base Directory: " + configs.getBaseDirectory());
-        System.out.println("Data Directory: " + configs.getDataDirectory());
 
         return configs;
     }

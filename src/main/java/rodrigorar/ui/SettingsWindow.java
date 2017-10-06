@@ -2,7 +2,7 @@ package rodrigorar.ui;
 
 import javax.swing.JFrame;
 
-import rodrigorar.utils.Labels;
+import rodrigorar.utils.Constants.Labels;
 
 public class SettingsWindow
 extends

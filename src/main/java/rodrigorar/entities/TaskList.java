@@ -31,7 +31,6 @@ IEntity {
     public TaskList() {
         _id = IdGenerator.getInstance().generateTaskListId();
         _tasks = new LinkedList<Task>();
-        System.out.println("New Task List");
     }
 
     @Override
@@ -40,7 +39,6 @@ IEntity {
     }
 
     public void addTask(Task newTask) {
-        System.out.println("New Task");
         _tasks.add(newTask);
     }
 

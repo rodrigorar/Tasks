@@ -73,7 +73,6 @@ public class EntityManager {
 
     public void load() {
         PersistenceManager manager = PersistenceManager.getInstance();
-        System.out.println("Load Configurations");
         manager.loadAppConfigurations();
         _taskList = manager.loadTaskList();
     }
