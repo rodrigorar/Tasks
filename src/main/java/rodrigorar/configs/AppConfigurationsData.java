@@ -14,13 +14,13 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.configs;
 
 import org.jdom2.Element;
 
 import rodrigorar.data.interfaces.IData;
 import rodrigorar.data.utils.JDOMBuilder;
-import rodrigorar.entities.AppConfigurations;
+import rodrigorar.configs.AppConfigurations;
 import rodrigorar.utils.Constants.XMLLabels;
 
 public class AppConfigurationsData

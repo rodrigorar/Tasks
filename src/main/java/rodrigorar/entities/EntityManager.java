@@ -18,9 +18,9 @@ package rodrigorar.entities;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
-import rodrigorar.entities.AppConfigurations;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.PersistenceManager;
+import rodrigorar.configs.AppConfigurations;
 
 public class EntityManager {
     private static EntityManager _instance;

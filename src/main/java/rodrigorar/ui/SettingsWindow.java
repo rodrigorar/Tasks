@@ -32,7 +32,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.utils.Constants.Labels;
-import rodrigorar.entities.AppConfigurations;
+import rodrigorar.configs.AppConfigurations;
 
 public class SettingsWindow
 extends

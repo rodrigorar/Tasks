@@ -29,9 +29,9 @@ import org.jdom2.input.SAXBuilder;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
-import rodrigorar.entities.AppConfigurations;
 import rodrigorar.entities.exceptions.InvalidTitleException;
-import rodrigorar.data.AppConfigurationsData;
+import rodrigorar.configs.AppConfigurations;
+import rodrigorar.configs.AppConfigurationsData;
 import rodrigorar.utils.Constants.Configurations;
 
 public class PersistenceManager {
@@ -86,7 +86,7 @@ public class PersistenceManager {
 
         SAXBuilder builder = new SAXBuilder();
         File configFile = new File(Configurations.SETTINGS);
-        
+
         try {
             Document document = (Document)builder.build(Configurations.SETTINGS);
             Element configElement = document.getRootElement();
