@@ -86,7 +86,8 @@ public class PersistenceManager {
 
         try {
             SAXBuilder builder = new SAXBuilder();
-            Document document = (Document)builder.build(SystemUtils.getDefaultLinuxSettings());
+            File configFile = new File(SystemUtils.getDefaultLinuxSettings());
+            Document document = (Document)builder.build(configFile);
             Element configElement = document.getRootElement();
 
             AppConfigurationsData configData = new AppConfigurationsData();
