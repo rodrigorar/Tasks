@@ -58,6 +58,7 @@ JFrame {
     private JPanel createButtonPanel() {
         JPanel panel = new JPanel();
         panel.setLayout(new GridLayout(6, 1, 0, 5));
+        panel.setMaximumSize(new Dimension(150, 3000));
 
         JButton newTask = new JButton(Labels.NEW_TASK);
         newTask.addActionListener(new ActionListener() {
@@ -69,6 +70,7 @@ JFrame {
         });
 
         JButton searchTask = new JButton(Labels.SEARCH);
+        searchTask.setMaximumSize(new Dimension(3000, 40));
         searchTask.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -181,7 +183,7 @@ JFrame {
         add(createLayout());
         windowEvents();
         setTitle(Labels.TASK);
-        setSize(500, 300);
+        setSize(800, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);
     }
