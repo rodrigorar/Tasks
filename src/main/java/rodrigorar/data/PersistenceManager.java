@@ -32,7 +32,7 @@ import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.configs.AppConfigurations;
 import rodrigorar.configs.AppConfigurationsData;
-import rodrigorar.utils.Constants.Configurations;
+import rodrigorar.utils.SystemUtils;
 
 public class PersistenceManager {
     private static PersistenceManager _instance;
@@ -84,17 +84,18 @@ public class PersistenceManager {
     public AppConfigurations loadAppConfigurations() {
         AppConfigurations configs = null;
 
-        SAXBuilder builder = new SAXBuilder();
-        File configFile = new File(Configurations.SETTINGS);
-
         try {
-            Document document = (Document)builder.build(Configurations.SETTINGS);
+            SAXBuilder builder = new SAXBuilder();
+            Document document = (Document)builder.build(SystemUtils.getDefaultLinuxSettings());
             Element configElement = document.getRootElement();
 
             AppConfigurationsData configData = new AppConfigurationsData();
             configs = configData.load(configElement);
         } catch (IOException | JDOMException exception) {
-            exception.printStackTrace();
+            System.out.println("No Settings Exist... Creating new ones");
+            configs = AppConfigurations.getInstance();
+            configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
+            configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
         }
 
         return configs;
@@ -108,7 +109,7 @@ public class PersistenceManager {
             XMLOutputter outputter = new XMLOutputter();
 
             outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter(Configurations.SETTINGS));
+            outputter.output(document, new FileWriter(SystemUtils.getDefaultLinuxSettings()));
         } catch (IOException exception) {
             exception.printStackTrace();
         }

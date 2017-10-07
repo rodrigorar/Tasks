@@ -17,11 +17,7 @@
 package rodrigorar.utils;
 
 public final class Constants {
-
-    public static class Configurations {
-        public static final String SETTINGS = "settings.xml";
-    }
-
+    
     public static class Labels {
         public static final String SAVE = "Save";
         public static final String CANCEL = "Cancel";

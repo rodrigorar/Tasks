@@ -17,9 +17,12 @@
 package rodrigorar;
 
 import rodrigorar.ui.MainWindow;
+import rodrigorar.utils.SystemUtils;
 
 public class App {
     public static void main( String[] args ) {
+        System.out.println(SystemUtils.getDefaultLinuxData());
+        System.out.println(SystemUtils.getDefaultLinuxSettings());
         MainWindow window = new MainWindow();
         window.setVisible(true);
     }
