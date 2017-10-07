@@ -22,23 +22,21 @@ import rodrigorar.data.interfaces.IData;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.utils.JDOMBuilder;
+import rodrigorar.utils.Constants.XMLLabels;
 
 public class TaskData
 implements
 IData<Task> {
-    public static final String TITLE = "title";
-    public static final String DESCRIPTION = "description";
-    public static final String TASK = "task";
 
     @Override
     public Element save(Task task) {
         JDOMBuilder jdomUtils = new JDOMBuilder();
-        Element taskElement = new Element(TASK);
+        Element taskElement = new Element(XMLLabels.TASK);
 
-        Element titleElement = jdomUtils.buildStringElement(TITLE, task.getTitle());
+        Element titleElement = jdomUtils.buildStringElement(XMLLabels.TITLE, task.getTitle());
         taskElement.addContent(titleElement);
 
-        Element descriptionElement = jdomUtils.buildStringElement(DESCRIPTION, task.getDescription());
+        Element descriptionElement = jdomUtils.buildStringElement(XMLLabels.DESCRIPTION, task.getDescription());
         taskElement.addContent(descriptionElement);
 
         return taskElement;
@@ -49,10 +47,10 @@ IData<Task> {
         Task task = null;
 
         try {
-            Element titleElement = taskElement.getChild(TITLE);
+            Element titleElement = taskElement.getChild(XMLLabels.TITLE);
             String title = titleElement.getText().trim();
 
-            Element descriptionElement = taskElement.getChild(DESCRIPTION);
+            Element descriptionElement = taskElement.getChild(XMLLabels.DESCRIPTION);
             String description = descriptionElement.getText().trim();
 
             task = new Task(title);

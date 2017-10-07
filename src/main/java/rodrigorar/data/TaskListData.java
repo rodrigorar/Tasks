@@ -22,14 +22,14 @@ import org.jdom2.Element;
 import rodrigorar.data.interfaces.IData;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
+import rodrigorar.utils.Constants.XMLLabels;
 
 public class TaskListData
 implements
 IData<TaskList> {
-    public static final String TASK_LIST = "task_list";
 
     public Element save(TaskList taskList) {
-        Element taskListElement = new Element(TASK_LIST);
+        Element taskListElement = new Element(XMLLabels.TASK_LIST);
         TaskData builder = new TaskData();
 
         for (Task task : taskList.getAllTasks()) {

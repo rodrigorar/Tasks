@@ -40,7 +40,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.EntityManager;
-import rodrigorar.utils.Labels;
+import rodrigorar.utils.Constants.Labels;
 
 public class MainWindow
 extends
@@ -77,8 +77,18 @@ JFrame {
             }
         });
 
+        JButton settings = new JButton(Labels.SETTINGS);
+        settings.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                SettingsWindow window = new SettingsWindow(_instance);
+                window.setVisible(true);
+            }
+        });
+
         panel.add(newTask);
         panel.add(searchTask);
+        panel.add(settings);
 
         return panel;
     }

@@ -28,7 +28,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
 
-import rodrigorar.utils.Labels;
+import rodrigorar.utils.Constants.Labels;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 

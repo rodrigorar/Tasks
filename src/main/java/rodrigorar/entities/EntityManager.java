@@ -20,6 +20,7 @@ import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.PersistenceManager;
+import rodrigorar.configs.AppConfigurations;
 
 public class EntityManager {
     private static EntityManager _instance;
@@ -67,11 +68,13 @@ public class EntityManager {
 
     public void save() {
         PersistenceManager manager = PersistenceManager.getInstance();
+        manager.saveAppConfigurations(AppConfigurations.getInstance());
         manager.saveTaskList(_taskList);
     }
 
     public void load() {
         PersistenceManager manager = PersistenceManager.getInstance();
+        manager.loadAppConfigurations();
         _taskList = manager.loadTaskList();
     }
 

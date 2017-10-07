@@ -30,15 +30,12 @@ import org.jdom2.input.SAXBuilder;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
-import rodrigorar.utils.AppConfig;
+import rodrigorar.configs.AppConfigurations;
+import rodrigorar.configs.AppConfigurationsData;
+import rodrigorar.utils.Constants.Configurations;
 
 public class PersistenceManager {
-    public static final String TITLE = "title";
-    public static final String DESCRIPTION = "description";
-    public static final String TASK = "task";
-    public static final String TASK_LIST = "task_list";
     private static PersistenceManager _instance;
-    private AppConfig _config;
 
     public static PersistenceManager getInstance() {
         if (_instance == null) {
@@ -47,16 +44,14 @@ public class PersistenceManager {
         return _instance;
     }
 
-    private PersistenceManager() {
-        _config = AppConfig.getInstance();
-    }
+    private PersistenceManager() { /* Empty Constructor */ }
 
     public TaskList loadTaskList() {
+        AppConfigurations configs = AppConfigurations.getInstance();
         TaskList loadedTaskList = null;
 
         SAXBuilder builder = new SAXBuilder();
-        File xmlFile = new File(_config.getDataDirectory());
-
+        File xmlFile = new File(configs.getDataDirectory());
         try {
             Document document = (Document)builder.build(xmlFile);
             Element taskListElement = document.getRootElement();
@@ -71,6 +66,8 @@ public class PersistenceManager {
     }
 
     public void saveTaskList(TaskList taskList) {
+        AppConfigurations configs = AppConfigurations.getInstance();
+
         try {
             TaskListData listData = new TaskListData();
             Element taskListElement = listData.save(taskList);
@@ -78,7 +75,40 @@ public class PersistenceManager {
             XMLOutputter outputter = new XMLOutputter();
 
             outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter(_config.getDataDirectory()));
+            outputter.output(document, new FileWriter(configs.getDataDirectory()));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
+
+    public AppConfigurations loadAppConfigurations() {
+        AppConfigurations configs = null;
+
+        SAXBuilder builder = new SAXBuilder();
+        File configFile = new File(Configurations.SETTINGS);
+
+        try {
+            Document document = (Document)builder.build(Configurations.SETTINGS);
+            Element configElement = document.getRootElement();
+
+            AppConfigurationsData configData = new AppConfigurationsData();
+            configs = configData.load(configElement);
+        } catch (IOException | JDOMException exception) {
+            exception.printStackTrace();
+        }
+
+        return configs;
+    }
+
+    public void saveAppConfigurations(AppConfigurations configs) {
+        try {
+            AppConfigurationsData configData = new AppConfigurationsData();
+            Element configsElement = configData.save(configs);
+            Document document = new Document(configsElement);
+            XMLOutputter outputter = new XMLOutputter();
+
+            outputter.setFormat(Format.getPrettyFormat());
+            outputter.output(document, new FileWriter(Configurations.SETTINGS));
         } catch (IOException exception) {
             exception.printStackTrace();
         }

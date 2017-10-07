@@ -14,29 +14,32 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.utils;
+package rodrigorar.configs;
 
-public class AppConfig {
-    private static AppConfig _instance;
-    private String _username;
+public class AppConfigurations {
+    private static AppConfigurations _instance;
     private String _baseDirectory;
     private String _dataDirectory;
 
-    public static AppConfig getInstance() {
+    public static AppConfigurations getInstance() {
         if (_instance == null) {
-            _instance = new AppConfig();
+            _instance = new AppConfigurations();
         }
         return _instance;
     }
 
-    private AppConfig() {
-        _username = System.getProperty("user.name");
-        _baseDirectory = "/home/" + _username + "/.tasks";
-        _dataDirectory = "/home/" + _username + "/.tasks/tasks.xml";
+    private AppConfigurations() { /* Empty Constructor */ }
+
+    public void setBaseDirectory(String baseDirectory) {
+        _baseDirectory = baseDirectory;
     }
 
     public String getBaseDirectory() {
         return _baseDirectory;
+    }
+
+    public void setDataDirectory(String dataDirectory) {
+        _dataDirectory = dataDirectory;
     }
 
     public String getDataDirectory() {
