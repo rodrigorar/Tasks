@@ -93,7 +93,6 @@ public class PersistenceManager {
             AppConfigurationsData configData = new AppConfigurationsData();
             configs = configData.load(configElement);
         } catch (IOException | JDOMException exception) {
-            System.out.println("No Settings Exist... Creating new ones");
             configs = AppConfigurations.getInstance();
             configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
             configs.setDataDirectory(SystemUtils.getDefaultLinuxData());

@@ -20,9 +20,13 @@ import rodrigorar.ui.MainWindow;
 import rodrigorar.utils.SystemUtils;
 
 public class App {
+
+    public static void bootstrap() {
+        // No bootstrap yet.
+    }
+
     public static void main( String[] args ) {
-        System.out.println(SystemUtils.getDefaultLinuxData());
-        System.out.println(SystemUtils.getDefaultLinuxSettings());
+        bootstrap();
         MainWindow window = new MainWindow();
         window.setVisible(true);
     }
