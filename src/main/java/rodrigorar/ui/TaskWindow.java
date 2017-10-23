@@ -25,6 +25,7 @@ import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JButton;
+import javax.swing.JScrollPane;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
@@ -33,6 +34,7 @@ import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.utils.UIUtils;
 
 public class TaskWindow
 extends
@@ -40,8 +42,8 @@ JFrame {
     private MainWindow _parentWindow;
     private EntityManager _manager;
     private Task _task;
-    private JTextArea _title;
-    private JTextArea _description;
+    private JScrollPane _title;
+    private JScrollPane _description;
 
     public TaskWindow(MainWindow parentWindow) {
         init(parentWindow);
@@ -51,19 +53,30 @@ JFrame {
     public TaskWindow(MainWindow parentWindow, Task task) {
         init(parentWindow);
         _task = task;
-        _title.setText(_task.getTitle());
-        _description.setText(_task.getDescription());
-        _title.setEnabled(false);
-        _title.setDisabledTextColor(Color.BLACK);
-        _description.setEnabled(false);
-        _description.setDisabledTextColor(Color.BLACK);
+
+        JTextArea title =
+            UIUtils.getInnerComponent(
+                JTextArea.class, _title
+            );
+        title.setText(_task.getTitle());
+        title.setEnabled(false);
+        title.setDisabledTextColor(Color.BLACK);
+
+        JTextArea description =
+            UIUtils.getInnerComponent(
+                JTextArea.class, _description
+            );
+        description.setText(_task.getDescription());
+        description.setEnabled(false);
+        description.setDisabledTextColor(Color.BLACK);
+
         initUI();
     }
 
     private void init(MainWindow parentWindow) {
         _parentWindow = parentWindow;
-        _title = new JTextArea();
-        _description = new JTextArea();
+        _title = new JScrollPane(new JTextArea());
+        _description = new JScrollPane(new JTextArea());
         _manager = EntityManager.getInstance();
     }
 
@@ -73,10 +86,14 @@ JFrame {
 
         JLabel titleLabel = new JLabel(Labels.TITLE);
 
-        _title.setLineWrap(true);
-        _title.setWrapStyleWord(true);
-        _title.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        _title.setMaximumSize(new Dimension(2000, 20));
+        JTextArea title =
+            UIUtils.getInnerComponent(
+                JTextArea.class,
+                _title
+            );
+        title.setLineWrap(true);
+        title.setWrapStyleWord(true);
+        title.setMaximumSize(new Dimension(2000, 20));
 
         titlePanel.add(titleLabel);
         titlePanel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -91,11 +108,15 @@ JFrame {
 
         JLabel descriptionLabel = new JLabel(Labels.DESCRIPTION);
 
-        _description.setLineWrap(true);
-        _description.setWrapStyleWord(true);
-        _description.setRows(3);
-        _description.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        _description.setMaximumSize(new Dimension(2000, 60));
+        JTextArea description =
+            UIUtils.getInnerComponent(
+                JTextArea.class,
+                _description
+            );
+        description.setLineWrap(true);
+        description.setWrapStyleWord(true);
+        description.setRows(3);
+        description.setMaximumSize(new Dimension(2000, 60));
 
         descriptionPanel.add(descriptionLabel);
         descriptionPanel.add(Box.createRigidArea(new Dimension(10, 0)));
@@ -113,11 +134,22 @@ JFrame {
             @Override
             public void actionPerformed(ActionEvent event) {
                 try {
+                    JTextArea title =
+                        UIUtils.getInnerComponent(
+                            JTextArea.class,
+                            _title
+                        );
+                    JTextArea description =
+                        UIUtils.getInnerComponent(
+                            JTextArea.class,
+                            _description
+                        );
+
                     if (_task == null) {
-                        _task = _manager.newTask(_title.getText().trim(), _description.getText().trim());
+                        _task = _manager.newTask(title.getText().trim(), description.getText().trim());
                     } else {
-                        _task.setTitle(_title.getText().trim());
-                        _task.setDescription(_description.getText().trim());
+                        _task.setTitle(title.getText().trim());
+                        _task.setDescription(description.getText().trim());
                     }
                 } catch (InvalidTitleException exception) {
                     exception.printStackTrace();
@@ -132,12 +164,22 @@ JFrame {
         edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                if (_title.isEnabled() && _description.isEnabled()) {
-                    _title.setEnabled(false);
-                    _description.setEnabled(false);
+                JTextArea title =
+                    UIUtils.getInnerComponent(
+                        JTextArea.class,
+                        _title
+                    );
+                JTextArea description =
+                    UIUtils.getInnerComponent(
+                        JTextArea.class,
+                        _description
+                    );
+                if (title.isEnabled() && description.isEnabled()) {
+                    title.setEnabled(false);
+                    description.setEnabled(false);
                 } else {
-                    _title.setEnabled(true);
-                    _description.setEnabled(true);
+                    title.setEnabled(true);
+                    description.setEnabled(true);
                 }
             }
         });
@@ -167,7 +209,7 @@ JFrame {
     private void initUI() {
         add(createLayout());
         setTitle(Labels.TASK);
-        setSize(500, 150);
+        setSize(600, 150);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
