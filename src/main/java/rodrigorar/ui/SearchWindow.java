@@ -95,7 +95,7 @@ JFrame {
     private void initUI() {
         add(createLayout());
         setTitle(Labels.SEARCH);
-        setSize(300, 100);
+        setSize(300, 110);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
