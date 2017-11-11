@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.configs;
+package rodrigorar.data;
 
 import org.jdom2.Element;
 

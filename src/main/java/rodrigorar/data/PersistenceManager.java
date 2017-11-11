@@ -31,7 +31,7 @@ import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.configs.AppConfigurations;
-import rodrigorar.configs.AppConfigurationsData;
+import rodrigorar.data.AppConfigurationsData;
 import rodrigorar.utils.SystemUtils;
 
 public class PersistenceManager {
