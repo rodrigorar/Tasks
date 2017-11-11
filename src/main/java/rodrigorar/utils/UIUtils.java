@@ -16,10 +16,21 @@
 
 package rodrigorar.utils;
 
+import java.awt.Dimension;
+import java.awt.Component;
+
 import javax.swing.JViewport;
 import javax.swing.JScrollPane;
 
 public class UIUtils<T> {
+
+    public static <T extends Component> JScrollPane buildScrollable(
+                    T instance, int width, int height) {
+        JScrollPane scrollPane = new JScrollPane(instance);
+        scrollPane.setMaximumSize(new Dimension(width, height));
+
+        return scrollPane;
+    }
 
     public static <T> T getInnerComponent(Class<T> clazz, JScrollPane scrollPane) {
         JViewport viewport = scrollPane.getViewport();

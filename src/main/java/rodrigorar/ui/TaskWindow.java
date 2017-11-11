@@ -75,8 +75,8 @@ JFrame {
 
     private void init(MainWindow parentWindow) {
         _parentWindow = parentWindow;
-        _title = new JScrollPane(new JTextArea());
-        _description = new JScrollPane(new JTextArea());
+        _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
+        _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
         _manager = EntityManager.getInstance();
     }
 
@@ -93,10 +93,10 @@ JFrame {
             );
         title.setLineWrap(true);
         title.setWrapStyleWord(true);
-        title.setMaximumSize(new Dimension(2000, 20));
+        title.setMaximumSize(new Dimension(20, 20));
 
         titlePanel.add(titleLabel);
-        titlePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        titlePanel.add(Box.createRigidArea(new Dimension(59, 0)));
         titlePanel.add(_title);
 
         return titlePanel;
@@ -209,7 +209,7 @@ JFrame {
     private void initUI() {
         add(createLayout());
         setTitle(Labels.TASK);
-        setSize(600, 150);
+        setSize(600, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }
