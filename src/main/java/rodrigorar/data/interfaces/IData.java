@@ -22,6 +22,6 @@ public interface IData<T> {
 
     public Element save(T task);
 
-    public T load(Element taskElement);
+    public T load(Element element);
 
 }

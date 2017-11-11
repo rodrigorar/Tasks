@@ -28,21 +28,19 @@ public class TaskData
 implements
 IData<Task> {
 
-    @Override
     public Element save(Task task) {
         JDOMBuilder jdomUtils = new JDOMBuilder();
         Element taskElement = new Element(XMLLabels.TASK);
 
-        Element titleElement = jdomUtils.buildStringElement(XMLLabels.TITLE, task.getTitle());
+        Element titleElement = JDOMBuilder.buildStringElement(XMLLabels.TITLE, task.getTitle());
         taskElement.addContent(titleElement);
 
-        Element descriptionElement = jdomUtils.buildStringElement(XMLLabels.DESCRIPTION, task.getDescription());
+        Element descriptionElement = JDOMBuilder.buildStringElement(XMLLabels.DESCRIPTION, task.getDescription());
         taskElement.addContent(descriptionElement);
 
         return taskElement;
     }
 
-    @Override
     public Task load(Element taskElement) {
         Task task = null;
 
