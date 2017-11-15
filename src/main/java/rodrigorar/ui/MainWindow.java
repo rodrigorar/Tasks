@@ -37,6 +37,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
 
+import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
 import rodrigorar.entities.EntityManager;
@@ -47,6 +48,7 @@ extends
 JFrame {
     public static final int CLICKS = 2;
     private MainWindow _instance;
+    private ServicesLanguage _servicesLanguage = ServicesLanguage.getInstance();
     private JList _list;
 
     public MainWindow() {
@@ -60,7 +62,7 @@ JFrame {
         panel.setLayout(new GridLayout(6, 1, 0, 5));
         panel.setMaximumSize(new Dimension(150, 3000));
 
-        JButton newTask = new JButton(Labels.NEW_TASK);
+        JButton newTask = new JButton(_servicesLanguage.getTranslation(Labels.NEW_TASK));
         newTask.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -69,7 +71,7 @@ JFrame {
             }
         });
 
-        JButton searchTask = new JButton(Labels.SEARCH);
+        JButton searchTask = new JButton(_servicesLanguage.getTranslation(Labels.SEARCH));
         searchTask.setMaximumSize(new Dimension(3000, 40));
         searchTask.addActionListener(new ActionListener() {
             @Override
@@ -79,7 +81,7 @@ JFrame {
             }
         });
 
-        JButton settings = new JButton(Labels.SETTINGS);
+        JButton settings = new JButton(_servicesLanguage.getTranslation(Labels.SETTINGS));
         settings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -127,7 +129,7 @@ JFrame {
                     window.setVisible(true);
                 } else if (event.getButton() == MouseEvent.BUTTON3) {
                     JPopupMenu menu = new JPopupMenu();
-                    JMenuItem deleteItem = new JMenuItem(Labels.DELETE);
+                    JMenuItem deleteItem = new JMenuItem(_servicesLanguage.getTranslation(Labels.DELETE));
                     deleteItem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
@@ -182,7 +184,7 @@ JFrame {
     private void initUI() {
         add(createLayout());
         windowEvents();
-        setTitle(Labels.TASK);
+        setTitle(_servicesLanguage.getTranslation(Labels.TASK));
         setSize(800, 300);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(EXIT_ON_CLOSE);

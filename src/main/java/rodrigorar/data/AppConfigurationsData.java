@@ -39,6 +39,10 @@ IData<AppConfigurations> {
             jdomUtils.buildStringElement(XMLLabels.DATA_DIRECTORY, configs.getDataDirectory());
         configsElement.addContent(dataDirectory);
 
+        Element language =
+            jdomUtils.buildStringElement(XMLLabels.LANGUAGE, configs.getLanguage());
+        configsElement.addContent(language);
+
         return configsElement;
     }
 
@@ -51,8 +55,14 @@ IData<AppConfigurations> {
         Element dataDirectoryElement = configsElement.getChild(XMLLabels.DATA_DIRECTORY);
         String dataDirectory = dataDirectoryElement.getText().trim();
 
+        Element languageElement = configsElement.getChild(XMLLabels.LANGUAGE);
+        String language = languageElement.getText().trim();
+
+        System.out.println("Language: " + language);
+
         configs.setBaseDirectory(baseDirectory);
         configs.setDataDirectory(dataDirectory);
+        configs.setLanguage(language);
 
         return configs;
     }

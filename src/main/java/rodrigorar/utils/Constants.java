@@ -17,22 +17,22 @@
 package rodrigorar.utils;
 
 public final class Constants {
-    
+
     public static class Labels {
-        public static final String SAVE = "Save";
-        public static final String CANCEL = "Cancel";
-        public static final String EDIT = "Edit";
-        public static final String DESCRIPTION = "Description";
-        public static final String TITLE = "Title";
-        public static final String TASK = "Task";
-        public static final String TASKS = "Tasks";
-        public static final String TASK_LIST = "Task List";
-        public static final String NEW_TASK = "New Task";
-        public static final String SEARCH = "Search";
-        public static final String DELETE = "Delete";
-        public static final String SETTINGS = "Settings";
-        public static final String CHOOSE_FILE = "Choose Data File";
-        public static final String FILE_BROWSER = "File Browser";
+        public static final String SAVE = "save";
+        public static final String CANCEL = "cancel";
+        public static final String EDIT = "edit";
+        public static final String DESCRIPTION = "description";
+        public static final String TITLE = "title";
+        public static final String TASK = "task";
+        public static final String TASKS = "tasks";
+        public static final String TASK_LIST = "task_list";
+        public static final String NEW_TASK = "new_task";
+        public static final String SEARCH = "search";
+        public static final String DELETE = "delete";
+        public static final String SETTINGS = "settings";
+        public static final String CHOOSE_FILE = "choose_data_file";
+        public static final String FILE_BROWSER = "file_browser";
     }
 
     public static class XMLLabels {
@@ -43,5 +43,13 @@ public final class Constants {
         public static final String BASE_DIRECTORY = "base_directory";
         public static final String DATA_DIRECTORY = "data_directory";
         public static final String CONFIGS = "configs";
+        public static final String LANGUAGE = "language";
+        public static final String NAME = "name";
+        public static final String SIMPLE_NAME = "simple_name";
+        public static final String TRANSLATIONS = "translations";
+        public static final String TRANSLATION = "translation";
+        public static final String KEY = "key";
+        public static final String VALUE = "value";
     }
+
 }

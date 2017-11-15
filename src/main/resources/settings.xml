@@ -2,4 +2,5 @@
 <configs>
   <base_directory></base_directory>
   <data_directory></data_directory>
+  <language></language>
 </configs>

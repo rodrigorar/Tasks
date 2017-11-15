@@ -30,17 +30,24 @@ public class IdGenerator {
         // Empty Constructor
     }
 
-    public String generateTaskId() {
-        StringBuilder taskId = new StringBuilder("task-");
+    private static String generateId(StringBuilder builder) {
         long numberId = (long)(Math.random() * 1000000000);
-        taskId.append(numberId);
-        return taskId.toString();
+        builder.append(numberId);
+        return builder.toString();
+    }
+
+    public String generateTaskId() {
+        StringBuilder id = new StringBuilder("task-");
+        return generateId(id);
     }
 
     public String generateTaskListId() {
-        StringBuilder taskListId = new StringBuilder("tasklist-");
-        long numberId = (long)(Math.random() * 1000000000);
-        taskListId.append(numberId);
-        return taskListId.toString();
+        StringBuilder id = new StringBuilder("tasklist-");
+        return generateId(id);
+    }
+
+    public static String generateLanguageId() {
+        StringBuilder id = new StringBuilder("language-");
+        return generateId(id);
     }
 }

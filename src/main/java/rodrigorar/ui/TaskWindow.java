@@ -30,6 +30,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
 
+import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
 import rodrigorar.entities.exceptions.InvalidTitleException;
@@ -41,6 +42,7 @@ extends
 JFrame {
     private MainWindow _parentWindow;
     private EntityManager _manager;
+    private ServicesLanguage _servicesLanguage;
     private Task _task;
     private JScrollPane _title;
     private JScrollPane _description;
@@ -78,13 +80,14 @@ JFrame {
         _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
         _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
         _manager = EntityManager.getInstance();
+        _servicesLanguage = ServicesLanguage.getInstance();
     }
 
     private JPanel createTitlePanel() {
         JPanel titlePanel = new JPanel();
         titlePanel.setLayout(new BoxLayout(titlePanel, BoxLayout.X_AXIS));
 
-        JLabel titleLabel = new JLabel(Labels.TITLE);
+        JLabel titleLabel = new JLabel(_servicesLanguage.getTranslation(Labels.TITLE));
 
         JTextArea title =
             UIUtils.getInnerComponent(
@@ -106,7 +109,7 @@ JFrame {
         JPanel descriptionPanel = new JPanel();
         descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.X_AXIS));
 
-        JLabel descriptionLabel = new JLabel(Labels.DESCRIPTION);
+        JLabel descriptionLabel = new JLabel(_servicesLanguage.getTranslation(Labels.DESCRIPTION));
 
         JTextArea description =
             UIUtils.getInnerComponent(
@@ -129,7 +132,7 @@ JFrame {
         JPanel buttonPanel = new JPanel();
         buttonPanel.setLayout(new BoxLayout(buttonPanel, BoxLayout.X_AXIS));
 
-        JButton save = new JButton(Labels.SAVE);
+        JButton save = new JButton(_servicesLanguage.getTranslation(Labels.SAVE));
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -160,7 +163,7 @@ JFrame {
             }
         });
 
-        JButton edit = new JButton(Labels.EDIT);
+        JButton edit = new JButton(_servicesLanguage.getTranslation(Labels.EDIT));
         edit.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -208,7 +211,7 @@ JFrame {
 
     private void initUI() {
         add(createLayout());
-        setTitle(Labels.TASK);
+        setTitle(_servicesLanguage.getTranslation(Labels.TASK));
         setSize(600, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

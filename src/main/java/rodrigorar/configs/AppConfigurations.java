@@ -20,6 +20,7 @@ public class AppConfigurations {
     private static AppConfigurations _instance;
     private String _baseDirectory;
     private String _dataDirectory;
+    private String _language;
 
     public static AppConfigurations getInstance() {
         if (_instance == null) {
@@ -44,5 +45,13 @@ public class AppConfigurations {
 
     public String getDataDirectory() {
         return _dataDirectory;
+    }
+
+    public void setLanguage(String language) {
+        _language = language;
+    }
+
+    public String getLanguage() {
+        return _language;
     }
 }

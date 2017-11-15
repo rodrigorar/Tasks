@@ -29,9 +29,12 @@ import org.jdom2.input.SAXBuilder;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
+import rodrigorar.entities.Language;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.configs.AppConfigurations;
+import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.data.AppConfigurationsData;
+import rodrigorar.data.LanguageData;
 import rodrigorar.utils.SystemUtils;
 
 public class PersistenceManager {
@@ -93,6 +96,8 @@ public class PersistenceManager {
             AppConfigurationsData configData = new AppConfigurationsData();
             configs = configData.load(configElement);
         } catch (IOException | JDOMException exception) {
+            exception.printStackTrace();
+            
             configs = AppConfigurations.getInstance();
             configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
             configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
@@ -113,5 +118,23 @@ public class PersistenceManager {
         } catch (IOException exception) {
             exception.printStackTrace();
         }
+    }
+
+    public Language loadLanguage(SupportedLanguages.Languages language) {
+        Language languageEntity = null;
+
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File configFile = new File(language.getFile());
+            Document document = (Document)builder.build(configFile);
+            Element element = document.getRootElement();
+
+            LanguageData languageData = new LanguageData();
+            languageEntity = languageData.load(element);
+        } catch (IOException | JDOMException exception) {
+            exception.printStackTrace();
+        }
+
+        return languageEntity;
     }
 }

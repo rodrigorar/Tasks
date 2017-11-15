@@ -25,28 +25,33 @@ import java.awt.event.ActionEvent;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JButton;
+import javax.swing.JLabel;
 import javax.swing.JTextField;
 import javax.swing.JFileChooser;
+import javax.swing.JComboBox;
 import javax.swing.BorderFactory;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.configs.AppConfigurations;
+import rodrigorar.configs.services.ServicesLanguage;
 
 public class SettingsWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
+    private ServicesLanguage _servicesLanguage;
     private JTextField _directory;
 
     public SettingsWindow(MainWindow parentWindow) {
         _parentWindow = parentWindow;
+        _servicesLanguage = ServicesLanguage.getInstance();
         initUI();
     }
 
     private void openFileChooser() {
-        JFrame frame = new JFrame(Labels.FILE_BROWSER);
+        JFrame frame = new JFrame(_servicesLanguage.getTranslation(Labels.FILE_BROWSER));
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
@@ -83,7 +88,7 @@ JFrame {
         _directory.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         _directory.setMaximumSize(new Dimension(2000, 25));
 
-        JButton fileChooser = new JButton(Labels.CHOOSE_FILE);
+        JButton fileChooser = new JButton(_servicesLanguage.getTranslation(Labels.CHOOSE_FILE));
         fileChooser.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -102,7 +107,7 @@ JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-        JButton save = new JButton(Labels.SAVE);
+        JButton save = new JButton(_servicesLanguage.getTranslation(Labels.SAVE));
         save.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -113,7 +118,7 @@ JFrame {
             }
         });
 
-        JButton cancel = new JButton(Labels.CANCEL);
+        JButton cancel = new JButton(_servicesLanguage.getTranslation(Labels.CANCEL));
         cancel.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -134,7 +139,21 @@ JFrame {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+        JPanel languagePanel = new JPanel();
+        languagePanel.setLayout(new BoxLayout(languagePanel, BoxLayout.X_AXIS));
+
+        JLabel text = new JLabel("Language:");
+        JComboBox languages = new JComboBox(_servicesLanguage.getSupportedLanguages().toArray());
+        languages.setMaximumSize(new Dimension(2000, 30));
+        languages.setSelectedItem(_servicesLanguage.getActiveLanguage().getSimpleName());
+        
+        languagePanel.add(text);
+        languagePanel.add(Box.createRigidArea(new Dimension(10, 0)));
+        languagePanel.add(languages);
+
         panel.add(buildDataPanel());
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(languagePanel);
         panel.add(Box.createVerticalGlue());
         panel.add(buildBottomPanel());
 
@@ -143,7 +162,7 @@ JFrame {
 
     private void initUI() {
         add(buildWindow());
-        setTitle(Labels.SETTINGS);
+        setTitle(_servicesLanguage.getTranslation(Labels.SETTINGS));
         setSize(500, 500);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);

@@ -28,6 +28,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 import javax.swing.BorderFactory;
 
+import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.EntityManager;
@@ -36,11 +37,13 @@ public class SearchWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
+    private ServicesLanguage _servicesLanguage;
     private JTextArea _searchBox;
     private EntityManager _entityManager;
 
     public SearchWindow(MainWindow parentWindow) {
         _parentWindow = parentWindow;
+        _servicesLanguage = ServicesLanguage.getInstance();
         _entityManager = EntityManager.getInstance();
         _searchBox = new JTextArea();
         initUI();
@@ -64,7 +67,7 @@ JFrame {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
 
-        JButton searchButton = new JButton(Labels.SEARCH);
+        JButton searchButton = new JButton(_servicesLanguage.getTranslation(Labels.SEARCH));
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
@@ -94,7 +97,7 @@ JFrame {
 
     private void initUI() {
         add(createLayout());
-        setTitle(Labels.SEARCH);
+        setTitle(_servicesLanguage.getTranslation(Labels.SEARCH));
         setSize(300, 110);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
