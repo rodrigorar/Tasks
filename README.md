@@ -6,7 +6,7 @@ Tasks is an application that tries to simplify the mangement of a todo list with
 
 ## Versioning of the Application
 
-<Major>.<Minor>.<Path>
+tasks-\<Major\>.\<Minor\>.\<Path\>.jar
   
   - __Major__: The API of the application is broken, meaning it will not be compatible with previous versions of the application.
   
