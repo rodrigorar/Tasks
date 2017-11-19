@@ -65,7 +65,6 @@ public class ServicesLanguage {
         List<String> languages = new LinkedList<String>();
 
         for (Languages language : SupportedLanguages.Languages.values()) {
-            System.out.println(language.toString());
             languages.add(language.toString());
         }
 

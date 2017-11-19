@@ -57,8 +57,6 @@ public class SupportedLanguages {
                 rValue = Languages.EN;
         }
 
-        System.out.println(rValue.getFile());
-
         return rValue;
     }
 }

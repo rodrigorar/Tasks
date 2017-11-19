@@ -17,6 +17,8 @@ function copy_resources() {
 	cp src/main/resources/tasks.desktop $build/resources/
 	cp src/main/resources/tasks.sh $build/resources/
 	cp src/main/resources/base_data_file.xml $build/resources/
+	cp src/main/resources/settings.xml $build/resources/
+	cp --recursive src/main/resources/languages $build/resources/
 }
 
 function create_jar() {

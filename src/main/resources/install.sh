@@ -17,7 +17,9 @@ function install() {
     mkdir /home/$USER/.tasks
 
     echo "Installing the application..."
+    cp --recursive resources/languages /home/$USER/.tasks/
     cp resources/base_data_file.xml /home/$USER/.tasks/tasks.xml
+    cp resources/settings.xml /home/$USER/.tasks/settings.xml
     cp tasks-0.1.jar /home/$USER/.tasks
     cp --recursive dependency-jars /home/$USER/.tasks
     sudo cp resources/tasks.png /usr/share/pixmaps

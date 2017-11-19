@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language>
+    <name>Portuguese</name>
+    <simple_name>PT</simple_name>
+    <translations>
+        <translation>
+            <key>save</key>
+            <value>Guardar</value>
+        </translation>
+        <translation>
+            <key>cancel</key>
+            <value>Cancelar</value>
+        </translation>
+        <translation>
+            <key>edit</key>
+            <value>Editar</value>
+        </translation>
+        <translation>
+            <key>description</key>
+            <value>Descrição</value>
+        </translation>
+        <translation>
+            <key>title</key>
+            <value>Título</value>
+        </translation>
+        <translation>
+            <key>task</key>
+            <value>Tarefa</value>
+        </translation>
+        <translation>
+            <key>tasks</key>
+            <value>Tarefas</value>
+        </translation>
+        <translation>
+            <key>task_list</key>
+            <value>Lista de Tarefas</value>
+        </translation>
+        <translation>
+            <key>new_task</key>
+            <value>Nova Tarefa</value>
+        </translation>
+        <translation>
+            <key>search</key>
+            <value>Procurar</value>
+        </translation>
+        <translation>
+            <key>delete</key>
+            <value>Apagar</value>
+        </translation>
+        <translation>
+            <key>settings</key>
+            <value>Configurações</value>
+        </translation>
+        <translation>
+            <key>choose_data_file</key>
+            <value>Escolha o ficheiro</value>
+        </translation>
+        <translation>
+            <key>file_browser</key>
+            <value>Navegador de Ficheiros</value>
+        </translation>
+    </translations>
+</language>
