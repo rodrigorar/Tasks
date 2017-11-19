@@ -41,11 +41,14 @@ public class SettingsWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
+    private SettingsWindow _instance;
     private ServicesLanguage _servicesLanguage;
     private JTextField _directory;
+    private String _currentSelectedLanguage;
 
     public SettingsWindow(MainWindow parentWindow) {
         _parentWindow = parentWindow;
+        _instance = this;
         _servicesLanguage = ServicesLanguage.getInstance();
         initUI();
     }
@@ -114,6 +117,8 @@ JFrame {
                 AppConfigurations configurations = AppConfigurations.getInstance();
                 String dataDirectory = _directory.getText().trim();
                 configurations.setDataDirectory(dataDirectory);
+                configurations.setLanguage(_currentSelectedLanguage);
+                _servicesLanguage.setActiveLanguage(_currentSelectedLanguage);
                 dispose();
             }
         });
@@ -146,7 +151,15 @@ JFrame {
         JComboBox languages = new JComboBox(_servicesLanguage.getSupportedLanguages().toArray());
         languages.setMaximumSize(new Dimension(2000, 30));
         languages.setSelectedItem(_servicesLanguage.getActiveLanguage().getSimpleName());
-        
+        languages.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent event) {
+                _currentSelectedLanguage = String.valueOf(languages.getSelectedItem());
+
+                System.out.println("Language Selected: " + _currentSelectedLanguage);
+            }
+        });
+
         languagePanel.add(text);
         languagePanel.add(Box.createRigidArea(new Dimension(10, 0)));
         languagePanel.add(languages);
