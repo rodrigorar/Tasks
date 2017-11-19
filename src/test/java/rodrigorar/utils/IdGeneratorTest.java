@@ -24,8 +24,7 @@ public class IdGeneratorTest {
 
     @Test
     public void generateTaskIdTest() {
-        IdGenerator generator = IdGenerator.getInstance();
-        String id = generator.generateTaskId();
+        String id = IdGenerator.generateTaskId();
 
         assertNotNull(id);
 

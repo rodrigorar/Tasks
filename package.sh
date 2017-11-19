@@ -1,6 +1,6 @@
 #!/bin/bash
 
-build=tasks-0.1
+build=tasks-0.1.3
 
 function build_directories() {
 	echo "Creating directory structure ..."
