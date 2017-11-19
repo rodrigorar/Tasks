@@ -31,7 +31,7 @@ IEntity {
     throws
     InvalidTitleException {
         this.setTitle(title);
-        _id = IdGenerator.getInstance().generateTaskId();
+        _id = IdGenerator.generateTaskId();
     }
 
     public Task(String title, String description)

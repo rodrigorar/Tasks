@@ -29,7 +29,7 @@ IEntity {
     private List<Task> _tasks;
 
     public TaskList() {
-        _id = IdGenerator.getInstance().generateTaskListId();
+        _id = IdGenerator.generateTaskListId();
         _tasks = new LinkedList<Task>();
     }
 

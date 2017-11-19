@@ -17,18 +17,6 @@
 package rodrigorar.utils;
 
 public class IdGenerator {
-    private static IdGenerator _instance;
-
-    public static IdGenerator getInstance() {
-        if (_instance == null) {
-            _instance = new IdGenerator();
-        }
-        return _instance;
-    }
-
-    private IdGenerator() {
-        // Empty Constructor
-    }
 
     private static String generateId(StringBuilder builder) {
         long numberId = (long)(Math.random() * 1000000000);
@@ -36,12 +24,12 @@ public class IdGenerator {
         return builder.toString();
     }
 
-    public String generateTaskId() {
+    public static String generateTaskId() {
         StringBuilder id = new StringBuilder("task-");
         return generateId(id);
     }
 
-    public String generateTaskListId() {
+    public static String generateTaskListId() {
         StringBuilder id = new StringBuilder("tasklist-");
         return generateId(id);
     }
