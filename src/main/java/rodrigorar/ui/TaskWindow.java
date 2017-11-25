@@ -32,7 +32,8 @@ import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
-import rodrigorar.entities.services.ServicesEntity;
+import rodrigorar.entities.services.ServicesFactory;
+import rodrigorar.entities.interfaces.IOperationsFacade;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.utils.UIUtils;
@@ -41,7 +42,7 @@ public class TaskWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
-    private ServicesEntity _entityServices;
+    private IOperationsFacade _operations;
     private ServicesLanguage _servicesLanguage;
     private Task _task;
     private JScrollPane _title;
@@ -79,7 +80,9 @@ JFrame {
         _parentWindow = parentWindow;
         _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
         _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
-        _entityServices = ServicesEntity.getInstance();
+
+        ServicesFactory factory = new ServicesFactory();
+        _operations = factory.getOperations();
         _servicesLanguage = ServicesLanguage.getInstance();
     }
 
@@ -109,7 +112,8 @@ JFrame {
         JPanel descriptionPanel = new JPanel();
         descriptionPanel.setLayout(new BoxLayout(descriptionPanel, BoxLayout.X_AXIS));
 
-        JLabel descriptionLabel = new JLabel(_servicesLanguage.getTranslation(Labels.DESCRIPTION));
+        JLabel descriptionLabel =
+            new JLabel(_servicesLanguage.getTranslation(Labels.DESCRIPTION));
 
         JTextArea description =
             UIUtils.getInnerComponent(
@@ -149,7 +153,7 @@ JFrame {
                         );
 
                     if (_task == null) {
-                        _task = _entityServices.newTask(
+                        _task = _operations.createTask(
                             title.getText().trim(),description.getText().trim()
                         );
                     } else {
@@ -159,7 +163,7 @@ JFrame {
                 } catch (InvalidTitleException exception) {
                     exception.printStackTrace();
                 }
-                _entityServices.save();
+                _operations.save();
                 _parentWindow.updateList();
                 dispose();
             }
