@@ -16,6 +16,8 @@
 
 package rodrigorar.ui;
 
+import java.util.List;
+
 import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
@@ -40,7 +42,8 @@ import javax.swing.BorderFactory;
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
-import rodrigorar.entities.services.ServicesEntity;
+import rodrigorar.entities.interfaces.IOperationsFacade;
+import rodrigorar.entities.services.ServicesFactory;
 import rodrigorar.utils.Constants.Labels;
 
 public class MainWindow
@@ -49,11 +52,17 @@ JFrame {
     public static final int CLICKS = 2;
     private MainWindow _instance;
     private ServicesLanguage _servicesLanguage = ServicesLanguage.getInstance();
+    private IOperationsFacade _operations;
     private JList _list;
 
     public MainWindow() {
         _list = new JList(new DefaultListModel());
         _instance = this;
+
+        ServicesFactory factory = new ServicesFactory();
+        _operations = factory.getOperations();
+        _servicesLanguage = ServicesLanguage.getInstance();
+
         initUI();
     }
 
@@ -99,13 +108,12 @@ JFrame {
 
     public JList updateList() {
         DefaultListModel<String> model = (DefaultListModel<String>)_list.getModel();
-        ServicesEntity entityServices = ServicesEntity.getInstance();
-        TaskList list = entityServices.getTaskList();
+        List<String> list = _operations.getTaskNames("");
 
         model.clear();
 
-        for (Task task : list.getAllTasks()) {
-            model.addElement(task.getTitle());
+        for (String task : list) {
+            model.addElement(task);
         }
 
         return _list;
@@ -119,9 +127,8 @@ JFrame {
         list.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                ServicesEntity entityServices = ServicesEntity.getInstance();
                 int index = _list.locationToIndex(event.getPoint());
-                Task task =  entityServices.getTask((String)_list.getModel().getElementAt(index));
+                Task task =  _operations.findTask((String)_list.getModel().getElementAt(index));
 
                 if (event.getButton() == MouseEvent.BUTTON1
                     && event.getClickCount() == CLICKS) {;
@@ -133,7 +140,7 @@ JFrame {
                     deleteItem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
-                            entityServices.removeTask(task);
+                            _operations.deleteTask(task);
                             updateList();
                         }
                     });
@@ -175,8 +182,7 @@ JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
-                ServicesEntity entityServices = ServicesEntity.getInstance();
-                entityServices.save();
+                _operations.save();
             }
         });
     }
