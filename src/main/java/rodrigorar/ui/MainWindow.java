@@ -40,7 +40,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
-import rodrigorar.entities.EntityManager;
+import rodrigorar.entities.services.ServicesEntity;
 import rodrigorar.utils.Constants.Labels;
 
 public class MainWindow
@@ -99,8 +99,8 @@ JFrame {
 
     public JList updateList() {
         DefaultListModel<String> model = (DefaultListModel<String>)_list.getModel();
-        EntityManager manager = EntityManager.getInstance();
-        TaskList list = manager.getTaskList();
+        ServicesEntity entityServices = ServicesEntity.getInstance();
+        TaskList list = entityServices.getTaskList();
 
         model.clear();
 
@@ -119,9 +119,9 @@ JFrame {
         list.addMouseListener(new MouseListener() {
             @Override
             public void mouseClicked(MouseEvent event) {
-                EntityManager manager = EntityManager.getInstance();
+                ServicesEntity entityServices = ServicesEntity.getInstance();
                 int index = _list.locationToIndex(event.getPoint());
-                Task task =  manager.getTask((String)_list.getModel().getElementAt(index));
+                Task task =  entityServices.getTask((String)_list.getModel().getElementAt(index));
 
                 if (event.getButton() == MouseEvent.BUTTON1
                     && event.getClickCount() == CLICKS) {;
@@ -133,7 +133,7 @@ JFrame {
                     deleteItem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
-                            manager.removeTask(task);
+                            entityServices.removeTask(task);
                             updateList();
                         }
                     });
@@ -175,8 +175,8 @@ JFrame {
         this.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent event) {
-                EntityManager manager = EntityManager.getInstance();
-                manager.save();
+                ServicesEntity entityServices = ServicesEntity.getInstance();
+                entityServices.save();
             }
         });
     }

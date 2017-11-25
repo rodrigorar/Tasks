@@ -32,7 +32,7 @@ import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.entities.Task;
-import rodrigorar.entities.EntityManager;
+import rodrigorar.entities.services.ServicesEntity;
 import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.utils.UIUtils;
@@ -41,7 +41,7 @@ public class TaskWindow
 extends
 JFrame {
     private MainWindow _parentWindow;
-    private EntityManager _manager;
+    private ServicesEntity _entityServices;
     private ServicesLanguage _servicesLanguage;
     private Task _task;
     private JScrollPane _title;
@@ -79,7 +79,7 @@ JFrame {
         _parentWindow = parentWindow;
         _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
         _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
-        _manager = EntityManager.getInstance();
+        _entityServices = ServicesEntity.getInstance();
         _servicesLanguage = ServicesLanguage.getInstance();
     }
 
@@ -149,7 +149,9 @@ JFrame {
                         );
 
                     if (_task == null) {
-                        _task = _manager.newTask(title.getText().trim(), description.getText().trim());
+                        _task = _entityServices.newTask(
+                            title.getText().trim(),description.getText().trim()
+                        );
                     } else {
                         _task.setTitle(title.getText().trim());
                         _task.setDescription(description.getText().trim());
@@ -157,7 +159,7 @@ JFrame {
                 } catch (InvalidTitleException exception) {
                     exception.printStackTrace();
                 }
-                _manager.save();
+                _entityServices.save();
                 _parentWindow.updateList();
                 dispose();
             }

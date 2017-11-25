@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities;
+package rodrigorar.entities.services;
 
 import rodrigorar.entities.Task;
 import rodrigorar.entities.TaskList;
@@ -22,18 +22,18 @@ import rodrigorar.entities.exceptions.InvalidTitleException;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.configs.AppConfigurations;
 
-public class EntityManager {
-    private static EntityManager _instance;
+public class ServicesEntity {
+    private static ServicesEntity _instance;
     private TaskList _taskList;
 
-    public static EntityManager getInstance() {
+    public static ServicesEntity getInstance() {
         if (_instance == null) {
-            _instance = new EntityManager();
+            _instance = new ServicesEntity();
         }
         return _instance;
     }
 
-    private EntityManager() {
+    private ServicesEntity() {
         load();
     }
 

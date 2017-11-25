@@ -31,7 +31,7 @@ import javax.swing.BorderFactory;
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.entities.Task;
-import rodrigorar.entities.EntityManager;
+import rodrigorar.entities.services.ServicesEntity;
 
 public class SearchWindow
 extends
@@ -39,12 +39,12 @@ JFrame {
     private MainWindow _parentWindow;
     private ServicesLanguage _servicesLanguage;
     private JTextArea _searchBox;
-    private EntityManager _entityManager;
+    private ServicesEntity _entityServices;
 
     public SearchWindow(MainWindow parentWindow) {
         _parentWindow = parentWindow;
         _servicesLanguage = ServicesLanguage.getInstance();
-        _entityManager = EntityManager.getInstance();
+        _entityServices = ServicesEntity.getInstance();
         _searchBox = new JTextArea();
         initUI();
     }
@@ -71,7 +71,7 @@ JFrame {
         searchButton.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                Task task = _entityManager.getTask(_searchBox.getText());
+                Task task = _entityServices.getTask(_searchBox.getText());
                 TaskWindow window = new TaskWindow(_parentWindow, task);
                 window.setVisible(true);
             }
