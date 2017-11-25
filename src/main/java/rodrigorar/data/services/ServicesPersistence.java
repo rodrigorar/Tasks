@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.services;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -35,34 +35,56 @@ import rodrigorar.configs.AppConfigurations;
 import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.data.AppConfigurationsData;
 import rodrigorar.data.LanguageData;
+import rodrigorar.data.TaskListData;
 import rodrigorar.utils.SystemUtils;
 
-public class PersistenceManager {
-    private static PersistenceManager _instance;
+public class ServicesPersistence {
+    private static ServicesPersistence _instance;
 
-    public static PersistenceManager getInstance() {
+    public static ServicesPersistence getInstance() {
         if (_instance == null) {
-            _instance = new PersistenceManager();
+            _instance = new ServicesPersistence();
         }
         return _instance;
     }
 
-    private PersistenceManager() { /* Empty Constructor */ }
+    private ServicesPersistence() { /* Empty Constructor */ }
+
+    private Element getRootElement(String filepath) {
+        Element rootElement = null;
+
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(filepath);
+            Document document = (Document)builder.build(xmlFile);
+            rootElement = document.getRootElement();
+        } catch (IOException | JDOMException exception) {
+            exception.printStackTrace();
+        }
+
+        return rootElement;
+    }
+
+    private void writeToFile(Element rootElement, String filepath) {
+        try {
+            Document document = new Document(rootElement);
+            XMLOutputter outputter = new XMLOutputter();
+
+            outputter.setFormat(Format.getPrettyFormat());
+            outputter.output(document, new FileWriter(filepath));
+        } catch (IOException exception) {
+            exception.printStackTrace();
+        }
+    }
 
     public TaskList loadTaskList() {
         AppConfigurations configs = AppConfigurations.getInstance();
         TaskList loadedTaskList = null;
 
-        SAXBuilder builder = new SAXBuilder();
-        File xmlFile = new File(configs.getDataDirectory());
-        try {
-            Document document = (Document)builder.build(xmlFile);
-            Element taskListElement = document.getRootElement();
-
+        Element rootElement = getRootElement(configs.getDataDirectory());
+        if (rootElement != null) {
             TaskListData listData = new TaskListData();
-            loadedTaskList = listData.load(taskListElement);
-        } catch (IOException  | JDOMException exception) {
-            exception.printStackTrace();
+            loadedTaskList = listData.load(rootElement);
         }
 
         return loadedTaskList;
@@ -70,34 +92,18 @@ public class PersistenceManager {
 
     public void saveTaskList(TaskList taskList) {
         AppConfigurations configs = AppConfigurations.getInstance();
-
-        try {
-            TaskListData listData = new TaskListData();
-            Element taskListElement = listData.save(taskList);
-            Document document = new Document(taskListElement);
-            XMLOutputter outputter = new XMLOutputter();
-
-            outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter(configs.getDataDirectory()));
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
+        TaskListData listData = new TaskListData();
+        writeToFile(listData.save(taskList), configs.getDataDirectory());
     }
 
     public AppConfigurations loadAppConfigurations() {
         AppConfigurations configs = null;
 
-        try {
-            SAXBuilder builder = new SAXBuilder();
-            File configFile = new File(SystemUtils.getDefaultLinuxSettings());
-            Document document = (Document)builder.build(configFile);
-            Element configElement = document.getRootElement();
-
+        Element rootElement = getRootElement(SystemUtils.getDefaultLinuxSettings());
+        if (rootElement != null) {
             AppConfigurationsData configData = new AppConfigurationsData();
-            configs = configData.load(configElement);
-        } catch (IOException | JDOMException exception) {
-            exception.printStackTrace();
-            
+            configs = configData.load(rootElement);
+        } else {
             configs = AppConfigurations.getInstance();
             configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
             configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
@@ -107,32 +113,17 @@ public class PersistenceManager {
     }
 
     public void saveAppConfigurations(AppConfigurations configs) {
-        try {
-            AppConfigurationsData configData = new AppConfigurationsData();
-            Element configsElement = configData.save(configs);
-            Document document = new Document(configsElement);
-            XMLOutputter outputter = new XMLOutputter();
-
-            outputter.setFormat(Format.getPrettyFormat());
-            outputter.output(document, new FileWriter(SystemUtils.getDefaultLinuxSettings()));
-        } catch (IOException exception) {
-            exception.printStackTrace();
-        }
+        AppConfigurationsData configData = new AppConfigurationsData();
+        writeToFile(configData.save(configs), SystemUtils.getDefaultLinuxSettings());
     }
 
     public Language loadLanguage(SupportedLanguages.Languages language) {
         Language languageEntity = null;
 
-        try {
-            SAXBuilder builder = new SAXBuilder();
-            File configFile = new File(language.getFile());
-            Document document = (Document)builder.build(configFile);
-            Element element = document.getRootElement();
-
+        Element rootElement = getRootElement(language.getFile());
+        if (rootElement != null) {
             LanguageData languageData = new LanguageData();
-            languageEntity = languageData.load(element);
-        } catch (IOException | JDOMException exception) {
-            exception.printStackTrace();
+            languageEntity = languageData.load(rootElement);
         }
 
         return languageEntity;

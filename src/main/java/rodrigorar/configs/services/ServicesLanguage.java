@@ -22,12 +22,12 @@ import java.util.LinkedList;
 import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.configs.SupportedLanguages.Languages;
 import rodrigorar.configs.AppConfigurations;
-import rodrigorar.data.PersistenceManager;
+import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.entities.Language;
 
 public class ServicesLanguage {
     private static ServicesLanguage _instance;
-    private PersistenceManager _persistenceManager;
+    private ServicesPersistence _servicesPersistence;
     private AppConfigurations _configurations;
     private Language _activeLanguage;
 
@@ -39,10 +39,10 @@ public class ServicesLanguage {
     }
 
     private ServicesLanguage() {
-        _persistenceManager = PersistenceManager.getInstance();
+        _servicesPersistence = ServicesPersistence.getInstance();
         _configurations = AppConfigurations.getInstance();
         _activeLanguage =
-            _persistenceManager.loadLanguage(
+            _servicesPersistence.loadLanguage(
                 SupportedLanguages.getLanguage(_configurations.getLanguage())
             );
     }
@@ -52,7 +52,7 @@ public class ServicesLanguage {
     }
 
     public void setActiveLanguage(String languageId) {
-        _persistenceManager.loadLanguage(
+        _servicesPersistence.loadLanguage(
             SupportedLanguages.getLanguage(languageId)
         );
     }

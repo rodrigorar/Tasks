@@ -18,13 +18,13 @@ package rodrigorar;
 
 import rodrigorar.ui.MainWindow;
 import rodrigorar.utils.SystemUtils;
-import rodrigorar.data.PersistenceManager;
+import rodrigorar.data.services.ServicesPersistence;
 
 public class App {
 
     public static void bootstrap() {
         System.out.println("Bootstrapping Application");
-        PersistenceManager.getInstance().loadAppConfigurations();
+        ServicesPersistence.getInstance().loadAppConfigurations();
     }
 
     public static void main( String[] args ) {
