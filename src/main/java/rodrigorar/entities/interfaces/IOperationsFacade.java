@@ -28,4 +28,5 @@ public interface IOperationsFacade {
     void deleteTask(Task task);
     List<String> getTaskNames(String taskListId);
     TaskList findTaskList(String taskListId);
+    void save();
 }

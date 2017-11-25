@@ -63,4 +63,8 @@ IOperationsFacade {
         return _entityServices.getTaskList();
     }
 
+    public void save() {
+        _entityServices.save();
+    }
+
 }
