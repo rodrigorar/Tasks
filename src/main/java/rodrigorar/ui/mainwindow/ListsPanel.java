@@ -33,7 +33,7 @@ import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
-import rodrigorar.ui.TaskWindow;
+import rodrigorar.ui.taskwindow.TaskWindow;
 import rodrigorar.utils.Constants.Labels;
 
 public class ListsPanel

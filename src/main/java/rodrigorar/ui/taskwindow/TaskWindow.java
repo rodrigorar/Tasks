@@ -14,9 +14,8 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.ui;
+package rodrigorar.ui.taskwindow;
 
-import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -26,71 +25,54 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JPanel;
-import javax.swing.JTextArea;
 
+import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
-import rodrigorar.ui.taskwindow.TaskWindow;
+import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.taskwindow.TitlePanel;
+import rodrigorar.ui.taskwindow.DescriptionPanel;
+import rodrigorar.ui.taskwindow.ButtonPanel;
 
-public class SearchWindow
+public class TaskWindow
 extends
 AbstractWindow {
-	private static final long serialVersionUID = -6557029694151213025L;
+	private static final long serialVersionUID = -6298053968382452462L;
 	private AbstractWindow _parentWindow;
     private ServicesLanguage _servicesLanguage;
-    private JTextArea _searchBox;
-    private IOperationsFacade _operations;
+    private Task _task;
+	private TitlePanel _titlePanel;
+    private DescriptionPanel _descriptionPanel;
 
-    public SearchWindow(AbstractWindow parentWindow) {
-        _parentWindow = parentWindow;
+    public TaskWindow(AbstractWindow parentWindow) {
+		_titlePanel = new TitlePanel(null, true);
+		_descriptionPanel = new DescriptionPanel(null, true);
 
-        _servicesLanguage = ServicesLanguage.getInstance();
-        _operations = ServicesFactory.getOperations();
-
-        _searchBox = new JTextArea();
+		init(parentWindow);
         initUI();
     }
 
-    private JPanel createSearchArea() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
+    public TaskWindow(AbstractWindow parentWindow, Task task) {
+        init(parentWindow);
+        _task = task;
 
-        _searchBox.setLineWrap(true);
-        _searchBox.setWrapStyleWord(true);
-        _searchBox.setBorder(BorderFactory.createLineBorder(Color.BLACK));
-        _searchBox.setMaximumSize(new Dimension(2000, 20));
+        _titlePanel = new TitlePanel(task.getTitle(), false);
+		_descriptionPanel = new DescriptionPanel(task.getDescription(), false);
 
-        panel.add(_searchBox);
-
-        return panel;
+        initUI();
     }
 
-    private JPanel createButtonPanel() {
-        JPanel panel = new JPanel();
-        panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
-
-        JButton searchButton = new JButton(_servicesLanguage.getTranslation(Labels.SEARCH));
-        searchButton.addActionListener(new ActionListener() {
-            @Override
-            public void actionPerformed(ActionEvent event) {
-                Task task = _operations.findTask(_searchBox.getText());
-                TaskWindow window = new TaskWindow(_parentWindow, task);
-                window.setVisible(true);
-            }
-        });
-
-        panel.add(Box.createHorizontalGlue());
-        panel.add(searchButton);
-
-        return panel;
+    private void init(AbstractWindow parentWindow) {
+        _parentWindow = parentWindow;
+        _servicesLanguage = ServicesLanguage.getInstance();
     }
 
     @Override
     public void update() {
-        // Empty Method
+        _parentWindow.update();
     }
 
     private JPanel createLayout() {
@@ -98,17 +80,19 @@ AbstractWindow {
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        panel.add(createSearchArea());
+        panel.add(_titlePanel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(createButtonPanel());
+        panel.add(_descriptionPanel);
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        panel.add(new ButtonPanel(this, _task, _titlePanel, _descriptionPanel));
 
         return panel;
     }
 
     private void initUI() {
         add(createLayout());
-        setTitle(_servicesLanguage.getTranslation(Labels.SEARCH));
-        setSize(300, 110);
+        setTitle(_servicesLanguage.getTranslation(Labels.TASK));
+        setSize(600, 250);
         setLocationRelativeTo(null);
         setDefaultCloseOperation(DISPOSE_ON_CLOSE);
     }

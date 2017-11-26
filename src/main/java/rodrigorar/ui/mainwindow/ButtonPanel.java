@@ -25,7 +25,7 @@ import javax.swing.JButton;
 
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
-import rodrigorar.ui.TaskWindow;
+import rodrigorar.ui.taskwindow.TaskWindow;
 import rodrigorar.ui.SearchWindow;
 import rodrigorar.ui.SettingsWindow;
 import rodrigorar.ui.AbstractWindow;
@@ -89,7 +89,7 @@ JPanel {
     public ButtonPanel(AbstractWindow parentWindow) {
         _languageServices = ServicesLanguage.getInstance();
         _parentWindow = parentWindow;
-        
+
         configure();
 
         add(newTaskButton());
