@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.domain;
+package rodrigorar.domain.pojos;
 
 import rodrigorar.utils.IdGenerator;
 import rodrigorar.domain.exceptions.InvalidTitleException;

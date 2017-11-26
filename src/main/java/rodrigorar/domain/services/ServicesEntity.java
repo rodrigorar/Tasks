@@ -16,8 +16,8 @@
 
 package rodrigorar.domain.services;
 
-import rodrigorar.domain.Task;
-import rodrigorar.domain.TaskList;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.configs.AppConfigurations;

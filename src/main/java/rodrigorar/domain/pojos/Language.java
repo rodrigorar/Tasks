@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.domain;
+package rodrigorar.domain.pojos;
 
 import java.util.Set;
 import java.util.Map;

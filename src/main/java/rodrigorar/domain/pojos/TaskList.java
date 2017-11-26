@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.domain;
+package rodrigorar.domain.pojos;
 
 import java.util.List;
 import java.util.LinkedList;

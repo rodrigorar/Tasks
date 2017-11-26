@@ -31,7 +31,7 @@ import javax.swing.Box;
 import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
-import rodrigorar.domain.Task;
+import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.exceptions.InvalidTitleException;

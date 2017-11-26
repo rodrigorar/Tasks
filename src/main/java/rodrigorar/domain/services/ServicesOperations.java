@@ -19,8 +19,8 @@ package rodrigorar.domain.services;
 import java.util.List;
 import java.util.LinkedList;
 
-import rodrigorar.domain.Task;
-import rodrigorar.domain.TaskList;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.domain.interfaces.IOperationsFacade;
 
 public class ServicesOperations

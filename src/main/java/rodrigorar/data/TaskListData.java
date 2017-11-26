@@ -20,8 +20,8 @@ import java.util.List;
 import org.jdom2.Element;
 
 import rodrigorar.data.interfaces.IData;
-import rodrigorar.domain.Task;
-import rodrigorar.domain.TaskList;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.utils.Constants.XMLLabels;
 
 public class TaskListData

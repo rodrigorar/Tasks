@@ -19,7 +19,7 @@ package rodrigorar.data;
 import org.jdom2.Element;
 
 import rodrigorar.data.interfaces.IData;
-import rodrigorar.domain.Task;
+import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.utils.Constants.XMLLabels;

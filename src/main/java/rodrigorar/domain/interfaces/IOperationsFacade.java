@@ -18,8 +18,8 @@ package rodrigorar.domain.interfaces;
 
 import java.util.List;
 
-import rodrigorar.domain.Task;
-import rodrigorar.domain.TaskList;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.pojos.TaskList;
 
 public interface IOperationsFacade {
     Task createTask(String title, String description);
