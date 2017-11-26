@@ -14,12 +14,12 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities.interfaces;
+package rodrigorar.domain.interfaces;
 
 import java.util.List;
 
-import rodrigorar.entities.Task;
-import rodrigorar.entities.TaskList;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.TaskList;
 
 public interface IOperationsFacade {
     Task createTask(String title, String description);

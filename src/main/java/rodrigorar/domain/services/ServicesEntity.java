@@ -14,11 +14,11 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities.services;
+package rodrigorar.domain.services;
 
-import rodrigorar.entities.Task;
-import rodrigorar.entities.TaskList;
-import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.TaskList;
+import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.configs.AppConfigurations;
 

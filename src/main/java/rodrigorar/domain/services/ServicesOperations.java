@@ -14,14 +14,14 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities.services;
+package rodrigorar.domain.services;
 
 import java.util.List;
 import java.util.LinkedList;
 
-import rodrigorar.entities.Task;
-import rodrigorar.entities.TaskList;
-import rodrigorar.entities.interfaces.IOperationsFacade;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.TaskList;
+import rodrigorar.domain.interfaces.IOperationsFacade;
 
 public class ServicesOperations
 implements

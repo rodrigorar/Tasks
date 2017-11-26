@@ -31,10 +31,10 @@ import javax.swing.Box;
 import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
-import rodrigorar.entities.Task;
-import rodrigorar.entities.services.ServicesFactory;
-import rodrigorar.entities.interfaces.IOperationsFacade;
-import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.utils.UIUtils;
 

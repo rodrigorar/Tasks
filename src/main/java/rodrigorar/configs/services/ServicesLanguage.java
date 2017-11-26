@@ -23,7 +23,7 @@ import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.configs.SupportedLanguages.Languages;
 import rodrigorar.configs.AppConfigurations;
 import rodrigorar.data.services.ServicesPersistence;
-import rodrigorar.entities.Language;
+import rodrigorar.domain.Language;
 
 public class ServicesLanguage {
     private static ServicesLanguage _instance;

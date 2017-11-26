@@ -40,10 +40,10 @@ import javax.swing.Box;
 import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
-import rodrigorar.entities.Task;
-import rodrigorar.entities.TaskList;
-import rodrigorar.entities.interfaces.IOperationsFacade;
-import rodrigorar.entities.services.ServicesFactory;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.TaskList;
+import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.utils.Constants.Labels;
 
 public class MainWindow

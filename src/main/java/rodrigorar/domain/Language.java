@@ -14,13 +14,13 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities;
+package rodrigorar.domain;
 
 import java.util.Set;
 import java.util.Map;
 import java.util.HashMap;
 
-import rodrigorar.entities.interfaces.IEntity;
+import rodrigorar.domain.interfaces.IEntity;
 import rodrigorar.utils.IdGenerator;
 
 public class Language

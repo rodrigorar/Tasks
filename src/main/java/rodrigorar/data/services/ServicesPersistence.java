@@ -27,10 +27,10 @@ import org.jdom2.output.XMLOutputter;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
-import rodrigorar.entities.Task;
-import rodrigorar.entities.TaskList;
-import rodrigorar.entities.Language;
-import rodrigorar.entities.exceptions.InvalidTitleException;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.TaskList;
+import rodrigorar.domain.Language;
+import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.configs.AppConfigurations;
 import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.data.AppConfigurationsData;

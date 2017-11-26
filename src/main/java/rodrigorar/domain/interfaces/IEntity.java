@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities.interfaces;
+package rodrigorar.domain.interfaces;
 
 public interface IEntity {
     public String getId();

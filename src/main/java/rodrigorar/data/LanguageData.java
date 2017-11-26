@@ -24,7 +24,7 @@ import java.util.HashMap;
 
 import rodrigorar.data.interfaces.IData;
 import rodrigorar.utils.Constants.XMLLabels;
-import rodrigorar.entities.Language;
+import rodrigorar.domain.Language;
 
 public class LanguageData
 implements

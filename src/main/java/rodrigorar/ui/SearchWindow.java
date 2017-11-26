@@ -30,9 +30,9 @@ import javax.swing.BorderFactory;
 
 import rodrigorar.configs.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
-import rodrigorar.entities.Task;
-import rodrigorar.entities.services.ServicesFactory;
-import rodrigorar.entities.interfaces.IOperationsFacade;
+import rodrigorar.domain.Task;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.interfaces.IOperationsFacade;
 
 public class SearchWindow
 extends

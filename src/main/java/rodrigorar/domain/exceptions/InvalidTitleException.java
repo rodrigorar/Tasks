@@ -14,14 +14,13 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities.services;
+package rodrigorar.domain.exceptions;
 
-import rodrigorar.entities.interfaces.IOperationsFacade;
-import rodrigorar.entities.services.ServicesOperations;
+public class InvalidTitleException
+extends
+Exception {
 
-public class ServicesFactory {
-
-    public static IOperationsFacade getOperations() {
-        return new ServicesOperations();
+    public InvalidTitleException(String message) {
+        super(message);
     }
 }

@@ -14,11 +14,11 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.entities;
+package rodrigorar.domain;
 
 import rodrigorar.utils.IdGenerator;
-import rodrigorar.entities.exceptions.InvalidTitleException;
-import rodrigorar.entities.interfaces.IEntity;
+import rodrigorar.domain.exceptions.InvalidTitleException;
+import rodrigorar.domain.interfaces.IEntity;
 
 public class Task
 implements
