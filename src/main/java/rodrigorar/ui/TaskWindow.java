@@ -37,23 +37,24 @@ import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.utils.UIUtils;
+import rodrigorar.ui.AbstractWindow;
 
 public class TaskWindow
 extends
-JFrame {
-    private MainWindow _parentWindow;
+AbstractWindow {
+    private AbstractWindow _parentWindow;
     private IOperationsFacade _operations;
     private ServicesLanguage _servicesLanguage;
     private Task _task;
     private JScrollPane _title;
     private JScrollPane _description;
 
-    public TaskWindow(MainWindow parentWindow) {
+    public TaskWindow(AbstractWindow parentWindow) {
         init(parentWindow);
         initUI();
     }
 
-    public TaskWindow(MainWindow parentWindow, Task task) {
+    public TaskWindow(AbstractWindow parentWindow, Task task) {
         init(parentWindow);
         _task = task;
 
@@ -76,7 +77,7 @@ JFrame {
         initUI();
     }
 
-    private void init(MainWindow parentWindow) {
+    private void init(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
         _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
         _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
@@ -164,7 +165,7 @@ JFrame {
                     exception.printStackTrace();
                 }
                 _operations.save();
-                _parentWindow.updateList();
+                _parentWindow.update();
                 dispose();
             }
         });
@@ -199,6 +200,11 @@ JFrame {
         buttonPanel.add(edit);
 
         return buttonPanel;
+    }
+
+    @Override
+    public void update() {
+        // Empty Method
     }
 
     private JPanel createLayout() {

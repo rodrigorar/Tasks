@@ -1,0 +1,103 @@
+/******************************************************************************
+* Copyright 2017 Rodrigo Ramos Rosa
+*
+* Licensed under the Apache License, Version 2.0 (the "License");
+* you may not use this file except in compliance with the License.
+* You may obtain a copy of the License at
+*
+*    http://www.apache.org/licenses/LICENSE-2.0
+*
+* Unless required by applicable law or agreed to in writing, software
+* distributed under the License is distributed on an "AS IS" BASIS,
+* WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+* See the License for the specific language governing permissions and
+* limitations under the License.
+*******************************************************************************/
+
+package rodrigorar.ui.mainwindow;
+
+import java.awt.event.ActionListener;
+import java.awt.event.ActionEvent;
+import java.awt.event.MouseListener;
+import java.awt.event.MouseEvent;
+import javax.swing.JPanel;
+import javax.swing.JList;
+import javax.swing.JScrollPane;
+import javax.swing.JPopupMenu;
+import javax.swing.JMenuItem;
+import javax.swing.BoxLayout;
+
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesLanguage;
+import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.TaskWindow;
+
+public class ListsPanel
+extends
+JPanel {
+    public static final int CLICKS = 2;
+    private AbstractWindow _parentWindow;
+    private IOperationsFacade _operations;
+    private ServicesLanguage _languageServices;
+    private JList _tasks;
+
+    private void configure() {
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+    }
+
+    private JScrollPane taskList() {
+        _tasks.addMouseListener(new MouseListener() {
+            @Override
+            public void mouseClicked(MouseEvent event) {
+                int index = _tasks.locationToIndex(event.getPoint());
+                // TODO: Remove this task object from here, this class shouldn't know about this.
+                Task task = _operations.findTask((String)_tasks.getModel().getElementAt(index));
+
+                if (event.getButton() == MouseEvent.BUTTON1
+                    && event.getClickCount() == CLICKS) {
+                    TaskWindow window = new TaskWindow(_parentWindow, task);
+                    window.setVisible(true);
+                } else if (event.getButton() == MouseEvent.BUTTON3) {
+                    JPopupMenu menu = new JPopupMenu();
+                    JMenuItem deleteItem =
+                        new JMenuItem(_languageServices.getTranslation(Labels.DELETE));
+                    deleteItem.addActionListener(new ActionListener() {
+                        @Override
+                        public void actionPerformed(ActionEvent event) {
+                            _operations.deleteTask(task);
+                            _parentWindow.update();
+                        }
+                    });
+
+                    menu.add(deleteItem);
+                    menu.show(_tasks, event.getPoint().x, event.getPoint().y);
+                }
+            }
+
+            @Override public void mouseExited(MouseEvent event) {}
+
+            @Override public void mouseEntered(MouseEvent event) {}
+
+            @Override public void mouseReleased(MouseEvent event) {}
+
+            @Override public void mousePressed(MouseEvent event) {}
+        });
+
+        return new JScrollPane(_tasks);
+    }
+
+    public ListsPanel(AbstractWindow parentWindow, JList tasks) {
+        _parentWindow = parentWindow;
+        _tasks = tasks;
+        ServicesFactory factory = new ServicesFactory();
+        _operations = factory.getOperations();
+        _languageServices = ServicesLanguage.getInstance();
+
+        configure();
+
+        add(taskList());
+    }
+}

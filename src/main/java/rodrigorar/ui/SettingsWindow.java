@@ -36,17 +36,18 @@ import javax.swing.Box;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.services.ServicesLanguage;
+import rodrigorar.ui.AbstractWindow;
 
 public class SettingsWindow
 extends
-JFrame {
-    private MainWindow _parentWindow;
+AbstractWindow {
+    private AbstractWindow _parentWindow;
     private SettingsWindow _instance;
     private ServicesLanguage _servicesLanguage;
     private JTextField _directory;
     private String _currentSelectedLanguage;
 
-    public SettingsWindow(MainWindow parentWindow) {
+    public SettingsWindow(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
         _instance = this;
         _servicesLanguage = ServicesLanguage.getInstance();
@@ -137,6 +138,11 @@ JFrame {
         panel.add(cancel);
 
         return panel;
+    }
+
+    @Override
+    public void update() {
+        // Empty Method
     }
 
     private JPanel buildWindow() {

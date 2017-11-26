@@ -14,22 +14,12 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar;
+package rodrigorar.ui;
 
-import rodrigorar.ui.mainwindow.Window;
-import rodrigorar.utils.SystemUtils;
-import rodrigorar.data.services.ServicesPersistence;
+import javax.swing.JFrame;
 
-public class App {
-
-    public static void bootstrap() {
-        System.out.println("Bootstrapping Application");
-        ServicesPersistence.getInstance().loadAppConfigurations();
-    }
-
-    public static void main( String[] args ) {
-        bootstrap();
-        Window window = new Window();
-        window.setVisible(true);
-    }
+public abstract class AbstractWindow
+extends
+JFrame {
+    public abstract void update();
 }

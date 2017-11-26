@@ -33,16 +33,17 @@ import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.ui.AbstractWindow;
 
 public class SearchWindow
 extends
-JFrame {
-    private MainWindow _parentWindow;
+AbstractWindow {
+    private AbstractWindow _parentWindow;
     private ServicesLanguage _servicesLanguage;
     private JTextArea _searchBox;
     private IOperationsFacade _operations;
 
-    public SearchWindow(MainWindow parentWindow) {
+    public SearchWindow(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
 
         _servicesLanguage = ServicesLanguage.getInstance();
@@ -85,6 +86,11 @@ JFrame {
         panel.add(searchButton);
 
         return panel;
+    }
+
+    @Override
+    public void update() {
+        // Empty Method
     }
 
     private JPanel createLayout() {
