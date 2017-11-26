@@ -20,7 +20,7 @@ import org.jdom2.Element;
 
 import rodrigorar.data.interfaces.IData;
 import rodrigorar.data.utils.JDOMBuilder;
-import rodrigorar.configs.AppConfigurations;
+import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.utils.Constants.XMLLabels;
 import rodrigorar.utils.SystemUtils;
 

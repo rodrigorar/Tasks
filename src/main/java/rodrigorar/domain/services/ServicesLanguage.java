@@ -14,14 +14,14 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.configs.services;
+package rodrigorar.domain.services;
 
 import java.util.List;
 import java.util.LinkedList;
 
-import rodrigorar.configs.SupportedLanguages;
-import rodrigorar.configs.SupportedLanguages.Languages;
-import rodrigorar.configs.AppConfigurations;
+import rodrigorar.domain.SupportedLanguages;
+import rodrigorar.domain.SupportedLanguages.Languages;
+import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.pojos.Language;
 

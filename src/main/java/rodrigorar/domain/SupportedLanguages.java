@@ -14,7 +14,9 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.configs;
+package rodrigorar.domain;
+
+import rodrigorar.domain.pojos.AppConfigurations;
 
 public class SupportedLanguages {
     public static final String EN = "EN";

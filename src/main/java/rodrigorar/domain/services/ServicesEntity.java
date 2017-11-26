@@ -18,9 +18,9 @@ package rodrigorar.domain.services;
 
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
+import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.services.ServicesPersistence;
-import rodrigorar.configs.AppConfigurations;
 
 public class ServicesEntity {
     private static ServicesEntity _instance;

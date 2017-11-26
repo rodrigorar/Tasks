@@ -34,8 +34,8 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.utils.Constants.Labels;
-import rodrigorar.configs.AppConfigurations;
-import rodrigorar.configs.services.ServicesLanguage;
+import rodrigorar.domain.pojos.AppConfigurations;
+import rodrigorar.domain.services.ServicesLanguage;
 
 public class SettingsWindow
 extends

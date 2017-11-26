@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.configs;
+package rodrigorar.domain.pojos;
 
 public class AppConfigurations {
     private static AppConfigurations _instance;

@@ -27,12 +27,12 @@ import org.jdom2.output.XMLOutputter;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
 
+import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.domain.pojos.Language;
+import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.exceptions.InvalidTitleException;
-import rodrigorar.configs.AppConfigurations;
-import rodrigorar.configs.SupportedLanguages;
 import rodrigorar.data.AppConfigurationsData;
 import rodrigorar.data.LanguageData;
 import rodrigorar.data.TaskListData;
