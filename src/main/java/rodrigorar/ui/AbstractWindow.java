@@ -21,5 +21,7 @@ import javax.swing.JFrame;
 public abstract class AbstractWindow
 extends
 JFrame {
-    public abstract void update();
+	private static final long serialVersionUID = 5290478194934475688L;
+
+	public abstract void update();
 }

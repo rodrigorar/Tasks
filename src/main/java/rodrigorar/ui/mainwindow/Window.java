@@ -16,54 +16,38 @@
 
 package rodrigorar.ui.mainwindow;
 
-import java.util.List;
-
 import java.awt.Dimension;
-import java.awt.GridLayout;
-import java.awt.event.ActionListener;
-import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
-import java.awt.event.MouseEvent;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JButton;
-import javax.swing.JPopupMenu;
-import javax.swing.JMenuItem;
-import javax.swing.DefaultListModel;
-import javax.swing.ListModel;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
+import java.util.List;
 
-import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.pojos.TaskList;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.DefaultListModel;
+import javax.swing.JList;
+import javax.swing.JPanel;
+
 import rodrigorar.domain.interfaces.IOperationsFacade;
-import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.domain.services.ServicesFactory;
-import rodrigorar.utils.Constants.Labels;
-import rodrigorar.ui.TaskWindow;
+import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
-import rodrigorar.ui.mainwindow.ButtonPanel;
-import rodrigorar.ui.mainwindow.ListsPanel;
+import rodrigorar.utils.Constants.Labels;
 
 public class Window
 extends
 AbstractWindow {
-    private AbstractWindow _instance;
+	private static final long serialVersionUID = 5368744912178878243L;
+	private AbstractWindow _instance;
     private ServicesLanguage _servicesLanguage = ServicesLanguage.getInstance();
     private IOperationsFacade _operations;
-    private JList _list;
+    private JList<String> _list;
 
     public Window() {
-        _list = new JList(new DefaultListModel());
+        _list = new JList<String>(new DefaultListModel<String>());
         _instance = this;
 
-        ServicesFactory factory = new ServicesFactory();
-        _operations = factory.getOperations();
+        _operations = ServicesFactory.getOperations();
         _servicesLanguage = ServicesLanguage.getInstance();
 
         initUI();
@@ -74,7 +58,7 @@ AbstractWindow {
         updateList();
     }
 
-    public JList updateList() {
+    public JList<String> updateList() {
         DefaultListModel<String> model = (DefaultListModel<String>)_list.getModel();
         List<String> list = _operations.getTaskNames("");
 

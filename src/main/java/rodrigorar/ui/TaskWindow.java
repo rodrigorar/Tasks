@@ -16,33 +16,33 @@
 
 package rodrigorar.ui;
 
-import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.JLabel;
-import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionListener;
 
-import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.services.ServicesFactory;
-import rodrigorar.domain.interfaces.IOperationsFacade;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTextArea;
+
 import rodrigorar.domain.exceptions.InvalidTitleException;
+import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.utils.UIUtils;
-import rodrigorar.ui.AbstractWindow;
 
 public class TaskWindow
 extends
 AbstractWindow {
-    private AbstractWindow _parentWindow;
+	private static final long serialVersionUID = -6298053968382452462L;
+	private AbstractWindow _parentWindow;
     private IOperationsFacade _operations;
     private ServicesLanguage _servicesLanguage;
     private Task _task;
@@ -82,8 +82,7 @@ AbstractWindow {
         _title = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 20);
         _description = UIUtils.<JTextArea>buildScrollable(new JTextArea(), 2000, 500);
 
-        ServicesFactory factory = new ServicesFactory();
-        _operations = factory.getOperations();
+        _operations = ServicesFactory.getOperations();
         _servicesLanguage = ServicesLanguage.getInstance();
     }
 

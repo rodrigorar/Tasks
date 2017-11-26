@@ -41,15 +41,12 @@ import rodrigorar.ui.AbstractWindow;
 public class SettingsWindow
 extends
 AbstractWindow {
-    private AbstractWindow _parentWindow;
-    private SettingsWindow _instance;
+	private static final long serialVersionUID = 5040382923060248409L;
     private ServicesLanguage _servicesLanguage;
     private JTextField _directory;
     private String _currentSelectedLanguage;
 
     public SettingsWindow(AbstractWindow parentWindow) {
-        _parentWindow = parentWindow;
-        _instance = this;
         _servicesLanguage = ServicesLanguage.getInstance();
         initUI();
     }
@@ -144,7 +141,8 @@ AbstractWindow {
     public void update() {
         // Empty Method
     }
-
+    
+    @SuppressWarnings("all")
     private JPanel buildWindow() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
@@ -154,7 +152,8 @@ AbstractWindow {
         languagePanel.setLayout(new BoxLayout(languagePanel, BoxLayout.X_AXIS));
 
         JLabel text = new JLabel("Language:");
-        JComboBox languages = new JComboBox(_servicesLanguage.getSupportedLanguages().toArray());
+        JComboBox<String> languages = 
+        		new JComboBox(_servicesLanguage.getSupportedLanguages().toArray());
         languages.setMaximumSize(new Dimension(2000, 30));
         languages.setSelectedItem(_servicesLanguage.getActiveLanguage().getSimpleName());
         languages.addActionListener(new ActionListener() {

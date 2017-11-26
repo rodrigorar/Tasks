@@ -33,8 +33,9 @@ import rodrigorar.ui.AbstractWindow;
 public class ButtonPanel
 extends
 JPanel {
-    AbstractWindow _parentWindow;
-    ServicesLanguage _languageServices;
+	private static final long serialVersionUID = -1485868804409887489L;
+	private AbstractWindow _parentWindow;
+    private ServicesLanguage _languageServices;
 
 
     private void configure() {

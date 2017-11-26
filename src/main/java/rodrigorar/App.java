@@ -16,9 +16,8 @@
 
 package rodrigorar;
 
-import rodrigorar.ui.mainwindow.Window;
-import rodrigorar.utils.SystemUtils;
 import rodrigorar.data.services.ServicesPersistence;
+import rodrigorar.ui.mainwindow.Window;
 
 public class App {
 

@@ -16,33 +16,35 @@
 
 package rodrigorar.ui.mainwindow;
 
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import java.awt.event.MouseListener;
+import java.awt.event.ActionListener;
 import java.awt.event.MouseEvent;
-import javax.swing.JPanel;
-import javax.swing.JList;
-import javax.swing.JScrollPane;
-import javax.swing.JPopupMenu;
-import javax.swing.JMenuItem;
-import javax.swing.BoxLayout;
+import java.awt.event.MouseListener;
 
+import javax.swing.BoxLayout;
+import javax.swing.JList;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JPopupMenu;
+import javax.swing.JScrollPane;
+
+import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.interfaces.IOperationsFacade;
-import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.ui.TaskWindow;
+import rodrigorar.utils.Constants.Labels;
 
 public class ListsPanel
 extends
 JPanel {
-    public static final int CLICKS = 2;
+	private static final long serialVersionUID = 3248650729009387031L;
+	public static final int CLICKS = 2;
     private AbstractWindow _parentWindow;
     private IOperationsFacade _operations;
     private ServicesLanguage _languageServices;
-    private JList _tasks;
+    private JList<String> _tasks;
 
     private void configure() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
@@ -89,11 +91,10 @@ JPanel {
         return new JScrollPane(_tasks);
     }
 
-    public ListsPanel(AbstractWindow parentWindow, JList tasks) {
+    public ListsPanel(AbstractWindow parentWindow, JList<String> tasks) {
         _parentWindow = parentWindow;
         _tasks = tasks;
-        ServicesFactory factory = new ServicesFactory();
-        _operations = factory.getOperations();
+        _operations = ServicesFactory.getOperations();
         _languageServices = ServicesLanguage.getInstance();
 
         configure();

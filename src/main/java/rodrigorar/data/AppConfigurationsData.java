@@ -29,19 +29,18 @@ implements
 IData<AppConfigurations> {
 
     public Element save(AppConfigurations configs) {
-        JDOMBuilder jdomUtils = new JDOMBuilder();
         Element configsElement = new Element(XMLLabels.CONFIGS);
 
         Element baseDirectory =
-            jdomUtils.buildStringElement(XMLLabels.BASE_DIRECTORY, configs.getBaseDirectory());
+            JDOMBuilder.buildStringElement(XMLLabels.BASE_DIRECTORY, configs.getBaseDirectory());
         configsElement.addContent(baseDirectory);
 
         Element dataDirectory =
-            jdomUtils.buildStringElement(XMLLabels.DATA_DIRECTORY, configs.getDataDirectory());
+            JDOMBuilder.buildStringElement(XMLLabels.DATA_DIRECTORY, configs.getDataDirectory());
         configsElement.addContent(dataDirectory);
 
         Element language =
-            jdomUtils.buildStringElement(XMLLabels.LANGUAGE, configs.getLanguage());
+            JDOMBuilder.buildStringElement(XMLLabels.LANGUAGE, configs.getLanguage());
         configsElement.addContent(language);
 
         return configsElement;

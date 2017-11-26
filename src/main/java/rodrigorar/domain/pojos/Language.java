@@ -16,9 +16,7 @@
 
 package rodrigorar.domain.pojos;
 
-import java.util.Set;
 import java.util.Map;
-import java.util.HashMap;
 
 import rodrigorar.domain.interfaces.IEntity;
 import rodrigorar.utils.IdGenerator;

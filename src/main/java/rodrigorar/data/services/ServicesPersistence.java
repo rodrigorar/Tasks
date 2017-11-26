@@ -19,23 +19,21 @@ package rodrigorar.data.services;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
-import java.util.List;
+
 import org.jdom2.Document;
 import org.jdom2.Element;
-import org.jdom2.output.Format;
-import org.jdom2.output.XMLOutputter;
 import org.jdom2.JDOMException;
 import org.jdom2.input.SAXBuilder;
+import org.jdom2.output.Format;
+import org.jdom2.output.XMLOutputter;
 
-import rodrigorar.domain.SupportedLanguages;
-import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.pojos.TaskList;
-import rodrigorar.domain.pojos.Language;
-import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.AppConfigurationsData;
 import rodrigorar.data.LanguageData;
 import rodrigorar.data.TaskListData;
+import rodrigorar.domain.SupportedLanguages;
+import rodrigorar.domain.pojos.AppConfigurations;
+import rodrigorar.domain.pojos.Language;
+import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.utils.SystemUtils;
 
 public class ServicesPersistence {

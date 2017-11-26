@@ -29,7 +29,6 @@ implements
 IData<Task> {
 
     public Element save(Task task) {
-        JDOMBuilder jdomUtils = new JDOMBuilder();
         Element taskElement = new Element(XMLLabels.TASK);
 
         Element titleElement = JDOMBuilder.buildStringElement(XMLLabels.TITLE, task.getTitle());

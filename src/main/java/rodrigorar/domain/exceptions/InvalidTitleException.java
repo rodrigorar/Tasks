@@ -19,8 +19,9 @@ package rodrigorar.domain.exceptions;
 public class InvalidTitleException
 extends
 Exception {
+	private static final long serialVersionUID = 9170558605837285713L;
 
-    public InvalidTitleException(String message) {
+	public InvalidTitleException(String message) {
         super(message);
     }
 }

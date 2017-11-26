@@ -16,29 +16,29 @@
 
 package rodrigorar.ui;
 
-import java.awt.Dimension;
 import java.awt.Color;
-import java.awt.event.ActionListener;
+import java.awt.Dimension;
 import java.awt.event.ActionEvent;
-import javax.swing.JFrame;
+import java.awt.event.ActionListener;
+
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
 
-import rodrigorar.utils.Constants.Labels;
-import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.interfaces.IOperationsFacade;
-import rodrigorar.ui.AbstractWindow;
+import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesLanguage;
+import rodrigorar.utils.Constants.Labels;
 
 public class SearchWindow
 extends
 AbstractWindow {
-    private AbstractWindow _parentWindow;
+	private static final long serialVersionUID = -6557029694151213025L;
+	private AbstractWindow _parentWindow;
     private ServicesLanguage _servicesLanguage;
     private JTextArea _searchBox;
     private IOperationsFacade _operations;
@@ -47,8 +47,7 @@ AbstractWindow {
         _parentWindow = parentWindow;
 
         _servicesLanguage = ServicesLanguage.getInstance();
-        ServicesFactory factory = new ServicesFactory();
-        _operations = factory.getOperations();
+        _operations = ServicesFactory.getOperations();
 
         _searchBox = new JTextArea();
         initUI();

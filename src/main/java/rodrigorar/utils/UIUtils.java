@@ -31,7 +31,8 @@ public class UIUtils<T> {
 
         return scrollPane;
     }
-
+    
+    @SuppressWarnings("unchecked")
     public static <T> T getInnerComponent(Class<T> clazz, JScrollPane scrollPane) {
         JViewport viewport = scrollPane.getViewport();
         return (T) viewport.getView();
