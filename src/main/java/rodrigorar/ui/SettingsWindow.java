@@ -38,6 +38,7 @@ import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 
+// TODO: Refactor this window to a package instead of a single class.
 public class SettingsWindow
 extends
 AbstractWindow {
@@ -141,18 +142,19 @@ AbstractWindow {
     public void update() {
         // Empty Method
     }
-    
+
     @SuppressWarnings("all")
     private JPanel buildWindow() {
         JPanel panel = new JPanel();
         panel.setLayout(new BoxLayout(panel, BoxLayout.Y_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
+		// TODO: Refactor the language panel to its own method.
         JPanel languagePanel = new JPanel();
         languagePanel.setLayout(new BoxLayout(languagePanel, BoxLayout.X_AXIS));
 
         JLabel text = new JLabel("Language:");
-        JComboBox<String> languages = 
+        JComboBox<String> languages =
         		new JComboBox(_servicesLanguage.getSupportedLanguages().toArray());
         languages.setMaximumSize(new Dimension(2000, 30));
         languages.setSelectedItem(_servicesLanguage.getActiveLanguage().getSimpleName());
