@@ -29,7 +29,7 @@ import javax.swing.JScrollPane;
 
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.ui.AbstractPanel;
@@ -99,8 +99,9 @@ AbstractPanel {
     public ListsPanel(AbstractWindow parentWindow, JList<String> tasks) {
         _parentWindow = parentWindow;
         _tasks = tasks;
-        _operations = ServicesFactory.getOperations();
-        _languageServices = ServicesLanguage.getInstance();
+        
+        _operations = ServicesDomainFactory.getOperations();
+        _languageServices = ServicesDomainFactory.getLanguageServices();
 
         configure();
 

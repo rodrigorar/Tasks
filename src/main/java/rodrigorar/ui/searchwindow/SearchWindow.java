@@ -30,7 +30,7 @@ import javax.swing.JTextArea;
 
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractWindow;
@@ -41,15 +41,17 @@ extends
 AbstractWindow {
 	private static final long serialVersionUID = -6557029694151213025L;
 	private AbstractWindow _parentWindow;
+	
     private ServicesLanguage _servicesLanguage;
-    private JTextArea _searchBox;
     private IOperationsFacade _operations;
+    
+    private JTextArea _searchBox;
 
     public SearchWindow(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
 
-        _servicesLanguage = ServicesLanguage.getInstance();
-        _operations = ServicesFactory.getOperations();
+        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
+        _operations = ServicesDomainFactory.getOperations();
 
         _searchBox = new JTextArea();
         initUI();

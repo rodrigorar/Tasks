@@ -24,6 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
@@ -60,7 +61,7 @@ AbstractWindow {
 
     private void init(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
-        _servicesLanguage = ServicesLanguage.getInstance();
+        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
     }
 
     @Override

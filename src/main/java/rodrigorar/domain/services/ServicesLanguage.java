@@ -41,7 +41,7 @@ public class ServicesLanguage {
 
     private ServicesLanguage() {
         _servicesPersistence = ServicesPersistence.getInstance();
-        _configurationServices = ServicesFactory.getConfigurationServices();
+        _configurationServices = ServicesDomainFactory.getConfigurationServices();
         
         _activeLanguage =
             _servicesPersistence.loadLanguage(

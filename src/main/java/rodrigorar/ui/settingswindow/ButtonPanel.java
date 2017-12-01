@@ -25,7 +25,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import rodrigorar.domain.services.ServicesAppConfigurations;
-import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.AbstractWindow;
@@ -82,8 +82,8 @@ AbstractPanel {
         DataPanel dataPanel) {
 
         _parentWindow = parentWindow;
-        _languageServices = ServicesFactory.getLanguageServices();
-        _configurationServices = ServicesFactory.getConfigurationServices();
+        _languageServices = ServicesDomainFactory.getLanguageServices();
+        _configurationServices = ServicesDomainFactory.getConfigurationServices();
 
         configure();
 

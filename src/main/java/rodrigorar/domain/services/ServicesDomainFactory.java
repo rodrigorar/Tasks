@@ -19,7 +19,7 @@ package rodrigorar.domain.services;
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.services.ServicesOperations;
 
-public class ServicesFactory {
+public class ServicesDomainFactory {
 
     public static IOperationsFacade getOperations() {
         return new ServicesOperations();

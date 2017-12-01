@@ -24,6 +24,7 @@ import javax.swing.JScrollPane;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
 
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractPanel;
@@ -32,7 +33,9 @@ public class TitlePanel
 extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
+    
     private ServicesLanguage _languageServices;
+    
     private JTextArea _title;
 
     @Override
@@ -83,7 +86,7 @@ AbstractPanel {
     }
 
     public TitlePanel(String text, boolean editable) {
-        _languageServices = ServicesLanguage.getInstance();
+        _languageServices = ServicesDomainFactory.getLanguageServices();
 
         configure();
 

@@ -32,7 +32,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import rodrigorar.domain.services.ServicesAppConfigurations;
-import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.utils.Constants.Labels;
@@ -113,8 +113,8 @@ AbstractPanel {
     }
 
     public DataPanel() {
-        _configurationServices = ServicesFactory.getConfigurationServices();
-        _languageServices = ServicesFactory.getLanguageServices();
+        _configurationServices = ServicesDomainFactory.getConfigurationServices();
+        _languageServices = ServicesDomainFactory.getLanguageServices();
 
         configure();
 

@@ -30,7 +30,7 @@ IOperationsFacade {
     private ServicesAppConfigurations _configurationServices;
 
     public ServicesOperations() {
-        _configurationServices = ServicesFactory.getConfigurationServices();
+        _configurationServices = ServicesDomainFactory.getConfigurationServices();
         _entityServices = ServicesEntity.getInstance(_configurationServices.getDataDirectory());
     }
 

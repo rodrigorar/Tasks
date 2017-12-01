@@ -24,7 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
@@ -39,8 +39,10 @@ extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AbstractWindow _parentWindow;
+    
     private ServicesLanguage _languageServices;
     private IOperationsFacade _operations;
+    
     private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;
     private Task _task;
@@ -107,8 +109,10 @@ AbstractPanel {
         DescriptionPanel descriptionPanel) {
 
         _parentWindow = parentWindow;
-        _languageServices = ServicesLanguage.getInstance();
-        _operations = ServicesFactory.getOperations();
+        
+        _languageServices = ServicesDomainFactory.getLanguageServices();
+        _operations = ServicesDomainFactory.getOperations();
+        
         _titlePanel = titlePanel;
         _descriptionPanel = descriptionPanel;
 

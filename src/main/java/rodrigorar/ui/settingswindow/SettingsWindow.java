@@ -23,6 +23,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.ui.settingswindow.DataPanel;
@@ -43,7 +44,9 @@ AbstractWindow {
 
     public SettingsWindow(AbstractWindow parentWindow) {
 		_parentWindow = parentWindow;
-        _servicesLanguage = ServicesLanguage.getInstance();
+		
+        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
+        
         initUI();
     }
 
