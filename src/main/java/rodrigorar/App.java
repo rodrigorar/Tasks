@@ -19,14 +19,12 @@ package rodrigorar;
 // import javax.swing.UIManager;
 // import javax.swing.UnsupportedLookAndFeelException;
 
-import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.ui.mainwindow.Window;
 
 public class App {
 
     public static void bootstrap() {
         System.out.println("Bootstrapping Application");
-        ServicesPersistence.getInstance().loadAppConfigurations();
 
         // This is to set the look and feel, i might change it to GTK because
         // it is so much prettier.
