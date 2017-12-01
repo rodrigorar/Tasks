@@ -16,7 +16,8 @@
 
 package rodrigorar.domain;
 
-import rodrigorar.domain.pojos.AppConfigurations;
+import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.services.ServicesFactory;
 
 public class SupportedLanguages {
     public static final String EN = "EN";
@@ -26,8 +27,10 @@ public class SupportedLanguages {
         EN {
             @Override
             public String getFile() {
-                AppConfigurations configs = AppConfigurations.getInstance();
-                String file = configs.getBaseDirectory();
+                ServicesAppConfigurations configurationServices = 
+                		ServicesFactory.getConfigurationServices();
+                
+                String file = configurationServices.getBaseDirectory();
                 file = file + "/languages/en_EN.xml";
                 return file;
             }
@@ -35,8 +38,10 @@ public class SupportedLanguages {
         PT {
             @Override
             public String getFile() {
-                AppConfigurations configs = AppConfigurations.getInstance();
-                String file = configs.getBaseDirectory();
+                ServicesAppConfigurations configurationServices = 
+                		ServicesFactory.getConfigurationServices();
+                
+                String file = configurationServices.getBaseDirectory();
                 file = file + "/languages/pt_PT.xml";
                 return file;
             }

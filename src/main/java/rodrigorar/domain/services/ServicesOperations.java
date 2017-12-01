@@ -27,9 +27,11 @@ public class ServicesOperations
 implements
 IOperationsFacade {
     private ServicesEntity _entityServices;
+    private ServicesAppConfigurations _configurationServices;
 
     public ServicesOperations() {
-        _entityServices = ServicesEntity.getInstance();
+        _configurationServices = ServicesFactory.getConfigurationServices();
+        _entityServices = ServicesEntity.getInstance(_configurationServices.getDataDirectory());
     }
 
     public Task createTask(String title, String description) {
@@ -64,7 +66,8 @@ IOperationsFacade {
     }
 
     public void save() {
-        _entityServices.save();
+        _entityServices.save(_configurationServices.getDataDirectory());
+        _configurationServices.save();
     }
 
 }

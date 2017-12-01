@@ -17,19 +17,23 @@
 package rodrigorar.domain.pojos;
 
 public class AppConfigurations {
-    private static AppConfigurations _instance;
     private String _baseDirectory;
     private String _dataDirectory;
     private String _language;
-
-    public static AppConfigurations getInstance() {
-        if (_instance == null) {
-            _instance = new AppConfigurations();
-        }
-        return _instance;
+    
+    public AppConfigurations() {
+    	/* Empty Constructor */
     }
 
-    private AppConfigurations() { /* Empty Constructor */ }
+    public AppConfigurations(
+        String baseDirectory,
+        String dataDirectory,
+        String language) {
+
+        _baseDirectory = baseDirectory;
+        _dataDirectory = dataDirectory;
+        _language = language;
+    }
 
     public void setBaseDirectory(String baseDirectory) {
         _baseDirectory = baseDirectory;

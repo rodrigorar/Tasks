@@ -16,25 +16,27 @@
 
 package rodrigorar.domain.services;
 
+import rodrigorar.data.services.ServicesPersistence;
+import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
-import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.domain.exceptions.InvalidTitleException;
-import rodrigorar.data.services.ServicesPersistence;
 
 public class ServicesEntity {
     private static ServicesEntity _instance;
+    
     private TaskList _taskList;
 
-    public static ServicesEntity getInstance() {
+    // FIXME: This needs to not be a singleton, just need to figure out
+    // how not to load the tasks each time the service is called.
+    public static ServicesEntity getInstance(String dataDirectory) {
         if (_instance == null) {
-            _instance = new ServicesEntity();
+            _instance = new ServicesEntity(dataDirectory);
         }
         return _instance;
     }
 
-    private ServicesEntity() {
-        load();
+    private ServicesEntity(String dataDirectory) {
+        load(dataDirectory);
     }
 
     public Task newTask(String title, String description) {
@@ -66,16 +68,15 @@ public class ServicesEntity {
         return _taskList;
     }
 
-    public void save() {
+    public void save(String dataDirectory) {
         ServicesPersistence manager = ServicesPersistence.getInstance();
-        manager.saveAppConfigurations(AppConfigurations.getInstance());
-        manager.saveTaskList(_taskList);
+        manager.saveTaskList(dataDirectory, _taskList);
     }
 
-    public void load() {
+    public void load(String dataDirectory) {
         ServicesPersistence manager = ServicesPersistence.getInstance();
         manager.loadAppConfigurations();
-        _taskList = manager.loadTaskList();
+        _taskList = manager.loadTaskList(dataDirectory);
     }
 
 }

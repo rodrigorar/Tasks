@@ -75,11 +75,10 @@ public class ServicesPersistence {
         }
     }
 
-    public TaskList loadTaskList() {
-        AppConfigurations configs = AppConfigurations.getInstance();
+    public TaskList loadTaskList(String dataDirectory) {
         TaskList loadedTaskList = null;
 
-        Element rootElement = getRootElement(configs.getDataDirectory());
+        Element rootElement = getRootElement(dataDirectory);
         if (rootElement != null) {
             TaskListData listData = new TaskListData();
             loadedTaskList = listData.load(rootElement);
@@ -88,10 +87,9 @@ public class ServicesPersistence {
         return loadedTaskList;
     }
 
-    public void saveTaskList(TaskList taskList) {
-        AppConfigurations configs = AppConfigurations.getInstance();
+    public void saveTaskList(String dataDirectory, TaskList taskList) {
         TaskListData listData = new TaskListData();
-        writeToFile(listData.save(taskList), configs.getDataDirectory());
+        writeToFile(listData.save(taskList), dataDirectory);
     }
 
     public AppConfigurations loadAppConfigurations() {
@@ -102,9 +100,10 @@ public class ServicesPersistence {
             AppConfigurationsData configData = new AppConfigurationsData();
             configs = configData.load(rootElement);
         } else {
-            configs = AppConfigurations.getInstance();
+            configs = new AppConfigurations();
             configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
             configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
+            configs.setLanguage(SystemUtils.getDefaultLanguage());
         }
 
         return configs;

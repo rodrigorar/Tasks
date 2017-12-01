@@ -17,32 +17,25 @@
 package rodrigorar.ui.taskwindow;
 
 import java.awt.Dimension;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.Box;
 import javax.swing.BoxLayout;
-import javax.swing.JButton;
 import javax.swing.JPanel;
 
-import rodrigorar.domain.exceptions.InvalidTitleException;
-import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractWindow;
-import rodrigorar.ui.taskwindow.TitlePanel;
-import rodrigorar.ui.taskwindow.DescriptionPanel;
-import rodrigorar.ui.taskwindow.ButtonPanel;
+import rodrigorar.utils.Constants.Labels;
 
 public class TaskWindow
 extends
 AbstractWindow {
 	private static final long serialVersionUID = -6298053968382452462L;
 	private AbstractWindow _parentWindow;
+	
     private ServicesLanguage _servicesLanguage;
+    
     private Task _task;
 	private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;

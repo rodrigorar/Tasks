@@ -16,19 +16,20 @@
 
 package rodrigorar.domain.services;
 
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 
+import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.SupportedLanguages.Languages;
-import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.pojos.Language;
 
 public class ServicesLanguage {
     private static ServicesLanguage _instance;
+    
     private ServicesPersistence _servicesPersistence;
-    private AppConfigurations _configurations;
+    private ServicesAppConfigurations _configurationServices;
+    
     private Language _activeLanguage;
 
     public static ServicesLanguage getInstance() {
@@ -40,10 +41,11 @@ public class ServicesLanguage {
 
     private ServicesLanguage() {
         _servicesPersistence = ServicesPersistence.getInstance();
-        _configurations = AppConfigurations.getInstance();
+        _configurationServices = ServicesFactory.getConfigurationServices();
+        
         _activeLanguage =
             _servicesPersistence.loadLanguage(
-                SupportedLanguages.getLanguage(_configurations.getLanguage())
+                SupportedLanguages.getLanguage(_configurationServices.getLanguage())
             );
     }
 

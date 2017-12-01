@@ -16,31 +16,35 @@
 
 package rodrigorar.ui.settingswindow;
 
-import java.io.File;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.Dimension;
-import java.awt.BorderLayout;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.JTextField;
-import javax.swing.JFrame;
-import javax.swing.JFileChooser;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
-import javax.swing.BorderFactory;
+import java.awt.event.ActionListener;
+import java.io.File;
 
-import rodrigorar.domain.pojos.AppConfigurations;
+import javax.swing.BorderFactory;
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JFileChooser;
+import javax.swing.JFrame;
+import javax.swing.JTextField;
+
+import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractPanel;
+import rodrigorar.utils.Constants.Labels;
 
 public class DataPanel
 extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
-    private AppConfigurations _configs;
+    
+    private ServicesAppConfigurations _configurationServices;
     private ServicesLanguage _languageServices;
+    
     private String _dataDirectory;
 
     @Override
@@ -57,7 +61,7 @@ AbstractPanel {
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
 
-        JFileChooser fileChooser = new JFileChooser(_configs.getDataDirectory());
+        JFileChooser fileChooser = new JFileChooser(_configurationServices.getDataDirectory());
         frame.getContentPane().add(fileChooser, BorderLayout.CENTER);
 
         fileChooser.addActionListener(new ActionListener() {
@@ -97,7 +101,7 @@ AbstractPanel {
     private JTextField directory() {
         JTextField directory = new JTextField();
 
-        directory.setText(_configs.getDataDirectory());
+        directory.setText(_configurationServices.getDataDirectory());
         directory.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         directory.setMaximumSize(new Dimension(2000, 25));
 
@@ -109,8 +113,8 @@ AbstractPanel {
     }
 
     public DataPanel() {
-        _configs = AppConfigurations.getInstance();
-        _languageServices = ServicesLanguage.getInstance();
+        _configurationServices = ServicesFactory.getConfigurationServices();
+        _languageServices = ServicesFactory.getLanguageServices();
 
         configure();
 

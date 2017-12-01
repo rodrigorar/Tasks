@@ -47,7 +47,7 @@ IData<AppConfigurations> {
     }
 
     public AppConfigurations load(Element configsElement) {
-        AppConfigurations configs = AppConfigurations.getInstance();
+        AppConfigurations configs = new AppConfigurations();
 
         Element baseDirectoryElement = configsElement.getChild(XMLLabels.BASE_DIRECTORY);
         String baseDirectory = baseDirectoryElement.getText().trim();

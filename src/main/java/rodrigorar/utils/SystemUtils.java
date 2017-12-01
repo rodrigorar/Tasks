@@ -39,4 +39,8 @@ public class SystemUtils {
         builder.append("settings.xml");
         return builder.toString();
     }
+    
+    public static String getDefaultLanguage() {
+    	return "EN";
+    }
 }

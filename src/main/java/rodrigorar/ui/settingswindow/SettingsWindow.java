@@ -34,7 +34,9 @@ extends
 AbstractWindow {
 	private static final long serialVersionUID = 5040382923060248409L;
 	private AbstractWindow _parentWindow;
+	
 	private ServicesLanguage _servicesLanguage;
+	
 	private DataPanel _dataPanel;
 	private LanguagePanel _languagePanel;
 	private ButtonPanel _buttonPanel;

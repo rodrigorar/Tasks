@@ -17,18 +17,18 @@
 package rodrigorar.ui.settingswindow;
 
 import java.awt.Dimension;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JButton;
-import javax.swing.BoxLayout;
-import javax.swing.Box;
+import java.awt.event.ActionListener;
 
+import javax.swing.Box;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+
+import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.ui.AbstractWindow;
 import rodrigorar.ui.AbstractPanel;
-import rodrigorar.ui.settingswindow.LanguagePanel;
-import rodrigorar.ui.settingswindow.DataPanel;
+import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
 
 public class ButtonPanel
@@ -36,8 +36,9 @@ extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AbstractWindow _parentWindow;
+    
     private ServicesLanguage _languageServices;
-    private AppConfigurations _configs;
+    private ServicesAppConfigurations _configurationServices; 
 
     @Override
     public void update() {
@@ -54,11 +55,11 @@ AbstractPanel {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (dataPanel.getDataDirectory() != null) {
-                    _configs.setDataDirectory(dataPanel.getDataDirectory());
+                    _configurationServices.setDataDirectory(dataPanel.getDataDirectory());
                 }
 
                 if (languagePanel.getCurrentLanguage() != null) {
-                    _configs.setLanguage(languagePanel.getCurrentLanguage());
+                    _configurationServices.setLanguage(languagePanel.getCurrentLanguage());
                     System.out.println("Language: " + languagePanel.getCurrentLanguage());
                     _languageServices.setActiveLanguage(languagePanel.getCurrentLanguage());
                 }
@@ -81,8 +82,8 @@ AbstractPanel {
         DataPanel dataPanel) {
 
         _parentWindow = parentWindow;
-        _languageServices = ServicesLanguage.getInstance();
-        _configs = AppConfigurations.getInstance();
+        _languageServices = ServicesFactory.getLanguageServices();
+        _configurationServices = ServicesFactory.getConfigurationServices();
 
         configure();
 

@@ -24,4 +24,12 @@ public class ServicesFactory {
     public static IOperationsFacade getOperations() {
         return new ServicesOperations();
     }
+    
+    public static ServicesAppConfigurations getConfigurationServices() {
+    	return ServicesAppConfigurations.getInstance();
+    }
+
+	public static ServicesLanguage getLanguageServices() {
+		return ServicesLanguage.getInstance();
+	}
 }
