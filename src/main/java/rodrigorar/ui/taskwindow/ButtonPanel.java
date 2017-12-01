@@ -19,7 +19,6 @@ package rodrigorar.ui.taskwindow;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
@@ -31,12 +30,13 @@ import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.taskwindow.TitlePanel;
 import rodrigorar.ui.taskwindow.DescriptionPanel;
 
 public class ButtonPanel
 extends
-JPanel {
+AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AbstractWindow _parentWindow;
     private ServicesLanguage _languageServices;
@@ -44,6 +44,11 @@ JPanel {
     private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;
     private Task _task;
+
+    @Override
+    public void update() {
+        // TODO
+    }
 
     private JButton save() {
         JButton button = new JButton(_languageServices.getTranslation(Labels.SAVE));

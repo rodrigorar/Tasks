@@ -24,7 +24,6 @@ import java.awt.event.MouseListener;
 import javax.swing.BoxLayout;
 import javax.swing.JList;
 import javax.swing.JMenuItem;
-import javax.swing.JPanel;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 
@@ -33,12 +32,13 @@ import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.taskwindow.TaskWindow;
 import rodrigorar.utils.Constants.Labels;
 
 public class ListsPanel
 extends
-JPanel {
+AbstractPanel {
 	private static final long serialVersionUID = 3248650729009387031L;
 	public static final int CLICKS = 2;
     private AbstractWindow _parentWindow;
@@ -46,6 +46,7 @@ JPanel {
     private ServicesLanguage _languageServices;
     private JList<String> _tasks;
 
+	@Override
 	public void update() {
 		// TODO
 	}

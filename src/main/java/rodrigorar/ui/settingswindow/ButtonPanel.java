@@ -19,7 +19,6 @@ package rodrigorar.ui.settingswindow;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.BoxLayout;
 import javax.swing.Box;
@@ -27,17 +26,23 @@ import javax.swing.Box;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.settingswindow.LanguagePanel;
 import rodrigorar.ui.settingswindow.DataPanel;
 import rodrigorar.utils.Constants.Labels;
 
 public class ButtonPanel
 extends
-JPanel {
+AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AbstractWindow _parentWindow;
     private ServicesLanguage _languageServices;
     private AppConfigurations _configs;
+
+    @Override
+    public void update() {
+        // TODO
+    }
 
     private JButton saveButton(
         LanguagePanel languagePanel,

@@ -19,7 +19,6 @@ package rodrigorar.ui.settingswindow;
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JComboBox;
 import javax.swing.BoxLayout;
@@ -27,15 +26,21 @@ import javax.swing.Box;
 
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.AbstractPanel;
 
 public class LanguagePanel
 extends
-JPanel {
+AbstractPanel {
     public static final long serialVersionUID = 1L;
 
     private ServicesLanguage _languageServices;
 
     private String _currentLanguage;
+
+    @Override
+    public void update() {
+        // TODO
+    }
 
     public String getCurrentLanguage() {
         return _currentLanguage;

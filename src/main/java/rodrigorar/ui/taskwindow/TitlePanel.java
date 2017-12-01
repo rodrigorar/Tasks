@@ -18,7 +18,6 @@ package rodrigorar.ui.taskwindow;
 
 import java.awt.Dimension;
 import java.awt.Color;
-import javax.swing.JPanel;
 import javax.swing.JLabel;
 import javax.swing.JTextArea;
 import javax.swing.JScrollPane;
@@ -27,13 +26,19 @@ import javax.swing.BoxLayout;
 
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.AbstractPanel;
 
 public class TitlePanel
 extends
-JPanel {
+AbstractPanel {
     public static final long serialVersionUID = 1L;
     private ServicesLanguage _languageServices;
     private JTextArea _title;
+
+    @Override
+    public void update() {
+        // TODO
+    }
 
     private JLabel titleLabel() {
         return new JLabel(_languageServices.getTranslation(Labels.TITLE));

@@ -22,7 +22,6 @@ import java.awt.Dimension;
 import java.awt.BorderLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 import javax.swing.JTextField;
 import javax.swing.JFrame;
@@ -34,14 +33,20 @@ import javax.swing.BorderFactory;
 import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.AbstractPanel;
 
 public class DataPanel
 extends
-JPanel {
+AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AppConfigurations _configs;
     private ServicesLanguage _languageServices;
     private String _dataDirectory;
+
+    @Override
+    public void update() {
+        // TODO
+    }
 
     public String getDataDirectory() {
         return _dataDirectory;

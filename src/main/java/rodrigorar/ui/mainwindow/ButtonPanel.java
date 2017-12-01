@@ -20,19 +20,19 @@ import java.awt.Dimension;
 import java.awt.GridLayout;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.JPanel;
 import javax.swing.JButton;
 
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.taskwindow.TaskWindow;
 import rodrigorar.ui.settingswindow.SettingsWindow;
-import rodrigorar.ui.SearchWindow;
+import rodrigorar.ui.searchwindow.SearchWindow;
 import rodrigorar.ui.AbstractWindow;
+import rodrigorar.ui.AbstractPanel;
 
 public class ButtonPanel
 extends
-JPanel {
+AbstractPanel {
 	private static final long serialVersionUID = -1485868804409887489L;
 
 	private AbstractWindow _parentWindow;
@@ -43,7 +43,7 @@ JPanel {
 	private JButton _searchTaskButton;
 	private JButton _settingsButton;
 
-
+	@Override
 	public void update() {
 		_newTaskButton.setText(_languageServices.getTranslation(Labels.NEW_TASK));
 		_searchTaskButton.setText(_languageServices.getTranslation(Labels.SEARCH));

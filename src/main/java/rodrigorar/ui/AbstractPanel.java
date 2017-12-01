@@ -16,12 +16,11 @@
 
 package rodrigorar.ui;
 
-import javax.swing.JFrame;
+import javax.swing.JPanel;
 
-public abstract class AbstractWindow
-extends
-JFrame {
-	public static final long serialVersionUID = 1L;
+public abstract class AbstractPanel
+extends JPanel {
+    public static final long serialVersionUID = 1L;
 
-	public abstract void update();
+    public abstract void update();
 }

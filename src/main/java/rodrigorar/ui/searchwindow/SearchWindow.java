@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.ui;
+package rodrigorar.ui.searchwindow;
 
 import java.awt.Color;
 import java.awt.Dimension;
@@ -33,6 +33,7 @@ import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.AbstractWindow;
 import rodrigorar.ui.taskwindow.TaskWindow;
 
 public class SearchWindow
