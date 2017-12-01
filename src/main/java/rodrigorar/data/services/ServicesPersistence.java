@@ -37,16 +37,6 @@ import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.utils.SystemUtils;
 
 public class ServicesPersistence {
-    private static ServicesPersistence _instance;
-
-    public static ServicesPersistence getInstance() {
-        if (_instance == null) {
-            _instance = new ServicesPersistence();
-        }
-        return _instance;
-    }
-
-    private ServicesPersistence() { /* Empty Constructor */ }
 
     private Element getRootElement(String filepath) {
         Element rootElement = null;

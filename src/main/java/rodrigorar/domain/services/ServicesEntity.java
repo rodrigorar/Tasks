@@ -16,6 +16,7 @@
 
 package rodrigorar.domain.services;
 
+import rodrigorar.data.services.ServicesDataFactory;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
@@ -23,6 +24,8 @@ import rodrigorar.domain.pojos.TaskList;
 
 public class ServicesEntity {
     private static ServicesEntity _instance;
+    
+    ServicesPersistence _persistenceServices;
     
     private TaskList _taskList;
 
@@ -36,6 +39,8 @@ public class ServicesEntity {
     }
 
     private ServicesEntity(String dataDirectory) {
+    	_persistenceServices = ServicesDataFactory.getPersistenceServices();
+    	
         load(dataDirectory);
     }
 
@@ -69,14 +74,12 @@ public class ServicesEntity {
     }
 
     public void save(String dataDirectory) {
-        ServicesPersistence manager = ServicesPersistence.getInstance();
-        manager.saveTaskList(dataDirectory, _taskList);
+        _persistenceServices.saveTaskList(dataDirectory, _taskList);
     }
 
     public void load(String dataDirectory) {
-        ServicesPersistence manager = ServicesPersistence.getInstance();
-        manager.loadAppConfigurations();
-        _taskList = manager.loadTaskList(dataDirectory);
+        _persistenceServices.loadAppConfigurations();
+        _taskList = _persistenceServices.loadTaskList(dataDirectory);
     }
 
 }

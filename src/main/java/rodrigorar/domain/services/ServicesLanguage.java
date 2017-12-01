@@ -19,6 +19,7 @@ package rodrigorar.domain.services;
 import java.util.LinkedList;
 import java.util.List;
 
+import rodrigorar.data.services.ServicesDataFactory;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.SupportedLanguages.Languages;
@@ -40,7 +41,7 @@ public class ServicesLanguage {
     }
 
     private ServicesLanguage() {
-        _servicesPersistence = ServicesPersistence.getInstance();
+        _servicesPersistence = ServicesDataFactory.getPersistenceServices();
         _configurationServices = ServicesDomainFactory.getConfigurationServices();
         
         _activeLanguage =

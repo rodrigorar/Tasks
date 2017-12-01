@@ -16,6 +16,7 @@
 
 package rodrigorar.domain.services;
 
+import rodrigorar.data.services.ServicesDataFactory;
 import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.domain.pojos.AppConfigurations;
 
@@ -35,9 +36,8 @@ public class ServicesAppConfigurations {
     }
 
     private ServicesAppConfigurations() {
-    	ServicesPersistence persistenceServices = ServicesPersistence.getInstance();
-        _appConfigurations = persistenceServices.loadAppConfigurations();
-        _persistenceServices = ServicesPersistence.getInstance();
+    	_persistenceServices = ServicesDataFactory.getPersistenceServices();
+        _appConfigurations = _persistenceServices.loadAppConfigurations();
     }
     
     public AppConfigurations getAppConfigurations() {
