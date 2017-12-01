@@ -59,5 +59,9 @@
             <key>file_browser</key>
             <value>Navegador de Ficheiros</value>
         </translation>
+        <translation>
+            <key>language</key>
+            <value>Idioma</value>
+        </translation>
     </translations>
 </language>

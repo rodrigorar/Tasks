@@ -33,6 +33,7 @@ public final class Constants {
         public static final String SETTINGS = "settings";
         public static final String CHOOSE_FILE = "choose_data_file";
         public static final String FILE_BROWSER = "file_browser";
+        public static final String LANGUAGE = "language";
     }
 
     public static class XMLLabels {

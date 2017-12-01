@@ -52,9 +52,10 @@ public class ServicesLanguage {
     }
 
     public void setActiveLanguage(String languageId) {
-        _servicesPersistence.loadLanguage(
-            SupportedLanguages.getLanguage(languageId)
-        );
+        _activeLanguage =
+            _servicesPersistence.loadLanguage(
+                SupportedLanguages.getLanguage(languageId)
+            );
     }
 
     public String getTranslation(String key) {

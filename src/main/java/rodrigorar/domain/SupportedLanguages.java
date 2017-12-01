@@ -50,12 +50,15 @@ public class SupportedLanguages {
 
         switch (language) {
             case EN:
+                System.out.println("English");
                 rValue = Languages.EN;
                 break;
             case PT:
                 rValue = Languages.PT;
+                System.out.println("Portuguese");
                 break;
             default:
+                System.out.println("Default");
                 rValue = Languages.EN;
         }
 

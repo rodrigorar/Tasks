@@ -52,7 +52,6 @@ IData<Language> {
 
              Element valueElement = translation.getChild(XMLLabels.VALUE);
              String value = valueElement.getText().trim();
-
              translationMap.put(key, value);
          }
 

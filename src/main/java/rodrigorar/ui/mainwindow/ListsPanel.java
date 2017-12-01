@@ -46,6 +46,10 @@ JPanel {
     private ServicesLanguage _languageServices;
     private JList<String> _tasks;
 
+	public void update() {
+		// TODO
+	}
+
     private void configure() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
     }

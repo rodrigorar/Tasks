@@ -26,17 +26,29 @@ import javax.swing.JButton;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.taskwindow.TaskWindow;
+import rodrigorar.ui.settingswindow.SettingsWindow;
 import rodrigorar.ui.SearchWindow;
-import rodrigorar.ui.SettingsWindow;
 import rodrigorar.ui.AbstractWindow;
 
 public class ButtonPanel
 extends
 JPanel {
 	private static final long serialVersionUID = -1485868804409887489L;
-	private AbstractWindow _parentWindow;
-    private ServicesLanguage _languageServices;
 
+	private AbstractWindow _parentWindow;
+
+	private ServicesLanguage _languageServices;
+
+	private JButton _newTaskButton;
+	private JButton _searchTaskButton;
+	private JButton _settingsButton;
+
+
+	public void update() {
+		_newTaskButton.setText(_languageServices.getTranslation(Labels.NEW_TASK));
+		_searchTaskButton.setText(_languageServices.getTranslation(Labels.SEARCH));
+		_settingsButton.setText(_languageServices.getTranslation(Labels.SETTINGS));
+	}
 
     private void configure() {
         setLayout(new GridLayout(6, 1, 0, 5));
@@ -92,9 +104,13 @@ JPanel {
 
         configure();
 
-        add(newTaskButton());
-        add(searchTaskButton());
-        add(settingsButton());
+		_newTaskButton = newTaskButton();
+		_searchTaskButton = searchTaskButton();
+		_settingsButton = settingsButton();
+
+        add(_newTaskButton);
+        add(_searchTaskButton);
+        add(_settingsButton);
     }
 
 }

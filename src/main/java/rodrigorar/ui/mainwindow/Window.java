@@ -33,6 +33,8 @@ import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
+import rodrigorar.ui.mainwindow.ListsPanel;
+import rodrigorar.ui.mainwindow.ButtonPanel;
 
 public class Window
 extends
@@ -42,6 +44,8 @@ AbstractWindow {
     private ServicesLanguage _servicesLanguage = ServicesLanguage.getInstance();
     private IOperationsFacade _operations;
     private JList<String> _list;
+	private ButtonPanel _buttonPanel;
+	private ListsPanel _listsPanel;
 
     public Window() {
         _list = new JList<String>(new DefaultListModel<String>());
@@ -55,7 +59,13 @@ AbstractWindow {
 
     @Override
     public void update() {
-        updateList();
+		System.out.println("Updating Main Window");
+		updateList();
+
+		this.setTitle(_servicesLanguage.getTranslation(Labels.TASK));
+
+		_buttonPanel.update();
+		_listsPanel.update();
     }
 
     public JList<String> updateList() {
@@ -76,9 +86,12 @@ AbstractWindow {
         panel.setLayout(new BoxLayout(panel, BoxLayout.X_AXIS));
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
-        panel.add(new ButtonPanel(_instance));
+		_buttonPanel = new ButtonPanel(_instance);
+		_listsPanel = new ListsPanel(_instance, updateList());
+
+        panel.add(_buttonPanel);
         panel.add(Box.createRigidArea(new Dimension(10, 0)));
-        panel.add(new ListsPanel(_instance, updateList()));
+        panel.add(_listsPanel);
 
         return panel;
     }
