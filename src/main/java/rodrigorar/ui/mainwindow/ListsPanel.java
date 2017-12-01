@@ -74,7 +74,14 @@ AbstractPanel {
                     deleteItem.addActionListener(new ActionListener() {
                         @Override
                         public void actionPerformed(ActionEvent event) {
-                            _operations.deleteTask(task);
+                            int[] selectedTasks = _tasks.getSelectedIndices();
+                            
+                            for (int iter = 0; iter < selectedTasks.length; iter++) {
+                            	String taskId = 
+                            			(String)_tasks.getModel().getElementAt(selectedTasks[iter]);
+                            	_operations.deleteTask(_operations.findTask(taskId));
+                            }
+                            
                             _parentWindow.update();
                         }
                     });
