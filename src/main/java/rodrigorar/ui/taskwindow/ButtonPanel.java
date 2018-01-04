@@ -116,6 +116,8 @@ AbstractPanel {
         _titlePanel = titlePanel;
         _descriptionPanel = descriptionPanel;
 
+        _task = task;
+
         configure();
 
         add(Box.createHorizontalGlue());
