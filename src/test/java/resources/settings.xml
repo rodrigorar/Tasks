@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configs>
+  <base_directory>src/test/java/resources</base_directory>
+  <data_directory>src/test/java/resources</data_directory>
+  <language>EN</language>
+</configs>
