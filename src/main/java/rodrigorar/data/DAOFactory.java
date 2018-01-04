@@ -22,7 +22,7 @@ import rodrigorar.data.daos.TaskListDAO;
 
 public class DAOFactory {
 
-    public static BaseDAO<TaskList> getTaskListDAO() {
+    public static TaskListDAO getTaskListDAO() {
         return new TaskListDAO();
     }
 }

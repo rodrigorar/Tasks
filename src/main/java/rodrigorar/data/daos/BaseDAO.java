@@ -56,11 +56,7 @@ public abstract class BaseDAO<T> {
         }
     }
 
-    protected abstract T convertToObject(Element dataElement);
+    public abstract T convertToObject(Element dataElement);
 
-    protected abstract Element convertToElement(T dataObject);
-
-    public abstract T load(String dataDirectory);
-
-    public abstract void save(String dataDirectory, T dataObject);
+    public abstract Element convertToElement(T dataObject);
 }

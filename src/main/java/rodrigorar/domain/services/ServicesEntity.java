@@ -18,7 +18,7 @@ package rodrigorar.domain.services;
 
 import rodrigorar.data.services.ServicesDataFactory;
 import rodrigorar.data.services.ServicesPersistence;
-import rodrigorar.data.daos.BaseDAO;
+import rodrigorar.data.daos.TaskListDAO;
 import rodrigorar.data.DAOFactory;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
@@ -28,7 +28,7 @@ public class ServicesEntity {
     private static ServicesEntity _instance;
 
     ServicesPersistence _persistenceServices;
-    private BaseDAO<TaskList> _taskListData;
+    private TaskListDAO _taskListData;
 
     private TaskList _taskList;
 

@@ -30,6 +30,7 @@ public class TaskListDAO
 extends
 BaseDAO<TaskList> {
 
+    @Override
     public Element convertToElement(TaskList taskList) {
         Element taskListElement = new Element(XMLLabels.TASK_LIST);
         TaskData builder = new TaskData();
@@ -45,6 +46,7 @@ BaseDAO<TaskList> {
         return taskListElement;
     }
 
+    @Override
     public TaskList convertToObject(Element taskListElement) {
         TaskData builder = new TaskData();
 
