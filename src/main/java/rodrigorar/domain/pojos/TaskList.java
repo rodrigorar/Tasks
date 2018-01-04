@@ -28,9 +28,13 @@ IEntity {
     private String _id;
     private List<Task> _tasks;
 
-    public TaskList() {
-        _id = IdGenerator.generateTaskListId();
+    public TaskList(String id) {
+        _id = id;
         _tasks = new LinkedList<Task>();
+    }
+
+    public TaskList() {
+        this(IdGenerator.generateTaskListId());
     }
 
     @Override

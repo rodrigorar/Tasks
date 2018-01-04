@@ -14,23 +14,28 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.daos;
 
 import java.util.List;
 import org.jdom2.Element;
 
-import rodrigorar.data.interfaces.IData;
+import rodrigorar.data.TaskData;
+import rodrigorar.data.daos.BaseDAO;
+import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.utils.Constants.XMLLabels;
 
-public class TaskListData
-implements
-IData<TaskList> {
+public class TaskListDAO
+extends
+BaseDAO<TaskList> {
 
-    public Element save(TaskList taskList) {
+    public Element convertToElement(TaskList taskList) {
         Element taskListElement = new Element(XMLLabels.TASK_LIST);
         TaskData builder = new TaskData();
+
+        Element idElement = JDOMBuilder.buildStringElement(XMLLabels.ID, taskList.getId());
+        taskListElement.addContent(idElement);
 
         for (Task task : taskList.getAllTasks()) {
             Element taskElement = builder.save(task);
@@ -40,10 +45,13 @@ IData<TaskList> {
         return taskListElement;
     }
 
-    public TaskList load(Element taskListElement) {
-        TaskList taskList = new TaskList();
+    public TaskList convertToObject(Element taskListElement) {
         TaskData builder = new TaskData();
-        List<Element> taskElements = taskListElement.getChildren();
+
+        Element idElement = taskListElement.getChild(XMLLabels.ID);
+        TaskList taskList = new TaskList(idElement.getText().trim());
+
+        List<Element> taskElements = taskListElement.getChildren(XMLLabels.TASK);
 
         for (Element taskElement : taskElements) {
             Task task = builder.load(taskElement);
@@ -51,5 +59,20 @@ IData<TaskList> {
         }
 
         return taskList;
+    }
+
+    public TaskList load(String dataDirectory) {
+        TaskList loadedTaskList = null;
+
+        Element rootElement = getRootElement(dataDirectory);
+        if (rootElement != null) {
+            loadedTaskList = convertToObject(rootElement);
+        }
+
+        return loadedTaskList;
+    }
+
+    public void save(String dataDirectory, TaskList taskList) {
+        writeToFile(convertToElement(taskList), dataDirectory);
     }
 }

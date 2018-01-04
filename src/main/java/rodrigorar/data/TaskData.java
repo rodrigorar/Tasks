@@ -47,11 +47,13 @@ IData<Task> {
             Element titleElement = taskElement.getChild(XMLLabels.TITLE);
             String title = titleElement.getText().trim();
 
-            Element descriptionElement = taskElement.getChild(XMLLabels.DESCRIPTION);
-            String description = descriptionElement.getText().trim();
-
             task = new Task(title);
-            task.setDescription(description);
+
+            Element descriptionElement = taskElement.getChild(XMLLabels.DESCRIPTION);
+            if (descriptionElement != null) {
+                String description = descriptionElement.getText().trim();
+                task.setDescription(description);
+            }
         } catch (InvalidTitleException exception) {
             exception.printStackTrace();
         }

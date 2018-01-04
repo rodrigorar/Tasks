@@ -51,6 +51,7 @@ public final class Constants {
         public static final String TRANSLATION = "translation";
         public static final String KEY = "key";
         public static final String VALUE = "value";
+        public static final String ID = "id";
     }
 
 }

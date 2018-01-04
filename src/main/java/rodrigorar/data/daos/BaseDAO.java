@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data.services;
+package rodrigorar.data.daos;
 
 import java.io.File;
 import java.io.FileWriter;
@@ -27,17 +27,9 @@ import org.jdom2.input.SAXBuilder;
 import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
-import rodrigorar.data.AppConfigurationsData;
-import rodrigorar.data.LanguageData;
-import rodrigorar.domain.SupportedLanguages;
-import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.domain.pojos.Language;
-import rodrigorar.domain.pojos.TaskList;
-import rodrigorar.utils.SystemUtils;
+public abstract class BaseDAO<T> {
 
-public class ServicesPersistence {
-
-    private Element getRootElement(String filepath) {
+    protected Element getRootElement(String filepath) {
         Element rootElement = null;
 
         try {
@@ -52,7 +44,7 @@ public class ServicesPersistence {
         return rootElement;
     }
 
-    private void writeToFile(Element rootElement, String filepath) {
+    protected void writeToFile(Element rootElement, String filepath) {
         try {
             Document document = new Document(rootElement);
             XMLOutputter outputter = new XMLOutputter();
@@ -64,37 +56,11 @@ public class ServicesPersistence {
         }
     }
 
-    public AppConfigurations loadAppConfigurations() {
-        AppConfigurations configs = null;
+    protected abstract T convertToObject(Element dataElement);
 
-        Element rootElement = getRootElement(SystemUtils.getDefaultLinuxSettings());
-        if (rootElement != null) {
-            AppConfigurationsData configData = new AppConfigurationsData();
-            configs = configData.load(rootElement);
-        } else {
-            configs = new AppConfigurations();
-            configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
-            configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
-            configs.setLanguage(SystemUtils.getDefaultLanguage());
-        }
+    protected abstract Element convertToElement(T dataObject);
 
-        return configs;
-    }
+    public abstract T load(String dataDirectory);
 
-    public void saveAppConfigurations(AppConfigurations configs) {
-        AppConfigurationsData configData = new AppConfigurationsData();
-        writeToFile(configData.save(configs), SystemUtils.getDefaultLinuxSettings());
-    }
-
-    public Language loadLanguage(SupportedLanguages.Languages language) {
-        Language languageEntity = null;
-
-        Element rootElement = getRootElement(language.getFile());
-        if (rootElement != null) {
-            LanguageData languageData = new LanguageData();
-            languageEntity = languageData.load(rootElement);
-        }
-
-        return languageEntity;
-    }
+    public abstract void save(String dataDirectory, T dataObject);
 }

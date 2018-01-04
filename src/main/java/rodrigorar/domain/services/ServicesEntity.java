@@ -18,15 +18,18 @@ package rodrigorar.domain.services;
 
 import rodrigorar.data.services.ServicesDataFactory;
 import rodrigorar.data.services.ServicesPersistence;
+import rodrigorar.data.daos.BaseDAO;
+import rodrigorar.data.DAOFactory;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 
 public class ServicesEntity {
     private static ServicesEntity _instance;
-    
+
     ServicesPersistence _persistenceServices;
-    
+    private BaseDAO<TaskList> _taskListData;
+
     private TaskList _taskList;
 
     // FIXME: This needs to not be a singleton, just need to figure out
@@ -40,7 +43,8 @@ public class ServicesEntity {
 
     private ServicesEntity(String dataDirectory) {
     	_persistenceServices = ServicesDataFactory.getPersistenceServices();
-    	
+        _taskListData = DAOFactory.getTaskListDAO();
+
         load(dataDirectory);
     }
 
@@ -74,12 +78,12 @@ public class ServicesEntity {
     }
 
     public void save(String dataDirectory) {
-        _persistenceServices.saveTaskList(dataDirectory, _taskList);
+        _taskListData.save(dataDirectory, _taskList);
     }
 
     public void load(String dataDirectory) {
         _persistenceServices.loadAppConfigurations();
-        _taskList = _persistenceServices.loadTaskList(dataDirectory);
+        _taskList = _taskListData.load(dataDirectory);
     }
 
 }
