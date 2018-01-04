@@ -28,8 +28,8 @@ import javax.swing.JButton;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 
-import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesOperations;
 import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
@@ -41,10 +41,10 @@ extends
 AbstractWindow {
 	private static final long serialVersionUID = -6557029694151213025L;
 	private AbstractWindow _parentWindow;
-	
+
     private ServicesLanguage _servicesLanguage;
-    private IOperationsFacade _operations;
-    
+    private ServicesOperations _operations;
+
     private JTextArea _searchBox;
 
     public SearchWindow(AbstractWindow parentWindow) {

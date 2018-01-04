@@ -27,8 +27,8 @@ import javax.swing.JMenuItem;
 import javax.swing.JPopupMenu;
 import javax.swing.JScrollPane;
 
-import rodrigorar.domain.interfaces.IOperationsFacade;
 import rodrigorar.domain.pojos.Task;
+import rodrigorar.domain.services.ServicesOperations;
 import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
@@ -42,7 +42,7 @@ AbstractPanel {
 	private static final long serialVersionUID = 3248650729009387031L;
 	public static final int CLICKS = 2;
     private AbstractWindow _parentWindow;
-    private IOperationsFacade _operations;
+    private ServicesOperations _operations;
     private ServicesLanguage _languageServices;
     private JList<String> _tasks;
 
@@ -75,13 +75,13 @@ AbstractPanel {
                         @Override
                         public void actionPerformed(ActionEvent event) {
                             int[] selectedTasks = _tasks.getSelectedIndices();
-                            
+
                             for (int iter = 0; iter < selectedTasks.length; iter++) {
-                            	String taskId = 
+                            	String taskId =
                             			(String)_tasks.getModel().getElementAt(selectedTasks[iter]);
                             	_operations.deleteTask(_operations.findTask(taskId));
                             }
-                            
+
                             _parentWindow.update();
                         }
                     });
@@ -106,7 +106,7 @@ AbstractPanel {
     public ListsPanel(AbstractWindow parentWindow, JList<String> tasks) {
         _parentWindow = parentWindow;
         _tasks = tasks;
-        
+
         _operations = ServicesDomainFactory.getOperations();
         _languageServices = ServicesDomainFactory.getLanguageServices();
 

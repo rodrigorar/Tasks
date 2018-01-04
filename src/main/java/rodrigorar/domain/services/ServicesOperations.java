@@ -21,11 +21,8 @@ import java.util.LinkedList;
 
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
-import rodrigorar.domain.interfaces.IOperationsFacade;
 
-public class ServicesOperations
-implements
-IOperationsFacade {
+public class ServicesOperations {
     private ServicesEntity _entityServices;
     private ServicesAppConfigurations _configurationServices;
 

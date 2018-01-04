@@ -16,15 +16,15 @@
 
 package rodrigorar.domain.services;
 
-import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.domain.services.ServicesOperations;
 import rodrigorar.domain.services.ServicesOperations;
 
 public class ServicesDomainFactory {
 
-    public static IOperationsFacade getOperations() {
+    public static ServicesOperations getOperations() {
         return new ServicesOperations();
     }
-    
+
     public static ServicesAppConfigurations getConfigurationServices() {
     	return ServicesAppConfigurations.getInstance();
     }

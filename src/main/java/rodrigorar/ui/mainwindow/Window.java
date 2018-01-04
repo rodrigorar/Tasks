@@ -28,7 +28,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 
-import rodrigorar.domain.interfaces.IOperationsFacade;
+import rodrigorar.domain.services.ServicesOperations;
 import rodrigorar.domain.services.ServicesDomainFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
@@ -41,10 +41,10 @@ extends
 AbstractWindow {
 	private static final long serialVersionUID = 5368744912178878243L;
 	private AbstractWindow _instance;
-	
+
     private ServicesLanguage _servicesLanguage;
-    private IOperationsFacade _operations;
-    
+    private ServicesOperations _operations;
+
     private JList<String> _list;
 	private ButtonPanel _buttonPanel;
 	private ListsPanel _listsPanel;
