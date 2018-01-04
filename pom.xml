@@ -4,7 +4,7 @@
     <groupId>rodrigorar</groupId>
     <artifactId>tasks</artifactId>
     <packaging>jar</packaging>
-    <version>0.2.0</version>
+    <version>0.2.1</version>
     <name>tasks</name>
 
     <properties>
