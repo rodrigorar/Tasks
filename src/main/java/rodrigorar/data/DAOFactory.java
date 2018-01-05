@@ -19,10 +19,15 @@ package rodrigorar.data;
 import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.data.daos.TaskListDAO;
+import rodrigorar.data.daos.TaskDAO;
 
 public class DAOFactory {
 
     public static TaskListDAO getTaskListDAO() {
         return new TaskListDAO();
+    }
+
+    public static TaskDAO getTaskDAO() {
+        return new TaskDAO();
     }
 }

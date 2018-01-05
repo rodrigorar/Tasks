@@ -19,8 +19,9 @@ package rodrigorar.data.daos;
 import java.util.List;
 import org.jdom2.Element;
 
-import rodrigorar.data.TaskData;
 import rodrigorar.data.daos.BaseDAO;
+import rodrigorar.data.daos.TaskDAO;
+import rodrigorar.data.DAOFactory;
 import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
@@ -33,13 +34,13 @@ BaseDAO<TaskList> {
     @Override
     public Element convertToElement(TaskList taskList) {
         Element taskListElement = new Element(XMLLabels.TASK_LIST);
-        TaskData builder = new TaskData();
+        TaskDAO taskDAO = DAOFactory.getTaskDAO();
 
         Element idElement = JDOMBuilder.buildStringElement(XMLLabels.ID, taskList.getId());
         taskListElement.addContent(idElement);
 
         for (Task task : taskList.getAllTasks()) {
-            Element taskElement = builder.save(task);
+            Element taskElement = taskDAO.convertToElement(task);
             taskListElement.addContent(taskElement);
         }
 
@@ -48,7 +49,7 @@ BaseDAO<TaskList> {
 
     @Override
     public TaskList convertToObject(Element taskListElement) {
-        TaskData builder = new TaskData();
+        TaskDAO taskDAO = DAOFactory.getTaskDAO();
 
         Element idElement = taskListElement.getChild(XMLLabels.ID);
         TaskList taskList = new TaskList(idElement.getText().trim());
@@ -56,7 +57,7 @@ BaseDAO<TaskList> {
         List<Element> taskElements = taskListElement.getChildren(XMLLabels.TASK);
 
         for (Element taskElement : taskElements) {
-            Task task = builder.load(taskElement);
+            Task task = taskDAO.convertToObject(taskElement);
             taskList.addTask(task);
         }
 

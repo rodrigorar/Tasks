@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.daos;
 
 import org.jdom2.Element;
 
@@ -24,11 +24,12 @@ import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.utils.Constants.XMLLabels;
 
-public class TaskData
-implements
-IData<Task> {
+public class TaskDAO
+extends
+BaseDAO<Task> {
 
-    public Element save(Task task) {
+    @Override
+    public Element convertToElement(Task task) {
         Element taskElement = new Element(XMLLabels.TASK);
 
         Element titleElement = JDOMBuilder.buildStringElement(XMLLabels.TITLE, task.getTitle());
@@ -40,7 +41,8 @@ IData<Task> {
         return taskElement;
     }
 
-    public Task load(Element taskElement) {
+    @Override
+    public Task convertToObject(Element taskElement) {
         Task task = null;
 
         try {
