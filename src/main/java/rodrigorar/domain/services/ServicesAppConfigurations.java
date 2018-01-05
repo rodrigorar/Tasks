@@ -16,17 +16,17 @@
 
 package rodrigorar.domain.services;
 
-import rodrigorar.data.services.ServicesDataFactory;
-import rodrigorar.data.services.ServicesPersistence;
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.AppConfigurationsDAO;
 import rodrigorar.domain.pojos.AppConfigurations;
 
 public class ServicesAppConfigurations {
     private static ServicesAppConfigurations _instance;
-    
+
     private AppConfigurations _appConfigurations;
 
-    private ServicesPersistence _persistenceServices;
-    
+    private AppConfigurationsDAO _appConfigurationsDAO;
+
     public static ServicesAppConfigurations getInstance() {
         if (_instance == null) {
             _instance = new ServicesAppConfigurations();
@@ -36,26 +36,26 @@ public class ServicesAppConfigurations {
     }
 
     private ServicesAppConfigurations() {
-    	_persistenceServices = ServicesDataFactory.getPersistenceServices();
-        _appConfigurations = _persistenceServices.loadAppConfigurations();
+    	_appConfigurationsDAO = DAOFactory.getAppConfigurationsDAO();
+        _appConfigurations = _appConfigurationsDAO.load();
     }
-    
+
     public AppConfigurations getAppConfigurations() {
     	return _appConfigurations;
     }
-    
+
     public String getDataDirectory() {
     	return _appConfigurations.getDataDirectory();
     }
-    
+
     public void setDataDirectory(String dataDirectory) {
     	_appConfigurations.setDataDirectory(dataDirectory);
     }
-    
+
     public String getLanguage() {
     	return _appConfigurations.getLanguage();
     }
-    
+
     public void setLanguage(String language) {
     	_appConfigurations.setLanguage(language);
     }
@@ -63,14 +63,14 @@ public class ServicesAppConfigurations {
     public String getBaseDirectory() {
     	return _appConfigurations.getBaseDirectory();
     }
-    
+
     public void setBaseDirectory(String baseDirectory) {
     	_appConfigurations.setBaseDirectory(baseDirectory);
     }
-    
+
     public void save() {
-    	_persistenceServices.saveAppConfigurations(_appConfigurations);
+    	_appConfigurationsDAO.save(_appConfigurations);
     }
 
-    
+
 }

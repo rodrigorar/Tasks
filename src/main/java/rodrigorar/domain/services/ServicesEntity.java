@@ -16,9 +16,8 @@
 
 package rodrigorar.domain.services;
 
-import rodrigorar.data.services.ServicesDataFactory;
-import rodrigorar.data.services.ServicesPersistence;
 import rodrigorar.data.daos.TaskListDAO;
+import rodrigorar.data.daos.AppConfigurationsDAO;
 import rodrigorar.data.DAOFactory;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
@@ -27,8 +26,8 @@ import rodrigorar.domain.pojos.TaskList;
 public class ServicesEntity {
     private static ServicesEntity _instance;
 
-    ServicesPersistence _persistenceServices;
-    private TaskListDAO _taskListData;
+    private AppConfigurationsDAO _appConfigurationsDAO;
+    private TaskListDAO _taskListDAO;
 
     private TaskList _taskList;
 
@@ -42,8 +41,8 @@ public class ServicesEntity {
     }
 
     private ServicesEntity(String dataDirectory) {
-    	_persistenceServices = ServicesDataFactory.getPersistenceServices();
-        _taskListData = DAOFactory.getTaskListDAO();
+    	_appConfigurationsDAO = DAOFactory.getAppConfigurationsDAO();
+        _taskListDAO = DAOFactory.getTaskListDAO();
 
         load(dataDirectory);
     }
@@ -78,12 +77,12 @@ public class ServicesEntity {
     }
 
     public void save(String dataDirectory) {
-        _taskListData.save(dataDirectory, _taskList);
+        _taskListDAO.save(dataDirectory, _taskList);
     }
 
     public void load(String dataDirectory) {
-        _persistenceServices.loadAppConfigurations();
-        _taskList = _taskListData.load(dataDirectory);
+        _appConfigurationsDAO.load(); // FIXME: Remove this from here, it does not make any sense
+        _taskList = _taskListDAO.load(dataDirectory);
     }
 
 }

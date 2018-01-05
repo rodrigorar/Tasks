@@ -22,7 +22,6 @@ import org.jdom2.Element;
 import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.data.daos.TaskDAO;
 import rodrigorar.data.DAOFactory;
-import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.utils.Constants.XMLLabels;
@@ -36,9 +35,10 @@ BaseDAO<TaskList> {
         Element taskListElement = new Element(XMLLabels.TASK_LIST);
         TaskDAO taskDAO = DAOFactory.getTaskDAO();
 
-        Element idElement = JDOMBuilder.buildStringElement(XMLLabels.ID, taskList.getId());
-        taskListElement.addContent(idElement);
+        Element idElement = new Element(XMLLabels.ID);
+        idElement.setText(taskList.getId());
 
+        taskListElement.addContent(idElement);
         for (Task task : taskList.getAllTasks()) {
             Element taskElement = taskDAO.convertToElement(task);
             taskListElement.addContent(taskElement);

@@ -14,41 +14,40 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.daos;
 
 import org.jdom2.Element;
 
-import rodrigorar.data.interfaces.IData;
-import rodrigorar.data.utils.JDOMBuilder;
 import rodrigorar.domain.pojos.AppConfigurations;
+import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.utils.Constants.XMLLabels;
 import rodrigorar.utils.SystemUtils;
 
-public class AppConfigurationsData
-implements
-IData<AppConfigurations> {
+public class AppConfigurationsDAO
+extends
+BaseDAO<AppConfigurations> {
 
-    public Element save(AppConfigurations configs) {
+    @Override
+    public Element convertToElement(AppConfigurations configs) {
+        Element baseDirectory = new Element(XMLLabels.BASE_DIRECTORY);
+        baseDirectory.setText(configs.getBaseDirectory());
+
+        Element dataDirectory = new Element(XMLLabels.DATA_DIRECTORY);
+        dataDirectory.setText(configs.getDataDirectory());
+
+        Element language = new Element(XMLLabels.LANGUAGE);
+        language.setText(configs.getLanguage());
+
         Element configsElement = new Element(XMLLabels.CONFIGS);
-
-        Element baseDirectory =
-            JDOMBuilder.buildStringElement(XMLLabels.BASE_DIRECTORY, configs.getBaseDirectory());
         configsElement.addContent(baseDirectory);
-
-        Element dataDirectory =
-            JDOMBuilder.buildStringElement(XMLLabels.DATA_DIRECTORY, configs.getDataDirectory());
         configsElement.addContent(dataDirectory);
-
-        Element language =
-            JDOMBuilder.buildStringElement(XMLLabels.LANGUAGE, configs.getLanguage());
         configsElement.addContent(language);
 
         return configsElement;
     }
 
-    public AppConfigurations load(Element configsElement) {
-        AppConfigurations configs = new AppConfigurations();
-
+    @Override
+    public AppConfigurations convertToObject(Element configsElement) {
         Element baseDirectoryElement = configsElement.getChild(XMLLabels.BASE_DIRECTORY);
         String baseDirectory = baseDirectoryElement.getText().trim();
         if (baseDirectory == null || baseDirectory.equals("")) {
@@ -64,14 +63,34 @@ IData<AppConfigurations> {
         Element languageElement = configsElement.getChild(XMLLabels.LANGUAGE);
         String language = languageElement.getText().trim();
         if (language == null || language.equals("")) {
-            language = "EN"; // FIXME: Set system wide default language just
-                            // just like the rest of the settings.
+            language = "EN";
         }
 
+        AppConfigurations configs = new AppConfigurations();
         configs.setBaseDirectory(baseDirectory);
         configs.setDataDirectory(dataDirectory);
         configs.setLanguage(language);
 
         return configs;
+    }
+
+    public AppConfigurations load() {
+        final AppConfigurations configs;
+
+        Element rootElement = getRootElement(SystemUtils.getDefaultLinuxSettings());
+        if (rootElement != null) {
+            configs = convertToObject(rootElement);
+        } else {
+            configs = new AppConfigurations();
+            configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
+            configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
+            configs.setLanguage(SystemUtils.getDefaultLanguage());
+        }
+
+        return configs;
+    }
+
+    public void save(AppConfigurations configs) {
+        writeToFile(convertToElement(configs), SystemUtils.getDefaultLinuxSettings());
     }
 }

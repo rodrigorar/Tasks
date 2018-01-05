@@ -26,6 +26,7 @@ import rodrigorar.utils.Constants.XMLLabels;
 import rodrigorar.utils.exceptions.NotImplementedException;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.pojos.Language;
+import rodrigorar.data.daos.BaseDAO;
 
 public class LanguageDAO
 extends

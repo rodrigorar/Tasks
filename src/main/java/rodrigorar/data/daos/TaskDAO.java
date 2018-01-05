@@ -18,10 +18,9 @@ package rodrigorar.data.daos;
 
 import org.jdom2.Element;
 
-import rodrigorar.data.interfaces.IData;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
-import rodrigorar.data.utils.JDOMBuilder;
+import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.utils.Constants.XMLLabels;
 
 public class TaskDAO
@@ -30,12 +29,14 @@ BaseDAO<Task> {
 
     @Override
     public Element convertToElement(Task task) {
+        Element titleElement = new Element(XMLLabels.TITLE);
+        titleElement.setText(task.getTitle());
+
+        Element descriptionElement = new Element(XMLLabels.DESCRIPTION);
+        descriptionElement.setText(task.getDescription());
+
         Element taskElement = new Element(XMLLabels.TASK);
-
-        Element titleElement = JDOMBuilder.buildStringElement(XMLLabels.TITLE, task.getTitle());
         taskElement.addContent(titleElement);
-
-        Element descriptionElement = JDOMBuilder.buildStringElement(XMLLabels.DESCRIPTION, task.getDescription());
         taskElement.addContent(descriptionElement);
 
         return taskElement;

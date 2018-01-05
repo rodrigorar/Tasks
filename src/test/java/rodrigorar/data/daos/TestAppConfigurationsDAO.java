@@ -14,29 +14,36 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.daos;
 
-import rodrigorar.data.daos.BaseDAO;
-import rodrigorar.data.daos.TaskListDAO;
-import rodrigorar.data.daos.TaskDAO;
-import rodrigorar.data.daos.LanguageDAO;
+import org.junit.Test;
+import static org.junit.Assert.assertEquals;
+
 import rodrigorar.data.daos.AppConfigurationsDAO;
+import rodrigorar.domain.pojos.AppConfigurations;
+import rodrigorar.utils.SystemUtils;
 
-public class DAOFactory {
+public class TestAppConfigurationsDAO {
 
-    public static TaskListDAO getTaskListDAO() {
-        return new TaskListDAO();
+    @Test
+    public void testConvertToElement() {
+        // TODO
     }
 
-    public static TaskDAO getTaskDAO() {
-        return new TaskDAO();
+    @Test
+    public void testConvertToObject() {
+        // TODO
     }
 
-    public static LanguageDAO getLanguageDAO() {
-        return new LanguageDAO();
+    @Test
+    public void testLoad() {
+        AppConfigurationsDAO dao = new AppConfigurationsDAO();
+
+        AppConfigurations configurations = dao.load();
+
+        assertEquals(configurations.getBaseDirectory(), SystemUtils.getDefaultLinuxDirectory());
+        assertEquals(configurations.getDataDirectory(), SystemUtils.getDefaultLinuxData());
+        assertEquals(configurations.getLanguage(), SystemUtils.getDefaultLanguage());
     }
 
-    public static AppConfigurationsDAO getAppConfigurationsDAO() {
-        return new AppConfigurationsDAO();
-    }
 }
