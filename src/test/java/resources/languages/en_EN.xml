@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<language>
+    <name>English</name>
+    <simple_name>EN</simple_name>
+    <translations>
+        <translation>
+            <key>save</key>
+            <value>Save</value>
+        </translation>
+        <translation>
+            <key>cancel</key>
+            <value>Cancel</value>
+        </translation>
+        <translation>
+            <key>edit</key>
+            <value>Edit</value>
+        </translation>
+        <translation>
+            <key>description</key>
+            <value>Description</value>
+        </translation>
+        <translation>
+            <key>title</key>
+            <value>Title</value>
+        </translation>
+        <translation>
+            <key>task</key>
+            <value>Task</value>
+        </translation>
+        <translation>
+            <key>tasks</key>
+            <value>Tasks</value>
+        </translation>
+        <translation>
+            <key>task_list</key>
+            <value>Task List</value>
+        </translation>
+        <translation>
+            <key>new_task</key>
+            <value>New Task</value>
+        </translation>
+        <translation>
+            <key>search</key>
+            <value>Search</value>
+        </translation>
+        <translation>
+            <key>delete</key>
+            <value>Delete</value>
+        </translation>
+        <translation>
+            <key>settings</key>
+            <value>Settings</value>
+        </translation>
+        <translation>
+            <key>choose_data_file</key>
+            <value>Choose Data File</value>
+        </translation>
+        <translation>
+            <key>file_browser</key>
+            <value>File Browser</value>
+        </translation>
+        <translation>
+            <key>language</key>
+            <value>Language</value>
+        </translation>
+    </translations>
+</language>

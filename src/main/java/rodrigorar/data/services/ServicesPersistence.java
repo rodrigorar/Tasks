@@ -28,7 +28,6 @@ import org.jdom2.output.Format;
 import org.jdom2.output.XMLOutputter;
 
 import rodrigorar.data.AppConfigurationsData;
-import rodrigorar.data.LanguageData;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.domain.pojos.Language;
@@ -86,15 +85,4 @@ public class ServicesPersistence {
         writeToFile(configData.save(configs), SystemUtils.getDefaultLinuxSettings());
     }
 
-    public Language loadLanguage(SupportedLanguages.Languages language) {
-        Language languageEntity = null;
-
-        Element rootElement = getRootElement(language.getFile());
-        if (rootElement != null) {
-            LanguageData languageData = new LanguageData();
-            languageEntity = languageData.load(rootElement);
-        }
-
-        return languageEntity;
-    }
 }

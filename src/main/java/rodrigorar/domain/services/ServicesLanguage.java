@@ -19,18 +19,18 @@ package rodrigorar.domain.services;
 import java.util.LinkedList;
 import java.util.List;
 
-import rodrigorar.data.services.ServicesDataFactory;
-import rodrigorar.data.services.ServicesPersistence;
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.LanguageDAO;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.SupportedLanguages.Languages;
 import rodrigorar.domain.pojos.Language;
 
 public class ServicesLanguage {
     private static ServicesLanguage _instance;
-    
-    private ServicesPersistence _servicesPersistence;
+
+    private LanguageDAO _languageDao;
     private ServicesAppConfigurations _configurationServices;
-    
+
     private Language _activeLanguage;
 
     public static ServicesLanguage getInstance() {
@@ -41,11 +41,11 @@ public class ServicesLanguage {
     }
 
     private ServicesLanguage() {
-        _servicesPersistence = ServicesDataFactory.getPersistenceServices();
+        _languageDao = DAOFactory.getLanguageDAO();
         _configurationServices = ServicesDomainFactory.getConfigurationServices();
-        
+
         _activeLanguage =
-            _servicesPersistence.loadLanguage(
+            _languageDao.load(
                 SupportedLanguages.getLanguage(_configurationServices.getLanguage())
             );
     }
@@ -56,7 +56,7 @@ public class ServicesLanguage {
 
     public void setActiveLanguage(String languageId) {
         _activeLanguage =
-            _servicesPersistence.loadLanguage(
+            _languageDao.load(
                 SupportedLanguages.getLanguage(languageId)
             );
     }

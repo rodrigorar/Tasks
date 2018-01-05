@@ -14,7 +14,7 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data;
+package rodrigorar.data.daos;
 
 import org.jdom2.Element;
 
@@ -22,22 +22,28 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import rodrigorar.data.interfaces.IData;
 import rodrigorar.utils.Constants.XMLLabels;
+import rodrigorar.utils.exceptions.NotImplementedException;
+import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.pojos.Language;
 
-public class LanguageData
-implements
-IData<Language> {
+public class LanguageDAO
+extends
+BaseDAO<Language> {
 
-     public Element save(Language language) {
-         // TODO: Implement a NotImplmented Exception
-        return null;
-     }
+    @Override
+    public Element convertToElement(Language language)
+    throws
+    NotImplementedException {
+        throw new NotImplementedException(
+            "The method convertToElement from LanguageDAO has not yet been implemented."
+        );
+    }
 
-     public Language load(Element languageElement) {
-         Element nameElement = languageElement.getChild(XMLLabels.NAME);
-         String name = nameElement.getText().trim();
+    @Override
+    public Language convertToObject(Element languageElement) {
+        Element nameElement = languageElement.getChild(XMLLabels.NAME);
+        String name = nameElement.getText().trim();
 
          Element simpleNameElement = languageElement.getChild(XMLLabels.SIMPLE_NAME);
          String simpleName = simpleNameElement.getText().trim();
@@ -56,5 +62,16 @@ IData<Language> {
          }
 
          return new Language(name, simpleName, translationMap);
-     }
+    }
+
+    public Language load(SupportedLanguages.Languages language) {
+        Language languageEntity = null;
+
+        Element rootElement = getRootElement(language.getFile());
+        if (rootElement != null) {
+            languageEntity = convertToObject(rootElement);
+        }
+
+        return languageEntity;
+    }
 }

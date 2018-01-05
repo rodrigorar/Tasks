@@ -20,6 +20,7 @@ import rodrigorar.domain.pojos.TaskList;
 import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.data.daos.TaskListDAO;
 import rodrigorar.data.daos.TaskDAO;
+import rodrigorar.data.daos.LanguageDAO;
 
 public class DAOFactory {
 
@@ -29,5 +30,9 @@ public class DAOFactory {
 
     public static TaskDAO getTaskDAO() {
         return new TaskDAO();
+    }
+
+    public static LanguageDAO getLanguageDAO() {
+        return new LanguageDAO();
     }
 }
