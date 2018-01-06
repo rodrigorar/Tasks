@@ -41,7 +41,7 @@ public class ServicesLanguage {
     }
 
     private ServicesLanguage() {
-        _languageDao = DAOFactory.getLanguageDAO();
+        _languageDao = DAOFactory.getInstance().getLanguageDAO();
         _configurationServices = ServicesDomainFactory.getConfigurationServices();
 
         _activeLanguage =

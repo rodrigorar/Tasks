@@ -41,8 +41,8 @@ public class ServicesEntity {
     }
 
     private ServicesEntity(String dataDirectory) {
-    	_appConfigurationsDAO = DAOFactory.getAppConfigurationsDAO();
-        _taskListDAO = DAOFactory.getTaskListDAO();
+        _appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
+        _taskListDAO = DAOFactory.getInstance().getTaskListDAO();
 
         load(dataDirectory);
     }

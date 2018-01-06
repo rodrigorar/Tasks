@@ -33,7 +33,7 @@ BaseDAO<TaskList> {
     @Override
     public Element convertToElement(TaskList taskList) {
         Element taskListElement = new Element(XMLLabels.TASK_LIST);
-        TaskDAO taskDAO = DAOFactory.getTaskDAO();
+        TaskDAO taskDAO = DAOFactory.getInstance().getTaskDAO();
 
         Element idElement = new Element(XMLLabels.ID);
         idElement.setText(taskList.getId());
@@ -49,7 +49,7 @@ BaseDAO<TaskList> {
 
     @Override
     public TaskList convertToObject(Element taskListElement) {
-        TaskDAO taskDAO = DAOFactory.getTaskDAO();
+        TaskDAO taskDAO = DAOFactory.getInstance().getTaskDAO();
 
         Element idElement = taskListElement.getChild(XMLLabels.ID);
         TaskList taskList = new TaskList(idElement.getText().trim());

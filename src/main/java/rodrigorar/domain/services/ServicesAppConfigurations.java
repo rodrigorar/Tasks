@@ -36,7 +36,7 @@ public class ServicesAppConfigurations {
     }
 
     private ServicesAppConfigurations() {
-    	_appConfigurationsDAO = DAOFactory.getAppConfigurationsDAO();
+    	_appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
         _appConfigurations = _appConfigurationsDAO.load();
     }
 

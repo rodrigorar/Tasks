@@ -16,27 +16,77 @@
 
 package rodrigorar.data;
 
+import java.util.List;
+import java.util.LinkedList;
+
 import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.data.daos.TaskListDAO;
 import rodrigorar.data.daos.TaskDAO;
 import rodrigorar.data.daos.LanguageDAO;
 import rodrigorar.data.daos.AppConfigurationsDAO;
 
+// TODO: Try to abstract the iteration to a single method.
 public class DAOFactory {
+    private static DAOFactory _instance;
+    private List<BaseDAO<?>> _daoList;
 
-    public static TaskListDAO getTaskListDAO() {
-        return new TaskListDAO();
+    public static DAOFactory getInstance() {
+        if (_instance == null) {
+            _instance = new DAOFactory();
+        }
+
+        return _instance;
     }
 
-    public static TaskDAO getTaskDAO() {
-        return new TaskDAO();
+    private DAOFactory() {
+        _daoList = new LinkedList<BaseDAO<?>>();
     }
 
-    public static LanguageDAO getLanguageDAO() {
-        return new LanguageDAO();
+    public TaskListDAO getTaskListDAO() {
+        for (BaseDAO<?> iterator : _daoList) {
+            if (iterator instanceof TaskListDAO) {
+                return (TaskListDAO)iterator;
+            }
+        }
+
+        TaskListDAO rValue = new TaskListDAO();
+        _daoList.add(rValue);
+        return rValue;
     }
 
-    public static AppConfigurationsDAO getAppConfigurationsDAO() {
-        return new AppConfigurationsDAO();
+    public TaskDAO getTaskDAO() {
+        for (BaseDAO<?> iterator : _daoList) {
+            if (iterator instanceof TaskDAO) {
+                return (TaskDAO)iterator;
+            }
+        }
+
+        TaskDAO rValue = new TaskDAO();
+        _daoList.add(rValue);
+        return rValue;
+    }
+
+    public LanguageDAO getLanguageDAO() {
+        for (BaseDAO<?> iterator : _daoList) {
+            if (iterator instanceof LanguageDAO) {
+                return (LanguageDAO)iterator;
+            }
+        }
+
+        LanguageDAO rValue = new LanguageDAO();
+        _daoList.add(rValue);
+        return rValue;
+    }
+
+    public AppConfigurationsDAO getAppConfigurationsDAO() {
+        for (BaseDAO<?> iterator : _daoList) {
+            if (iterator instanceof AppConfigurationsDAO) {
+                return (AppConfigurationsDAO)iterator;
+            }
+        }
+
+        AppConfigurationsDAO rValue = new AppConfigurationsDAO();
+        _daoList.add(rValue);
+        return rValue;
     }
 }
