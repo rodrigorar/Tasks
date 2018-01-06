@@ -27,17 +27,9 @@ import rodrigorar.domain.pojos.TaskList;
 public class ServicesEntity
 implements
 IService {
-    private static ServicesEntity _instance;
-
-    private AppConfigurationsDAO _appConfigurationsDAO;
-    private TaskListDAO _taskListDAO;
-
     private TaskList _taskList;
 
     public ServicesEntity(String dataDirectory) {
-        _appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
-        _taskListDAO = DAOFactory.getInstance().getTaskListDAO();
-
         load(dataDirectory);
     }
 
@@ -71,12 +63,13 @@ IService {
     }
 
     public void save(String dataDirectory) {
-        _taskListDAO.save(dataDirectory, _taskList);
+        TaskListDAO taskListDAO = DAOFactory.getInstance().getTaskListDAO();
+        taskListDAO.save(dataDirectory, _taskList);
     }
 
     public void load(String dataDirectory) {
-        _appConfigurationsDAO.load(); // FIXME: Remove this from here, it does not make any sense
-        _taskList = _taskListDAO.load(dataDirectory);
+        TaskListDAO taskListDAO = DAOFactory.getInstance().getTaskListDAO();
+        _taskList = taskListDAO.load(dataDirectory);
     }
 
 }

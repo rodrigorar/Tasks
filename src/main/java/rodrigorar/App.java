@@ -20,12 +20,15 @@ package rodrigorar;
 // import javax.swing.UnsupportedLookAndFeelException;
 
 import rodrigorar.ui.mainwindow.Window;
+import rodrigorar.data.DAOFactory;
 
 public class App {
 
     public static void bootstrap() {
         System.out.println("Bootstrapping Application");
 
+        // Hammer of the Gods to load configs before anything else
+        DAOFactory.getInstance().getAppConfigurationsDAO().load();
         // This is to set the look and feel, i might change it to GTK because
         // it is so much prettier.
         // try {

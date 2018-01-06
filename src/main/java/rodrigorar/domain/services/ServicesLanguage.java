@@ -31,20 +31,16 @@ import rodrigorar.domain.pojos.Language;
 public class ServicesLanguage
 implements
 IService {
-    private static ServicesLanguage _instance;
-
-    private LanguageDAO _languageDao;
-    private ServicesAppConfigurations _configurationServices;
-
     private Language _activeLanguage;
 
     public ServicesLanguage() {
-        _languageDao = DAOFactory.getInstance().getLanguageDAO();
-        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
+        LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
+        ServicesAppConfigurations configServices =
+            ServicesFactory.getInstance().getConfigurationServices();
 
         _activeLanguage =
-            _languageDao.load(
-                SupportedLanguages.getLanguage(_configurationServices.getLanguage())
+            languageDAO.load(
+                SupportedLanguages.getLanguage(configServices.getLanguage())
             );
     }
 
@@ -53,8 +49,9 @@ IService {
     }
 
     public void setActiveLanguage(String languageId) {
+        LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
         _activeLanguage =
-            _languageDao.load(
+            languageDAO.load(
                 SupportedLanguages.getLanguage(languageId)
             );
     }

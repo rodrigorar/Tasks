@@ -24,15 +24,11 @@ import rodrigorar.domain.pojos.AppConfigurations;
 public class ServicesAppConfigurations
 implements
 IService {
-    private static ServicesAppConfigurations _instance;
-
     private AppConfigurations _appConfigurations;
 
-    private AppConfigurationsDAO _appConfigurationsDAO;
-
     public ServicesAppConfigurations() {
-    	_appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
-        _appConfigurations = _appConfigurationsDAO.load();
+        AppConfigurationsDAO appConfigsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
+        _appConfigurations = appConfigsDAO.load();
     }
 
     public AppConfigurations getAppConfigurations() {
@@ -64,7 +60,8 @@ IService {
     }
 
     public void save() {
-    	_appConfigurationsDAO.save(_appConfigurations);
+        AppConfigurationsDAO appConfigsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
+    	appConfigsDAO.save(_appConfigurations);
     }
 
 

@@ -29,32 +29,30 @@ import rodrigorar.domain.pojos.TaskList;
 public class ServicesOperations
 implements
 IService {
-    private ServicesEntity _entityServices;
-    private ServicesAppConfigurations _configurationServices;
-
-    public ServicesOperations() {
-        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
-        _entityServices = ServicesFactory.getInstance().getEntityServices();
-    }
 
     public Task createTask(String title, String description) {
-        return _entityServices.newTask(title, description);
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        return entityServices.newTask(title, description);
     }
 
     public Task findTask(String taskId) {
-        return _entityServices.getTask(taskId);
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        return entityServices.getTask(taskId);
     }
 
     public void deleteTask(String taskId) {
-        _entityServices.removeTask(taskId);
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        entityServices.removeTask(taskId);
     }
 
     public void deleteTask(Task task) {
-        _entityServices.removeTask(task);
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        entityServices.removeTask(task);
     }
 
     public List<String> getTaskNames(String taskListId) {
-        TaskList taskList = _entityServices.getTaskList();
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        TaskList taskList = entityServices.getTaskList();
         List<String> taskNames = new LinkedList<String>();
 
         for (Task task : taskList.getAllTasks()) {
@@ -65,12 +63,17 @@ IService {
     }
 
     public TaskList findTaskList(String taskListId) {
-        return _entityServices.getTaskList();
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        return entityServices.getTaskList();
     }
 
     public void save() {
-        _entityServices.save(_configurationServices.getDataDirectory());
-        _configurationServices.save();
+        ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        ServicesAppConfigurations configServices =
+            ServicesFactory.getInstance().getConfigurationServices();
+
+        entityServices.save(configServices.getDataDirectory());
+        configServices.save();
     }
 
 }
