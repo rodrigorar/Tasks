@@ -14,22 +14,8 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.domain.services;
+package rodrigorar.domain.interfaces;
 
-import rodrigorar.domain.services.ServicesOperations;
-import rodrigorar.domain.services.ServicesOperations;
-
-public class ServicesDomainFactory {
-
-    public static ServicesOperations getOperations() {
-        return new ServicesOperations();
-    }
-
-    public static ServicesAppConfigurations getConfigurationServices() {
-    	return ServicesAppConfigurations.getInstance();
-    }
-
-	public static ServicesLanguage getLanguageServices() {
-		return ServicesLanguage.getInstance();
-	}
+public interface IService {
+    // Empty interface
 }

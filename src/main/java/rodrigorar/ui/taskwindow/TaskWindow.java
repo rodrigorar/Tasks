@@ -24,7 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JPanel;
 
 import rodrigorar.domain.pojos.Task;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
@@ -34,9 +34,9 @@ extends
 AbstractWindow {
 	private static final long serialVersionUID = -6298053968382452462L;
 	private AbstractWindow _parentWindow;
-	
+
     private ServicesLanguage _servicesLanguage;
-    
+
     private Task _task;
 	private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;
@@ -61,7 +61,7 @@ AbstractWindow {
 
     private void init(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
-        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
+        _servicesLanguage = ServicesFactory.getInstance().getLanguageServices();
     }
 
     @Override

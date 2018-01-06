@@ -19,16 +19,22 @@ package rodrigorar.domain.services;
 import java.util.List;
 import java.util.LinkedList;
 
+import rodrigorar.domain.interfaces.IService;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesEntity;
+import rodrigorar.domain.services.ServicesAppConfigurations;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 
-public class ServicesOperations {
+public class ServicesOperations
+implements
+IService {
     private ServicesEntity _entityServices;
     private ServicesAppConfigurations _configurationServices;
 
     public ServicesOperations() {
-        _configurationServices = ServicesDomainFactory.getConfigurationServices();
-        _entityServices = ServicesEntity.getInstance(_configurationServices.getDataDirectory());
+        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
+        _entityServices = ServicesFactory.getInstance().getEntityServices();
     }
 
     public Task createTask(String title, String description) {

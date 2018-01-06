@@ -30,7 +30,7 @@ import javax.swing.JTextArea;
 
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.services.ServicesOperations;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.AbstractWindow;
@@ -50,8 +50,8 @@ AbstractWindow {
     public SearchWindow(AbstractWindow parentWindow) {
         _parentWindow = parentWindow;
 
-        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
-        _operations = ServicesDomainFactory.getOperations();
+        _servicesLanguage = ServicesFactory.getInstance().getLanguageServices();
+        _operations = ServicesFactory.getInstance().getOperations();
 
         _searchBox = new JTextArea();
         initUI();

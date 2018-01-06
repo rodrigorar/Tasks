@@ -29,7 +29,7 @@ import javax.swing.JList;
 import javax.swing.JPanel;
 
 import rodrigorar.domain.services.ServicesOperations;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
@@ -53,8 +53,8 @@ AbstractWindow {
         _list = new JList<String>(new DefaultListModel<String>());
         _instance = this;
 
-        _operations = ServicesDomainFactory.getOperations();
-        _servicesLanguage = ServicesDomainFactory.getLanguageServices();
+        _operations = ServicesFactory.getInstance().getOperations();
+        _servicesLanguage = ServicesFactory.getInstance().getLanguageServices();
 
         initUI();
     }

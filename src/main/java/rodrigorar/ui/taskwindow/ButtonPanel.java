@@ -24,7 +24,7 @@ import javax.swing.BoxLayout;
 import javax.swing.Box;
 
 import rodrigorar.domain.services.ServicesLanguage;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesOperations;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
@@ -110,8 +110,8 @@ AbstractPanel {
 
         _parentWindow = parentWindow;
 
-        _languageServices = ServicesDomainFactory.getLanguageServices();
-        _operations = ServicesDomainFactory.getOperations();
+        _languageServices = ServicesFactory.getInstance().getLanguageServices();
+        _operations = ServicesFactory.getInstance().getOperations();
 
         _titlePanel = titlePanel;
         _descriptionPanel = descriptionPanel;

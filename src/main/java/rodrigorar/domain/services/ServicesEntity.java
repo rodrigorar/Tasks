@@ -19,11 +19,14 @@ package rodrigorar.domain.services;
 import rodrigorar.data.daos.TaskListDAO;
 import rodrigorar.data.daos.AppConfigurationsDAO;
 import rodrigorar.data.DAOFactory;
+import rodrigorar.domain.interfaces.IService;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
 
-public class ServicesEntity {
+public class ServicesEntity
+implements
+IService {
     private static ServicesEntity _instance;
 
     private AppConfigurationsDAO _appConfigurationsDAO;
@@ -31,16 +34,7 @@ public class ServicesEntity {
 
     private TaskList _taskList;
 
-    // FIXME: This needs to not be a singleton, just need to figure out
-    // how not to load the tasks each time the service is called.
-    public static ServicesEntity getInstance(String dataDirectory) {
-        if (_instance == null) {
-            _instance = new ServicesEntity(dataDirectory);
-        }
-        return _instance;
-    }
-
-    private ServicesEntity(String dataDirectory) {
+    public ServicesEntity(String dataDirectory) {
         _appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
         _taskListDAO = DAOFactory.getInstance().getTaskListDAO();
 

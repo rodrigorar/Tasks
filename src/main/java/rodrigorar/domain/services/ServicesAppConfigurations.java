@@ -18,24 +18,19 @@ package rodrigorar.domain.services;
 
 import rodrigorar.data.DAOFactory;
 import rodrigorar.data.daos.AppConfigurationsDAO;
+import rodrigorar.domain.interfaces.IService;
 import rodrigorar.domain.pojos.AppConfigurations;
 
-public class ServicesAppConfigurations {
+public class ServicesAppConfigurations
+implements
+IService {
     private static ServicesAppConfigurations _instance;
 
     private AppConfigurations _appConfigurations;
 
     private AppConfigurationsDAO _appConfigurationsDAO;
 
-    public static ServicesAppConfigurations getInstance() {
-        if (_instance == null) {
-            _instance = new ServicesAppConfigurations();
-        }
-
-        return _instance;
-    }
-
-    private ServicesAppConfigurations() {
+    public ServicesAppConfigurations() {
     	_appConfigurationsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
         _appConfigurations = _appConfigurationsDAO.load();
     }

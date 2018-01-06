@@ -32,7 +32,7 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import rodrigorar.domain.services.ServicesAppConfigurations;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.utils.Constants.Labels;
@@ -41,10 +41,10 @@ public class DataPanel
 extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
-    
+
     private ServicesAppConfigurations _configurationServices;
     private ServicesLanguage _languageServices;
-    
+
     private String _dataDirectory;
 
     @Override
@@ -113,8 +113,8 @@ AbstractPanel {
     }
 
     public DataPanel() {
-        _configurationServices = ServicesDomainFactory.getConfigurationServices();
-        _languageServices = ServicesDomainFactory.getLanguageServices();
+        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
+        _languageServices = ServicesFactory.getInstance().getLanguageServices();
 
         configure();
 

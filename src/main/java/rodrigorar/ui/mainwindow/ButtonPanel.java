@@ -22,7 +22,7 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JButton;
 
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.utils.Constants.Labels;
 import rodrigorar.ui.taskwindow.TaskWindow;
@@ -101,8 +101,8 @@ AbstractPanel {
 
     public ButtonPanel(AbstractWindow parentWindow) {
     	_parentWindow = parentWindow;
-    
-    	_languageServices = ServicesDomainFactory.getLanguageServices();
+
+    	_languageServices = ServicesFactory.getInstance().getLanguageServices();
 
         configure();
 

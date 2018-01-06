@@ -25,7 +25,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import rodrigorar.domain.services.ServicesAppConfigurations;
-import rodrigorar.domain.services.ServicesDomainFactory;
+import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.AbstractWindow;
@@ -36,9 +36,9 @@ extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
     private AbstractWindow _parentWindow;
-    
+
     private ServicesLanguage _languageServices;
-    private ServicesAppConfigurations _configurationServices; 
+    private ServicesAppConfigurations _configurationServices;
 
     @Override
     public void update() {
@@ -82,8 +82,8 @@ AbstractPanel {
         DataPanel dataPanel) {
 
         _parentWindow = parentWindow;
-        _languageServices = ServicesDomainFactory.getLanguageServices();
-        _configurationServices = ServicesDomainFactory.getConfigurationServices();
+        _languageServices = ServicesFactory.getInstance().getLanguageServices();
+        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
 
         configure();
 

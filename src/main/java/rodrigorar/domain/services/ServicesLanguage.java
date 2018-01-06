@@ -21,11 +21,16 @@ import java.util.List;
 
 import rodrigorar.data.DAOFactory;
 import rodrigorar.data.daos.LanguageDAO;
+import rodrigorar.domain.interfaces.IService;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.ServicesAppConfigurations;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.SupportedLanguages.Languages;
 import rodrigorar.domain.pojos.Language;
 
-public class ServicesLanguage {
+public class ServicesLanguage
+implements
+IService {
     private static ServicesLanguage _instance;
 
     private LanguageDAO _languageDao;
@@ -33,16 +38,9 @@ public class ServicesLanguage {
 
     private Language _activeLanguage;
 
-    public static ServicesLanguage getInstance() {
-        if (_instance == null) {
-            _instance = new ServicesLanguage();
-        }
-        return _instance;
-    }
-
-    private ServicesLanguage() {
+    public ServicesLanguage() {
         _languageDao = DAOFactory.getInstance().getLanguageDAO();
-        _configurationServices = ServicesDomainFactory.getConfigurationServices();
+        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
 
         _activeLanguage =
             _languageDao.load(
