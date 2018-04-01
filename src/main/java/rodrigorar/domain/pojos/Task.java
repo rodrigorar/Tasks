@@ -23,6 +23,7 @@ import rodrigorar.domain.interfaces.IEntity;
 public class Task
 implements
 IEntity {
+    // TODO: Persist this value. 
     private String _id;
     private String _title;
     private String _description;
