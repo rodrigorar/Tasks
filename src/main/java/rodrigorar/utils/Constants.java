@@ -36,6 +36,7 @@ public final class Constants {
         public static final String LANGUAGE = "language";
     }
 
+    // TODO: Refactor this so that each object has its own separated name.
     public static class XMLLabels {
         public static final String TASK = "task";
         public static final String TASK_LIST = "task_list";
@@ -52,6 +53,7 @@ public final class Constants {
         public static final String KEY = "key";
         public static final String VALUE = "value";
         public static final String ID = "id";
+        public static final String PRIORITY = "priority";
     }
 
 }

@@ -38,4 +38,9 @@ public class IdGenerator {
         StringBuilder id = new StringBuilder("language-");
         return generateId(id);
     }
+
+    public static String generatePriorityId() {
+        StringBuilder id = new StringBuilder("priority-");
+        return generateId(id);
+    }
 }

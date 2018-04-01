@@ -24,6 +24,7 @@ import rodrigorar.data.daos.TaskListDAO;
 import rodrigorar.data.daos.TaskDAO;
 import rodrigorar.data.daos.LanguageDAO;
 import rodrigorar.data.daos.AppConfigurationsDAO;
+import rodrigorar.data.daos.PriorityDAO;
 
 // TODO: Try to abstract the iteration to a single method.
 public class DAOFactory {
@@ -42,6 +43,7 @@ public class DAOFactory {
         _daoList = new LinkedList<BaseDAO<?>>();
     }
 
+    // TODO: Refactor this so it has only one return statement.
     public TaskListDAO getTaskListDAO() {
         for (BaseDAO<?> iterator : _daoList) {
             if (iterator instanceof TaskListDAO) {
@@ -54,6 +56,7 @@ public class DAOFactory {
         return rValue;
     }
 
+    // TODO: Refactor this so it has only one return statement.
     public TaskDAO getTaskDAO() {
         for (BaseDAO<?> iterator : _daoList) {
             if (iterator instanceof TaskDAO) {
@@ -66,6 +69,7 @@ public class DAOFactory {
         return rValue;
     }
 
+    // TODO: Refactor this so it has only one return statement.
     public LanguageDAO getLanguageDAO() {
         for (BaseDAO<?> iterator : _daoList) {
             if (iterator instanceof LanguageDAO) {
@@ -78,6 +82,7 @@ public class DAOFactory {
         return rValue;
     }
 
+    // TODO: Refactor this so it has only one return statement.
     public AppConfigurationsDAO getAppConfigurationsDAO() {
         for (BaseDAO<?> iterator : _daoList) {
             if (iterator instanceof AppConfigurationsDAO) {
@@ -88,5 +93,10 @@ public class DAOFactory {
         AppConfigurationsDAO rValue = new AppConfigurationsDAO();
         _daoList.add(rValue);
         return rValue;
+    }
+
+    public PriorityDAO getPriorityDAO() {
+        // TODO: Not implemented.
+        return new PriorityDAO();
     }
 }
