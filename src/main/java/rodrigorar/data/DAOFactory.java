@@ -96,7 +96,14 @@ public class DAOFactory {
     }
 
     public PriorityDAO getPriorityDAO() {
-        // TODO: Not implemented.
+        PriorityDAO rValue;
+
+        for (BaseDAO<?> iterator : _daoList) {
+            if (iterator instanceof PriorityDAO) {
+                rValue = (PriorityDAO)iterator;
+            }
+        }
+
         return new PriorityDAO();
     }
 }
