@@ -22,7 +22,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.HashMap;
 
-import rodrigorar.utils.Constants.XMLLabels;
+import rodrigorar.utils.Constants.LanguageXML;
 import rodrigorar.utils.exceptions.NotImplementedException;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.pojos.Language;
@@ -43,21 +43,21 @@ BaseDAO<Language> {
 
     @Override
     public Language convertToObject(Element languageElement) {
-        Element nameElement = languageElement.getChild(XMLLabels.NAME);
+        Element nameElement = languageElement.getChild(LanguageXML.NAME);
         String name = nameElement.getText().trim();
 
-         Element simpleNameElement = languageElement.getChild(XMLLabels.SIMPLE_NAME);
+         Element simpleNameElement = languageElement.getChild(LanguageXML.SIMPLE_NAME);
          String simpleName = simpleNameElement.getText().trim();
 
-         Element translationsElement = languageElement.getChild(XMLLabels.TRANSLATIONS);
+         Element translationsElement = languageElement.getChild(LanguageXML.TRANSLATIONS);
 
          List<Element> translationList = translationsElement.getChildren();
          Map<String, String> translationMap = new HashMap<String, String>();
          for (Element translation : translationList) {
-             Element keyElement = translation.getChild(XMLLabels.KEY);
+             Element keyElement = translation.getChild(LanguageXML.KEY);
              String key = keyElement.getText().trim();
 
-             Element valueElement = translation.getChild(XMLLabels.VALUE);
+             Element valueElement = translation.getChild(LanguageXML.VALUE);
              String value = valueElement.getText().trim();
              translationMap.put(key, value);
          }

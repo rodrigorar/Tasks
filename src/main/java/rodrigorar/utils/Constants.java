@@ -70,5 +70,16 @@ public final class Constants {
         public static final String TASK_LIST = "task_list";
         public static final String TASK = "task";
     }
+
+    public static class LanguageXML {
+        public static final String ID = "id";
+        public static final String LANGUAGE = "language";
+        public static final String TRANSLATIONS = "translations";
+        public static final String TRANSLATION = "translation";
+        public static final String NAME = "name";
+        public static final String SIMPLE_NAME = "simple_name";
+        public static final String KEY = "key";
+        public static final String VALUE = "value";
+    }
     
 }
