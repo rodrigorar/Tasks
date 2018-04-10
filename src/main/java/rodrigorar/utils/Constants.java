@@ -64,5 +64,11 @@ public final class Constants {
         public static final String DESCRIPTION = "description";
         public static final String PRIORITY = "priority";
     }
+
+    public static class TaskListXML {
+        public static final String ID = "id";
+        public static final String TASK_LIST = "task_list";
+        public static final String TASK = "task";
+    }
     
 }

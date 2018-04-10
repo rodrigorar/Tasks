@@ -24,7 +24,7 @@ import rodrigorar.data.daos.TaskDAO;
 import rodrigorar.data.DAOFactory;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.pojos.TaskList;
-import rodrigorar.utils.Constants.XMLLabels;
+import rodrigorar.utils.Constants.TaskListXML;
 
 public class TaskListDAO
 extends
@@ -32,10 +32,10 @@ BaseDAO<TaskList> {
 
     @Override
     public Element convertToElement(TaskList taskList) {
-        Element taskListElement = new Element(XMLLabels.TASK_LIST);
+        Element taskListElement = new Element(TaskListXML.TASK_LIST);
         TaskDAO taskDAO = DAOFactory.getInstance().getTaskDAO();
 
-        Element idElement = new Element(XMLLabels.ID);
+        Element idElement = new Element(TaskListXML.ID);
         idElement.setText(taskList.getId());
 
         taskListElement.addContent(idElement);
@@ -51,10 +51,10 @@ BaseDAO<TaskList> {
     public TaskList convertToObject(Element taskListElement) {
         TaskDAO taskDAO = DAOFactory.getInstance().getTaskDAO();
 
-        Element idElement = taskListElement.getChild(XMLLabels.ID);
+        Element idElement = taskListElement.getChild(TaskListXML.ID);
         TaskList taskList = new TaskList(idElement.getText().trim());
 
-        List<Element> taskElements = taskListElement.getChildren(XMLLabels.TASK);
+        List<Element> taskElements = taskListElement.getChildren(TaskListXML.TASK);
 
         for (Element taskElement : taskElements) {
             Task task = taskDAO.convertToObject(taskElement);
