@@ -30,7 +30,10 @@ BaseService<Priority> {
     }
 
     public void execute() {
-        // TODO:     Not implemented.
+        // TODO: Not implemented. I need to decide how i am going to implement 
+        // this, if i'm going to use a place to store the information in memory
+        // or if i'm going to access the file each time i need to get a priority
+        // entity.
     }
 
     public Priority getResult() {
