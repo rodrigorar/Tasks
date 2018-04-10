@@ -26,4 +26,8 @@ public class FactoryServicesPriority {
     public ServiceGetPriorityList getServiceGetPriorityList() {
         return new ServiceGetPriorityList(_appConfigurations.getPriorityDirectory());
     }
+
+    public ServiceGetPriority getServiceGetPriority(String priorityId) {
+        return new ServiceGetPriority(priorityId);
+    }
 }
