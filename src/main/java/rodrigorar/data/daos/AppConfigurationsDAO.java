@@ -20,7 +20,7 @@ import org.jdom2.Element;
 
 import rodrigorar.domain.pojos.AppConfigurations;
 import rodrigorar.data.daos.BaseDAO;
-import rodrigorar.utils.Constants.XMLLabels;
+import rodrigorar.utils.Constants.SettingsXML;
 import rodrigorar.utils.SystemUtils;
 
 public class AppConfigurationsDAO
@@ -29,19 +29,19 @@ BaseDAO<AppConfigurations> {
 
     @Override
     public Element convertToElement(AppConfigurations configs) {
-        Element baseDirectory = new Element(XMLLabels.BASE_DIRECTORY);
+        Element baseDirectory = new Element(SettingsXML.BASE_DIRECTORY);
         baseDirectory.setText(configs.getBaseDirectory());
 
-        Element dataDirectory = new Element(XMLLabels.DATA_DIRECTORY);
+        Element dataDirectory = new Element(SettingsXML.DATA_DIRECTORY);
         dataDirectory.setText(configs.getDataDirectory());
 
-        Element priorityDirectory = new Element(XMLLabels.PRIORITY_DIRECTORY);
+        Element priorityDirectory = new Element(SettingsXML.PRIORITY_DIRECTORY);
         priorityDirectory.setText(configs.getPriorityDirectory());
 
-        Element language = new Element(XMLLabels.LANGUAGE);
+        Element language = new Element(SettingsXML.LANGUAGE);
         language.setText(configs.getLanguage());
 
-        Element configsElement = new Element(XMLLabels.CONFIGS);
+        Element configsElement = new Element(SettingsXML.CONFIGS);
         configsElement.addContent(baseDirectory);
         configsElement.addContent(dataDirectory);
         configsElement.addContent(priorityDirectory);
@@ -52,25 +52,25 @@ BaseDAO<AppConfigurations> {
 
     @Override
     public AppConfigurations convertToObject(Element configsElement) {
-        Element baseDirectoryElement = configsElement.getChild(XMLLabels.BASE_DIRECTORY);
+        Element baseDirectoryElement = configsElement.getChild(SettingsXML.BASE_DIRECTORY);
         String baseDirectory = baseDirectoryElement.getText().trim();
         if (baseDirectory == null || baseDirectory.equals("")) {
             baseDirectory = SystemUtils.getDefaultLinuxDirectory();
         }
 
-        Element dataDirectoryElement = configsElement.getChild(XMLLabels.DATA_DIRECTORY);
+        Element dataDirectoryElement = configsElement.getChild(SettingsXML.DATA_DIRECTORY);
         String dataDirectory = dataDirectoryElement.getText().trim();
         if (dataDirectory == null || dataDirectory.equals("")) {
             dataDirectory = SystemUtils.getDefaultLinuxData();
         }
 
-        Element priorityDirectoryElement = configsElement.getChild(XMLLabels.PRIORITY_DIRECTORY);
+        Element priorityDirectoryElement = configsElement.getChild(SettingsXML.PRIORITY_DIRECTORY);
         String priorityDirectory = priorityDirectoryElement.getText().trim();
         if (priorityDirectory == null || priorityDirectory.equals("")) {
             priorityDirectory = SystemUtils.getDefaultPriorityDirectory();
         }
 
-        Element languageElement = configsElement.getChild(XMLLabels.LANGUAGE);
+        Element languageElement = configsElement.getChild(SettingsXML.LANGUAGE);
         String language = languageElement.getText().trim();
         if (language == null || language.equals("")) {
             language = "EN";

@@ -55,6 +55,13 @@ public final class Constants {
         public static final String ID = "id";
         public static final String PRIORITY = "priority";
         public static final String PRIORITY_DIRECTORY = "priority_directory";
+
+    public static class SettingsXML {
+        public static final String BASE_DIRECTORY = "base_directory";
+        public static final String DATA_DIRECTORY = "data_directory";
+        public static final String PRIORITY_DIRECTORY = "priority_directory";
+        public static final String CONFIGS = "configs";
+        public static final String LANGUAGE = "language";
     }
     
     public static class TaskXML {
