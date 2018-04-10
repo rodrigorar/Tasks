@@ -81,5 +81,12 @@ public final class Constants {
         public static final String KEY = "key";
         public static final String VALUE = "value";
     }
+
+    public static class PriorityXML {
+        public static final String ID = "id";
+        public static final String PRIORITY = "priority";
+        public static final String NAME = "name";
+        public static final String VALUE = "value";
+    }
     
 }

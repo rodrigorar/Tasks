@@ -22,7 +22,7 @@ import org.jdom2.Element;
 
 import rodrigorar.data.daos.BaseDAO;
 import rodrigorar.domain.pojos.Priority;
-import rodrigorar.utils.Constants.XMLLabels;
+import rodrigorar.utils.Constants.PriorityXML;
 
 public class PriorityDAO
 extends
@@ -30,13 +30,13 @@ BaseDAO<Priority> {
 
     @Override
     public Priority convertToObject(Element dataElement) {
-        Element idElement = dataElement.getChild(XMLLabels.ID);
+        Element idElement = dataElement.getChild(PriorityXML.ID);
         String id = idElement.getText().trim();
 
-        Element nameElement = dataElement.getChild(XMLLabels.NAME);
+        Element nameElement = dataElement.getChild(PriorityXML.NAME);
         String name = nameElement.getText().trim();
 
-        Element valueElement = dataElement.getChild(XMLLabels.VALUE);
+        Element valueElement = dataElement.getChild(PriorityXML.VALUE);
         String value = valueElement.getText().trim();
 
         return new Priority(id, name, Integer.valueOf(value));
@@ -44,16 +44,16 @@ BaseDAO<Priority> {
 
     @Override
     public Element convertToElement(Priority dataObject) {
-        Element idElement = new Element(XMLLabels.ID);
+        Element idElement = new Element(PriorityXML.ID);
         idElement.setText(dataObject.getId());
 
-        Element nameElement = new Element(XMLLabels.NAME);
+        Element nameElement = new Element(PriorityXML.NAME);
         nameElement.setText(dataObject.getName());
 
-        Element valueElement = new Element(XMLLabels.ID);
+        Element valueElement = new Element(PriorityXML.ID);
         valueElement.setText(dataObject.getValue().toString());
 
-        Element priorityElement = new Element(XMLLabels.PRIORITY);
+        Element priorityElement = new Element(PriorityXML.PRIORITY);
         priorityElement.addContent(idElement);
         priorityElement.addContent(nameElement);
         priorityElement.addContent(valueElement);
@@ -66,7 +66,7 @@ BaseDAO<Priority> {
 
         Element rootElement = getRootElement(dataDirectory);
         if (rootElement != null) {
-            List<Element> priorityElementList = rootElement.getChildren(XMLLabels.PRIORITY);
+            List<Element> priorityElementList = rootElement.getChildren(PriorityXML.PRIORITY);
             for (Element priorityElement : priorityElementList) {
                 Priority priority = convertToObject(priorityElement);
                 priorityList.add(priority);
