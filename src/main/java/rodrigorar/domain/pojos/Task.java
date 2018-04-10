@@ -19,26 +19,25 @@ package rodrigorar.domain.pojos;
 import rodrigorar.utils.IdGenerator;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.domain.interfaces.IEntity;
+import rodrigorar.domain.pojos.Priority;
 
 public class Task
 implements
 IEntity {
-    // TODO: Persist this value. 
     private String _id;
     private String _title;
     private String _description;
+    private String _priorityId;
 
-    public Task(String title)
-    throws
-    InvalidTitleException {
-        this.setTitle(title);
-        _id = IdGenerator.generateTaskId();
+    public Task(String id) {
+        _id = id;
     }
 
     public Task(String title, String description)
     throws
     InvalidTitleException {
-        this(title);
+        _id = IdGenerator.generateTaskId();
+        this.setTitle(title);
         this.setDescription(description);
     }
 
@@ -66,5 +65,13 @@ IEntity {
 
     public String getDescription() {
         return _description;
+    }
+
+    public void setPriorityId(String priorityId) {
+        _priorityId = priorityId;
+    }
+
+    public String getPriorityId() {
+        return _priorityId;
     }
 }

@@ -29,13 +29,20 @@ BaseDAO<Task> {
 
     @Override
     public Element convertToElement(Task task) {
+        Element idElement = new Element(XMLLabels.ID);
+        idElement.setText(task.getId());
+
         Element titleElement = new Element(XMLLabels.TITLE);
         titleElement.setText(task.getTitle());
 
         Element descriptionElement = new Element(XMLLabels.DESCRIPTION);
         descriptionElement.setText(task.getDescription());
 
+        Element priorityElement = new Element(XMLLabels.PRIORITY);
+        priorityElement.setText(task.getPriorityId());
+
         Element taskElement = new Element(XMLLabels.TASK);
+        taskElement.addContent(idElement);
         taskElement.addContent(titleElement);
         taskElement.addContent(descriptionElement);
 
@@ -47,16 +54,29 @@ BaseDAO<Task> {
         Task task = null;
 
         try {
+            Element idElement = taskElement.getChild(XMLLabels.ID);
+            String id = idElement.getText().trim();
+
             Element titleElement = taskElement.getChild(XMLLabels.TITLE);
             String title = titleElement.getText().trim();
 
-            task = new Task(title);
-
             Element descriptionElement = taskElement.getChild(XMLLabels.DESCRIPTION);
+            String description = null;
             if (descriptionElement != null) {
-                String description = descriptionElement.getText().trim();
-                task.setDescription(description);
+                description = descriptionElement.getText().trim();
             }
+
+            Element priorityElement = taskElement.getChild(XMLLabels.PRIORITY);
+            String priorityId = null;
+            if (priorityElement != null) {
+                priorityId = priorityElement.getText().trim();
+            }
+
+            task = new Task(id);
+            task.setTitle(title);
+            task.setDescription(description);
+            task.setPriorityId(priorityId);
+
         } catch (InvalidTitleException exception) {
             exception.printStackTrace();
         }
