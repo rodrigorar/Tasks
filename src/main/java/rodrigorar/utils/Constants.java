@@ -36,26 +36,6 @@ public final class Constants {
         public static final String LANGUAGE = "language";
     }
 
-    // TODO: Refactor this so that each object has its own separated name.
-    public static class XMLLabels {
-        public static final String TASK = "task";
-        public static final String TASK_LIST = "task_list";
-        public static final String TITLE = "title";
-        public static final String DESCRIPTION = "description";
-        public static final String BASE_DIRECTORY = "base_directory";
-        public static final String DATA_DIRECTORY = "data_directory";
-        public static final String CONFIGS = "configs";
-        public static final String LANGUAGE = "language";
-        public static final String NAME = "name";
-        public static final String SIMPLE_NAME = "simple_name";
-        public static final String TRANSLATIONS = "translations";
-        public static final String TRANSLATION = "translation";
-        public static final String KEY = "key";
-        public static final String VALUE = "value";
-        public static final String ID = "id";
-        public static final String PRIORITY = "priority";
-        public static final String PRIORITY_DIRECTORY = "priority_directory";
-
     public static class SettingsXML {
         public static final String BASE_DIRECTORY = "base_directory";
         public static final String DATA_DIRECTORY = "data_directory";
