@@ -78,6 +78,9 @@ AbstractWindow {
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(_descriptionPanel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
+        // XXX: Hammer of the gods
+        panel.add(new PriorityPanel("priority-000191910"));
+        panel.add(Box.createRigidArea(new Dimension(0, 10)));
         panel.add(new ButtonPanel(this, _task, _titlePanel, _descriptionPanel));
 
         return panel;
