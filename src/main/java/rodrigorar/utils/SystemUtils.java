@@ -39,7 +39,14 @@ public class SystemUtils {
         builder.append("settings.xml");
         return builder.toString();
     }
-    
+
+    public static String getDefaultPriorityDirectory() {
+        StringBuilder builder = new StringBuilder(getDefaultLinuxDirectory());
+        builder.append("/");
+        builder.append("priorities.xml");
+        return builder.toString();
+    }
+
     public static String getDefaultLanguage() {
     	return "EN";
     }

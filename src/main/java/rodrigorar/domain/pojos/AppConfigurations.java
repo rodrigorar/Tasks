@@ -19,8 +19,9 @@ package rodrigorar.domain.pojos;
 public class AppConfigurations {
     private String _baseDirectory;
     private String _dataDirectory;
+    private String _priorityDirectory;
     private String _language;
-    
+
     public AppConfigurations() {
     	/* Empty Constructor */
     }
@@ -28,10 +29,12 @@ public class AppConfigurations {
     public AppConfigurations(
         String baseDirectory,
         String dataDirectory,
+        String priorityDirectory,
         String language) {
 
         _baseDirectory = baseDirectory;
         _dataDirectory = dataDirectory;
+        _priorityDirectory = priorityDirectory;
         _language = language;
     }
 
@@ -49,6 +52,14 @@ public class AppConfigurations {
 
     public String getDataDirectory() {
         return _dataDirectory;
+    }
+
+    public void setPriorityDirectory(String priorityDirectory) {
+        _priorityDirectory = priorityDirectory;
+    }
+
+    public String getPriorityDirectory() {
+        return _priorityDirectory;
     }
 
     public void setLanguage(String language) {

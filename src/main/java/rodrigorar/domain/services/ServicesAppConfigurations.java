@@ -59,6 +59,14 @@ IService {
     	_appConfigurations.setBaseDirectory(baseDirectory);
     }
 
+    public void setPriorityDirectory(String priorityDirectory) {
+        _appConfigurations.setPriorityDirectory(priorityDirectory);
+    }
+
+    public String getPriorityDirectory() {
+        return _appConfigurations.getPriorityDirectory();
+    }
+
     public void save() {
         AppConfigurationsDAO appConfigsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
     	appConfigsDAO.save(_appConfigurations);

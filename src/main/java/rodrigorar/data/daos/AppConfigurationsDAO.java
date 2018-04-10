@@ -35,12 +35,16 @@ BaseDAO<AppConfigurations> {
         Element dataDirectory = new Element(XMLLabels.DATA_DIRECTORY);
         dataDirectory.setText(configs.getDataDirectory());
 
+        Element priorityDirectory = new Element(XMLLabels.PRIORITY_DIRECTORY);
+        priorityDirectory.setText(configs.getPriorityDirectory());
+
         Element language = new Element(XMLLabels.LANGUAGE);
         language.setText(configs.getLanguage());
 
         Element configsElement = new Element(XMLLabels.CONFIGS);
         configsElement.addContent(baseDirectory);
         configsElement.addContent(dataDirectory);
+        configsElement.addContent(priorityDirectory);
         configsElement.addContent(language);
 
         return configsElement;
@@ -60,6 +64,12 @@ BaseDAO<AppConfigurations> {
             dataDirectory = SystemUtils.getDefaultLinuxData();
         }
 
+        Element priorityDirectoryElement = configsElement.getChild(XMLLabels.PRIORITY_DIRECTORY);
+        String priorityDirectory = priorityDirectoryElement.getText().trim();
+        if (priorityDirectory == null || priorityDirectory.equals("")) {
+            priorityDirectory = SystemUtils.getDefaultPriorityDirectory();
+        }
+
         Element languageElement = configsElement.getChild(XMLLabels.LANGUAGE);
         String language = languageElement.getText().trim();
         if (language == null || language.equals("")) {
@@ -69,6 +79,7 @@ BaseDAO<AppConfigurations> {
         AppConfigurations configs = new AppConfigurations();
         configs.setBaseDirectory(baseDirectory);
         configs.setDataDirectory(dataDirectory);
+        configs.setPriorityDirectory(priorityDirectory);
         configs.setLanguage(language);
 
         return configs;

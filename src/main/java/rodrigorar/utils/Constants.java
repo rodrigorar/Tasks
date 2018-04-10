@@ -54,6 +54,7 @@ public final class Constants {
         public static final String VALUE = "value";
         public static final String ID = "id";
         public static final String PRIORITY = "priority";
+        public static final String PRIORITY_DIRECTORY = "priority_directory";
     }
 
 }
