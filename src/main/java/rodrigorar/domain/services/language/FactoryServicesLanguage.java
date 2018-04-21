@@ -16,23 +16,9 @@
 
 package rodrigorar.domain.services.language;
 
-import rodrigorar.domain.services.ServicesFactory;
-
 public class FactoryServicesLanguage {
-    private static FactoryServicesLanguage _instance;
 
-    public static final FactoryServicesLanguage getInstance() {
-        if (_instance == null) {
-            _instance = new FactoryServicesLanguage();
-        }
-        return _instance;
-    }
-
-    private FactoryServicesLanguage() {
-        // Empty Constructor
-    }
-
-    public ServiceTranslation getTranslationService(String key) {
+    public static ServiceTranslation getTranslationService(String key) {
         return new ServiceTranslation(key);
     }
 }

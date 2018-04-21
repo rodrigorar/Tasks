@@ -38,16 +38,13 @@ import rodrigorar.utils.Constants.Labels;
 public class PriorityPanel
 extends AbstractPanel
 implements FormPanelTemplate {
-    private FactoryServicesPriority _factoryServicesPriority;
-    private FactoryServicesLanguage _factoryServicesLanguage;
-
     private Priority _priority;
 
     private JComboBox _priorityCombo;
 
     public JLabel createNameLabel() {
         ServiceTranslation serviceTranslation =
-            _factoryServicesLanguage.getTranslationService(Labels.PRIORITY);
+            FactoryServicesLanguage.getTranslationService(Labels.PRIORITY);
         serviceTranslation.execute();
 
         return new JLabel(serviceTranslation.getResult());
@@ -99,9 +96,6 @@ implements FormPanelTemplate {
     @Override
     public void configure() {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-        _factoryServicesPriority = FactoryServicesPriority.getInstance();
-        _factoryServicesLanguage = FactoryServicesLanguage.getInstance();
     }
 
     public PriorityPanel(String priorityId, Boolean editable) {

@@ -23,21 +23,22 @@ import rodrigorar.data.daos.PriorityDAO;
 
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.services.ServicesAppConfigurations;
 
 public class ServiceGetPriorityList
 implements
 BaseService<List<Priority>> {
-    private String _filepath;
     private List<Priority> _priorityList;
 
-    public ServiceGetPriorityList(String filepath) {
-        _filepath = filepath;
+    public ServiceGetPriorityList() {
+        // Empty Constructory
     }
 
     public void execute() {
         DAOFactory factory = DAOFactory.getInstance();
         PriorityDAO daoPriority = factory.getPriorityDAO();
-        _priorityList = daoPriority.load(_filepath);
+        ServicesAppConfigurations appConfigurations = new ServicesAppConfigurations();
+        _priorityList = daoPriority.load(appConfigurations.getDataDirectory());
     }
 
     public List<Priority> getResult() {
