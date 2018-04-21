@@ -44,7 +44,11 @@ implements FormPanelTemplate {
     private JComboBox _priorityCombo;
 
     public JLabel createNameLabel() {
-        return new JLabel("Priority");
+        ServiceTranslation serviceTranslation =
+            _factoryServicesLanguage.getTranslationService(Labels.PRIORITY);
+        serviceTranslation.execute();
+        
+        return new JLabel(serviceTranslation.getResult());
     }
 
     public JComboBox createPriorityComboBox(Priority priority, Boolean editable) {

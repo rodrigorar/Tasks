@@ -63,5 +63,9 @@
             <key>language</key>
             <value>Idioma</value>
         </translation>
+        <translation>
+            <key>priority</key>
+            <value>Prioridade</key>
+        </translation>
     </translations>
 </language>

@@ -63,5 +63,9 @@
             <key>language</key>
             <value>Language</value>
         </translation>
+        <translation>
+            <key>priority</key>
+            <value>Priority</value>
+        </translation>
     </translations>
 </language>

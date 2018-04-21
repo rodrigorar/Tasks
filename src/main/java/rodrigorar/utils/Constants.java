@@ -34,6 +34,7 @@ public final class Constants {
         public static final String CHOOSE_FILE = "choose_data_file";
         public static final String FILE_BROWSER = "file_browser";
         public static final String LANGUAGE = "language";
+        public static final String PRIORITY = "priority";
     }
 
     public static class SettingsXML {
@@ -43,7 +44,7 @@ public final class Constants {
         public static final String CONFIGS = "configs";
         public static final String LANGUAGE = "language";
     }
-    
+
     public static class TaskXML {
         public static final String ID = "id";
         public static final String TASK = "task";
@@ -75,5 +76,5 @@ public final class Constants {
         public static final String NAME = "name";
         public static final String VALUE = "value";
     }
-    
+
 }
