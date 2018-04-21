@@ -45,6 +45,7 @@ AbstractPanel {
 
     private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;
+    private PriorityPanel _priorityPanel;
     private Task _task;
 
     @Override
@@ -88,9 +89,11 @@ AbstractPanel {
                 if (_titlePanel.isEditable() && _descriptionPanel.isEditable()) {
                     _titlePanel.disableEditing();
                     _descriptionPanel.disableEditing();
+                    _priorityPanel.disableEditing();
                 } else {
                     _titlePanel.enableEditing();
                     _descriptionPanel.enableEditing();
+                    _priorityPanel.enableEditing();
                 }
             }
         });
@@ -106,7 +109,8 @@ AbstractPanel {
         AbstractWindow parentWindow,
         Task task,
         TitlePanel titlePanel,
-        DescriptionPanel descriptionPanel) {
+        DescriptionPanel descriptionPanel,
+        PriorityPanel priorityPanel) {
 
         _parentWindow = parentWindow;
 
@@ -115,6 +119,7 @@ AbstractPanel {
 
         _titlePanel = titlePanel;
         _descriptionPanel = descriptionPanel;
+        _priorityPanel = priorityPanel;
 
         _task = task;
 

@@ -29,50 +29,40 @@ import rodrigorar.domain.services.priority.ServiceGetPriorityList;
 import rodrigorar.domain.services.priority.ServiceGetPriority;
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.ui.AbstractPanel;
+import rodrigorar.ui.templates.FormPanelTemplate;
 
 // TODO: The constants in this class need to be translated.
 public class PriorityPanel
-extends
-AbstractPanel {
+extends AbstractPanel
+implements FormPanelTemplate {
+    private FactoryServicesPriority _factoryServicesPriority;
+
     private Priority _priority;
-    private ServiceGetPriorityList _serviceGetPriorityList;
-    private ServiceGetPriority _serviceGetPriority;
 
-    public PriorityPanel() {
-        FactoryServicesPriority factory = FactoryServicesPriority.getInstance();
-        _serviceGetPriorityList = factory.getServiceGetPriorityList();
-        
-        // TODO: There will be a problem were no priority will be set 
-        // when this constructor is called instead of a 0 value priority.
+    private JComboBox _priorityCombo;
+
+    public JLabel createNameLabel() {
+        return new JLabel("Priority");
     }
-    
-    // TODO: Refactor this mess
-    public PriorityPanel(String priorityId) {
-        this();
-        FactoryServicesPriority factory = FactoryServicesPriority.getInstance();
-        _serviceGetPriority = factory.getServiceGetPriority(priorityId);
-        _serviceGetPriority.execute();
-        _priority = _serviceGetPriority.getResult();
 
-        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
-
-        JLabel priorityLabel = new JLabel("Priority");
-        
+    public JComboBox createPriorityComboBox(Priority priority, Boolean editable) {
         // XXX: This is only for testing, it should come from a specific service.
         String[] priorities = new String[] {"High", "Medium", "Low"};
-        JComboBox priorityList = new JComboBox(priorities);
-        priorityList.setMaximumSize(new Dimension(100, 30));
-        priorityList.addActionListener(new ActionListener() {
+
+        _priorityCombo = new JComboBox(priorities);
+        _priorityCombo.setMaximumSize(new Dimension(100, 30));
+        _priorityCombo.setEnabled(editable);
+
+        _priorityCombo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                System.out.println("Priority: " + String.valueOf(priorityList.getSelectedItem()));
+                // TODO: Get the new priority object from the service layer.
+                // TODO: Set the new priority has the current value
+                System.out.println("Priority: " + String.valueOf(_priorityCombo.getSelectedItem()));
             }
         });
 
-        add(priorityLabel);
-        add(Box.createRigidArea(new Dimension(30, 0)));
-        add(priorityList);
-        add(Box.createHorizontalGlue());
+        return _priorityCombo;
     }
 
     @Override
@@ -80,15 +70,38 @@ AbstractPanel {
         // TODO: Not implemented
     }
 
+    @Override
     public void enableEditing() {
-        // TODO: Not implemented.
+        _priorityCombo.setEnabled(true);
     }
 
+    @Override
     public void disableEditing() {
-        // TODO: Not implemented.
+        _priorityCombo.setEnabled(false);
     }
 
     public String getPriorityId() {
         return _priority.getId();
+    }
+
+    public Priority getPriority() {
+        return _priority;
+    }
+
+    @Override
+    public void configure() {
+        setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
+
+        _factoryServicesPriority = FactoryServicesPriority.getInstance();
+    }
+
+    // TODO: Refactor this mess
+    public PriorityPanel(String priorityId, Boolean editable) {
+        configure();
+
+        add(createNameLabel());
+        add(Box.createRigidArea(new Dimension(39, 0)));
+        add(createPriorityComboBox(_priority, editable));
+        add(Box.createHorizontalGlue());
     }
 }

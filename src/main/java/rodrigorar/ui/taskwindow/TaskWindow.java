@@ -33,17 +33,21 @@ public class TaskWindow
 extends
 AbstractWindow {
 	private static final long serialVersionUID = -6298053968382452462L;
+
 	private AbstractWindow _parentWindow;
 
     private ServicesLanguage _servicesLanguage;
 
     private Task _task;
+
 	private TitlePanel _titlePanel;
     private DescriptionPanel _descriptionPanel;
+	private PriorityPanel _priorityPanel;
 
     public TaskWindow(AbstractWindow parentWindow) {
 		_titlePanel = new TitlePanel(null, true);
 		_descriptionPanel = new DescriptionPanel(null, true);
+		_priorityPanel = new PriorityPanel(null, true);
 
 		init(parentWindow);
         initUI();
@@ -55,6 +59,7 @@ AbstractWindow {
 
         _titlePanel = new TitlePanel(task.getTitle(), false);
 		_descriptionPanel = new DescriptionPanel(task.getDescription(), false);
+		_priorityPanel = new PriorityPanel(null, false); // TODO: Needs to received priorityId
 
         initUI();
     }
@@ -79,9 +84,9 @@ AbstractWindow {
         panel.add(_descriptionPanel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
         // XXX: Hammer of the gods
-        panel.add(new PriorityPanel("priority-000191910"));
+        panel.add(_priorityPanel);
         panel.add(Box.createRigidArea(new Dimension(0, 10)));
-        panel.add(new ButtonPanel(this, _task, _titlePanel, _descriptionPanel));
+        panel.add(new ButtonPanel(this, _task, _titlePanel, _descriptionPanel, _priorityPanel));
 
         return panel;
     }
