@@ -21,7 +21,6 @@ import rodrigorar.domain.pojos.Language;
 
 public class ServiceTranslation
 implements BaseService<String> {
-    private Language _activeLanguage;
     private String _key;
     private String _translation;
 
@@ -30,7 +29,12 @@ implements BaseService<String> {
     }
 
     public void execute() {
-        _translation = _activeLanguage.getTranslation(key);
+        // TODO: Get configured language from ServiceGetLanguageConfiguration
+        // TODO: Get Language from ServiceGetLanguage
+        // TODO: Set the translation to be returned
+        // XXX: All state for the new services will be maintained at
+        // configuration and data files, no state will be maintained in memory
+        // from now on.
     }
 
     public String getResult() {
