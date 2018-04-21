@@ -27,6 +27,7 @@ import javax.swing.BoxLayout;
 import rodrigorar.domain.services.priority.FactoryServicesPriority;
 import rodrigorar.domain.services.priority.ServiceGetPriorityList;
 import rodrigorar.domain.services.priority.ServiceGetPriority;
+import rodrigorar.domain.services.language.FactoryServicesLanguage;
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.templates.FormPanelTemplate;
@@ -36,6 +37,7 @@ public class PriorityPanel
 extends AbstractPanel
 implements FormPanelTemplate {
     private FactoryServicesPriority _factoryServicesPriority;
+    private FactoryServicesLanguage _factoryServicesLanguage;
 
     private Priority _priority;
 
@@ -93,9 +95,9 @@ implements FormPanelTemplate {
         setLayout(new BoxLayout(this, BoxLayout.X_AXIS));
 
         _factoryServicesPriority = FactoryServicesPriority.getInstance();
+        _factoryServicesLanguage = FactoryServicesLanguage.getInstance();
     }
 
-    // TODO: Refactor this mess
     public PriorityPanel(String priorityId, Boolean editable) {
         configure();
 
