@@ -8,7 +8,6 @@ import rodrigorar.domain.services.ServicesAppConfigurations;
 
 public class FactoryServicesPriority {
     private static FactoryServicesPriority _instance;
-    private List<BaseService> _serviceCache;
     private ServicesAppConfigurations _appConfigurations;
 
     public static FactoryServicesPriority getInstance() {
@@ -19,7 +18,6 @@ public class FactoryServicesPriority {
     }
 
     private FactoryServicesPriority() {
-        _serviceCache = new LinkedList<BaseService>();
         _appConfigurations = new ServicesAppConfigurations();
     }
 
