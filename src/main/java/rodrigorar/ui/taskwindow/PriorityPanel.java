@@ -28,9 +28,11 @@ import rodrigorar.domain.services.priority.FactoryServicesPriority;
 import rodrigorar.domain.services.priority.ServiceGetPriorityList;
 import rodrigorar.domain.services.priority.ServiceGetPriority;
 import rodrigorar.domain.services.language.FactoryServicesLanguage;
+import rodrigorar.domain.services.language.ServiceTranslation;
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.templates.FormPanelTemplate;
+import rodrigorar.utils.Constants.Labels;
 
 // TODO: The constants in this class need to be translated.
 public class PriorityPanel
@@ -47,7 +49,7 @@ implements FormPanelTemplate {
         ServiceTranslation serviceTranslation =
             _factoryServicesLanguage.getTranslationService(Labels.PRIORITY);
         serviceTranslation.execute();
-        
+
         return new JLabel(serviceTranslation.getResult());
     }
 
