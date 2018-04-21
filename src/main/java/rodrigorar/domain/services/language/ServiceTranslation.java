@@ -17,21 +17,23 @@
 package rodrigorar.domain.services.language;
 
 import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.pojos.Language;
 
 public class ServiceTranslation
 implements BaseService<String> {
+    private Language _activeLanguage;
     private String _key;
+    private String _translation;
 
     public ServiceTranslation(String key) {
         _key = key;
     }
 
     public void execute() {
-        // TODO: Not implemented
+        _translation = _activeLanguage.getTranslation(key);
     }
 
     public String getResult() {
-        // TODO: Not implemented
-        return null;
+        return _translation;
     }
 }

@@ -16,8 +16,19 @@
 
 package rodrigorar.domain.services.language;
 
+import rodrigorar.data.daos.LanguageDAO;
+import rodrigorar.data.DAOFactory;
+import rodrigorar.domain.pojos.Language;
+import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.SupportedLanguages;
+
+// TODO: Refactor this factory, there should be no state maintained here
+// all state should be maintained by the configuration and data files.
 public class FactoryServicesLanguage {
     private static FactoryServicesLanguage _instance;
+
+    private Language _activeLanguage;
 
     public static final FactoryServicesLanguage getInstance() {
         if (_instance == null) {
@@ -27,10 +38,20 @@ public class FactoryServicesLanguage {
     }
 
     private FactoryServicesLanguage() {
-        // Empty Constructor
+        LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
+
+        // TODO: This service has to be refactored to work with
+        // the new services architecture.
+        ServicesAppConfigurations configServices =
+            ServicesFactory.getInstance().getConfigurationServices();
+
+        _activeLanguage =
+            languageDAO.load(
+                SupportedLanguages.getLanguage(configServices.getLanguage())
+            );
     }
 
     public ServiceTranslation getTranslationService(String key) {
-        return new ServiceTranslation(key);
+        return new ServiceTranslation(_activeLanguage, key);
     }
 }
