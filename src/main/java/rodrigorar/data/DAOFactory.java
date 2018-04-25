@@ -95,15 +95,7 @@ public class DAOFactory {
         return rValue;
     }
 
-    public PriorityDAO getPriorityDAO() {
-        PriorityDAO rValue;
-
-        for (BaseDAO<?> iterator : _daoList) {
-            if (iterator instanceof PriorityDAO) {
-                rValue = (PriorityDAO)iterator;
-            }
-        }
-
+    public static PriorityDAO getPriorityDAO() {
         return new PriorityDAO();
     }
 }
