@@ -95,6 +95,7 @@ BaseDAO<AppConfigurations> {
             configs = new AppConfigurations();
             configs.setBaseDirectory(SystemUtils.getDefaultLinuxDirectory());
             configs.setDataDirectory(SystemUtils.getDefaultLinuxData());
+            configs.setPriorityDirectory(SystemUtils.getDefaultPriorityDirectory());
             configs.setLanguage(SystemUtils.getDefaultLanguage());
         }
 

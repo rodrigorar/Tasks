@@ -69,6 +69,7 @@ IService {
     }
 
     public String getPriorityDirectory() {
+        System.out.println("Priority Directory " + _appConfigurations.getPriorityDirectory());
         return _appConfigurations.getPriorityDirectory();
     }
 

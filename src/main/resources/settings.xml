@@ -2,5 +2,6 @@
 <configs>
   <base_directory></base_directory>
   <data_directory></data_directory>
+  <priority_directory></priority_directory>
   <language></language>
 </configs>

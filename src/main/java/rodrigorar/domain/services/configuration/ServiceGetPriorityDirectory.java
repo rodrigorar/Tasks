@@ -16,17 +16,25 @@
 
 package rodrigorar.domain.services.configuration;
 
-public class FactoryServicesConfiguration {
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.AppConfigurationsDAO;
+import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.pojos.AppConfigurations;
 
-    public static ServiceGetCurrentLanguage getServiceGetCurrentLanguage() {
-        return new ServiceGetCurrentLanguage();
+public class ServiceGetPriorityDirectory
+implements BaseService<String> {
+    String _result;
+
+    @Override
+    public void execute() {
+        DAOFactory factory = DAOFactory.getInstance();
+        AppConfigurationsDAO appConfigsDao = factory.getAppConfigurationsDAO();
+        AppConfigurations appConfigs = appConfigsDao.load();
+        _result = appConfigs.getPriorityDirectory();
     }
 
-    public static ServiceGetDataDirectory getServiceGetDataDirectory() {
-        return new ServiceGetDataDirectory();
-    }
-
-    public static ServiceGetPriorityDirectory getServiceGetPriorityDirectory() {
-        return new ServiceGetPriorityDirectory();
+    @Override
+    public String getResult() {
+        return _result;
     }
 }

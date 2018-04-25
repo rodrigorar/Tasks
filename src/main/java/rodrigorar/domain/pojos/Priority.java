@@ -31,4 +31,20 @@ IEntity {
     public Integer getValue() {
         return _value;
     }
+
+    @Override
+    public boolean equals(Object obj) {
+        boolean result = true;
+
+        if (obj == null) { result = false; }
+        if (! (obj instanceof Priority)) { result = false; }
+
+        Priority entity = (Priority)obj;
+
+        if (entity.getId() != null && entity.getId() != _id) { result = false; }
+        if (entity.getName() != null && entity.getName() != _name) { result = false; }
+        if (entity.getValue() != null && entity.getValue() != _value) { result = false; }
+
+        return result;
+    }
 }

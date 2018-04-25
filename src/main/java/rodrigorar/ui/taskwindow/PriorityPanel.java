@@ -16,6 +16,9 @@
 
 package rodrigorar.ui.taskwindow;
 
+import java.util.List;
+import java.util.LinkedList;
+
 import java.awt.Dimension;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -51,12 +54,23 @@ implements FormPanelTemplate {
     }
 
     public JComboBox createPriorityComboBox(Priority priority, Boolean editable) {
-        // XXX: This is only for testing, it should come from a specific service.
-        String[] priorities = new String[] {"High", "Medium", "Low"};
+        ServiceGetPriorityList service = FactoryServicesPriority.getServiceGetPriorityList();
+        service.execute();
 
-        _priorityCombo = new JComboBox(priorities);
+        // Get Priorities Names
+        List<Priority> priorityList = service.getResult();
+        List<String> priorities = new LinkedList<String>();
+        for (Priority priorityItem : priorityList) {
+            priorities.add(priorityItem.getName());
+        }
+
+        _priorityCombo = new JComboBox(priorities.toArray(new String[priorities.size()]));
         _priorityCombo.setMaximumSize(new Dimension(100, 30));
         _priorityCombo.setEnabled(editable);
+
+        if (priority != null) {
+            _priorityCombo.setSelectedItem(priority.getName());
+        }
 
         _priorityCombo.addActionListener(new ActionListener() {
             @Override
@@ -100,6 +114,11 @@ implements FormPanelTemplate {
 
     public PriorityPanel(String priorityId, Boolean editable) {
         configure();
+
+        ServiceGetPriority serviceGetPriority =
+            FactoryServicesPriority.getServiceGetPriority(priorityId);
+        serviceGetPriority.execute();
+        _priority = serviceGetPriority.getResult();
 
         add(createNameLabel());
         add(Box.createRigidArea(new Dimension(39, 0)));

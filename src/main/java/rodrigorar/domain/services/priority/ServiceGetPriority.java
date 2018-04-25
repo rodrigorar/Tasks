@@ -16,8 +16,12 @@
 
 package rodrigorar.domain.services.priority;
 
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.PriorityDAO;
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
+import rodrigorar.domain.services.configuration.ServiceGetPriorityDirectory;
 
 public class ServiceGetPriority
 implements
@@ -30,10 +34,15 @@ BaseService<Priority> {
     }
 
     public void execute() {
-        // TODO: Not implemented. I need to decide how i am going to implement 
-        // this, if i'm going to use a place to store the information in memory
-        // or if i'm going to access the file each time i need to get a priority
-        // entity.
+        Priority searchParameter = new Priority(_priorityId, null, null);
+
+        ServiceGetPriorityDirectory serviceGetPriorityDirectory =
+            FactoryServicesConfiguration.getServiceGetPriorityDirectory();
+        serviceGetPriorityDirectory.execute();
+        String dataDirectory = serviceGetPriorityDirectory.getResult();
+
+        PriorityDAO priorityDao = DAOFactory.getPriorityDAO();
+        _result = priorityDao.loadPriority(dataDirectory, searchParameter);
     }
 
     public Priority getResult() {
