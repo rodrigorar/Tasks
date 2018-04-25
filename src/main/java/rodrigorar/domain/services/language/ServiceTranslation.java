@@ -17,6 +17,8 @@
 package rodrigorar.domain.services.language;
 
 import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
+import rodrigorar.domain.services.configuration.ServiceGetCurrentLanguage;
 import rodrigorar.domain.pojos.Language;
 
 public class ServiceTranslation
@@ -28,15 +30,18 @@ implements BaseService<String> {
         _key = key;
     }
 
+    @Override
     public void execute() {
-        // TODO: Get configured language from ServiceGetLanguageConfiguration
-        // TODO: Get Language from ServiceGetLanguage
-        // TODO: Set the translation to be returned
-        // XXX: All state for the new services will be maintained at
-        // configuration and data files, no state will be maintained in memory
-        // from now on.
+        ServiceGetCurrentLanguage serviceGetCurrentLanguage =
+            FactoryServicesConfiguration.getServiceGetCurrentLanguage();
+        serviceGetCurrentLanguage.execute();
+        Language currentLanguage = serviceGetCurrentLanguage.getResult();
+        _translation = currentLanguage.getTranslation(_key);
+
+        System.out.println("Executed Service for " + _key + " with result " + _translation);
     }
 
+    @Override
     public String getResult() {
         return _translation;
     }

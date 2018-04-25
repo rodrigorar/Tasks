@@ -41,14 +41,17 @@ IService {
 
     public void setDataDirectory(String dataDirectory) {
     	_appConfigurations.setDataDirectory(dataDirectory);
+        save();
     }
 
     public String getLanguage() {
     	return _appConfigurations.getLanguage();
     }
 
+    // TODO: Refactor this so the save is called in a central location
     public void setLanguage(String language) {
     	_appConfigurations.setLanguage(language);
+        save();
     }
 
     public String getBaseDirectory() {
@@ -57,10 +60,12 @@ IService {
 
     public void setBaseDirectory(String baseDirectory) {
     	_appConfigurations.setBaseDirectory(baseDirectory);
+        save();
     }
 
     public void setPriorityDirectory(String priorityDirectory) {
         _appConfigurations.setPriorityDirectory(priorityDirectory);
+        save();
     }
 
     public String getPriorityDirectory() {
