@@ -21,7 +21,6 @@ import rodrigorar.data.daos.PriorityDAO;
 import rodrigorar.domain.pojos.Priority;
 import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
-import rodrigorar.domain.services.configuration.ServiceGetPriorityDirectory;
 
 public class ServiceGetPriority
 implements
@@ -36,10 +35,10 @@ BaseService<Priority> {
     public void execute() {
         Priority searchParameter = new Priority(_priorityId, null, null);
 
-        ServiceGetPriorityDirectory serviceGetPriorityDirectory =
+        BaseService serviceGetPriorityDirectory =
             FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         serviceGetPriorityDirectory.execute();
-        String priorityDirectory = serviceGetPriorityDirectory.getResult();
+        String priorityDirectory = (String)serviceGetPriorityDirectory.getResult();
 
         PriorityDAO priorityDao = DAOFactory.getPriorityDAO();
         _result = priorityDao.loadPriority(priorityDirectory, searchParameter);

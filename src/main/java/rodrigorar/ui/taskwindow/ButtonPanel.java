@@ -26,6 +26,8 @@ import javax.swing.Box;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesOperations;
+import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.services.entity.FactoryServicesEntity;
 import rodrigorar.domain.pojos.Task;
 import rodrigorar.domain.exceptions.InvalidTitleException;
 import rodrigorar.utils.Constants.Labels;
@@ -61,11 +63,14 @@ AbstractPanel {
             public void actionPerformed(ActionEvent event) {
                 try {
                     if (_task == null) {
-                        _task = _operations.createTask(
-                            _titlePanel.getText(),
-                            _descriptionPanel.getText().trim(),
-                            _priorityPanel.getPriorityId()
-                        );
+                        BaseService newTaskService =
+                            FactoryServicesEntity.getServiceNewTask(
+                                _titlePanel.getText(),
+                                _descriptionPanel.getText().trim(),
+                                _priorityPanel.getPriorityId()
+                            );
+                        System.out.println("Executing Service for New Task");
+                        newTaskService.execute();
                     } else {
                         _task.setTitle(_titlePanel.getText());
                         _task.setDescription(_descriptionPanel.getText().trim());

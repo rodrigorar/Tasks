@@ -28,28 +28,43 @@ IEntity {
     private String _title;
     private String _description;
     private String _priorityId;
+    private String _taskListId;
 
-    public Task(String id) {
+    public Task(String id, String taskListId) {
         _id = id;
+        this.setTaskListId(taskListId);
     }
 
-    public Task(String title, String description, String priorityId)
+    public Task(String taskListId, String title, String description, String priorityId)
     throws
     InvalidTitleException {
         _id = IdGenerator.generateTaskId();
+        this.setTaskListId(taskListId);
         this.setTitle(title);
         this.setDescription(description);
         this.setPriorityId(priorityId);
     }
 
-    public Task(String title, String description)
+    public Task(String taskListId, String title, String description)
     throws
     InvalidTitleException {
-        this(title, description, null);
+        this(taskListId, title, description, null);
     }
 
     public String getId() {
         return _id;
+    }
+
+    public void setTaskListId(String taskListId) {
+        if (taskListId != null && ! taskListId.equals("")) {
+            _taskListId = taskListId;
+        } else {
+            // TODO: Throw invalidtasklistexception or something
+        }
+    }
+
+    public String getTaskListId() {
+        return _taskListId;
     }
 
     public void setTitle(String title)

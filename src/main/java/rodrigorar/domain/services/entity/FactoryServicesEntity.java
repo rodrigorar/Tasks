@@ -14,21 +14,17 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.domain.services.configuration;
+package rodrigorar.domain.services.entity;
 
 import rodrigorar.domain.interfaces.BaseService;
 
-public class FactoryServicesConfiguration {
+public class FactoryServicesEntity {
 
-    public static ServiceGetCurrentLanguage getServiceGetCurrentLanguage() {
-        return new ServiceGetCurrentLanguage();
+    public static BaseService getServiceNewTask(String title, String description) {
+        return new ServiceNewTask(title, description);
     }
 
-    public static BaseService getServiceGetDataDirectory() {
-        return new ServiceGetDataDirectory();
-    }
-
-    public static BaseService getServiceGetPriorityDirectory() {
-        return new ServiceGetPriorityDirectory();
+    public static BaseService getServiceNewTask(String title, String description, String priorityId) {
+        return new ServiceNewTask(title, description, priorityId);
     }
 }

@@ -1,3 +1,20 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <task_list>
+    <task>
+        <id></id>
+        <task_list_id></task_list_id>
+        <title></title>
+        <description></description>
+        <priority></priority>
+    </task>
 </task_list>
+<!-- This will be the new format for the one file type application -->
+<data>
+    <task>
+        <id></id>
+        <task_list_id></task_list_id>
+        <title></title>
+        <description></description>
+        <priority></priority>
+    </task>
+</data>

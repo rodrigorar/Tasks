@@ -56,17 +56,8 @@ public class DAOFactory {
         return rValue;
     }
 
-    // TODO: Refactor this so it has only one return statement.
-    public TaskDAO getTaskDAO() {
-        for (BaseDAO<?> iterator : _daoList) {
-            if (iterator instanceof TaskDAO) {
-                return (TaskDAO)iterator;
-            }
-        }
-
-        TaskDAO rValue = new TaskDAO();
-        _daoList.add(rValue);
-        return rValue;
+    public static TaskDAO getTaskDAO() {
+        return new TaskDAO();
     }
 
     // TODO: Refactor this so it has only one return statement.

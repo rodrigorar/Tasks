@@ -16,30 +16,32 @@
 
 package rodrigorar.domain.services.priority;
 
-import java.util.List;
-
 import rodrigorar.data.DAOFactory;
 import rodrigorar.data.daos.PriorityDAO;
-
-import rodrigorar.domain.pojos.Priority;
 import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
+import rodrigorar.domain.pojos.Priority;
 
-public class ServiceGetPriorityList
-implements
-BaseService<List<Priority>> {
-    private List<Priority> _priorityList;
+public class ServiceDefaultPriority
+implements BaseService<Priority> {
+    public static final String DEFAULT_PRIORITY_NAME = "None";
 
+    private Priority _result;
+
+    @Override
     public void execute() {
-        DAOFactory factory = DAOFactory.getInstance();
-        PriorityDAO daoPriority = factory.getPriorityDAO();
-        BaseService serviceGetPriorityDirectory =
-            FactoryServicesConfiguration.getServiceGetPriorityDirectory();
-        serviceGetPriorityDirectory.execute();
-        _priorityList = daoPriority.load((String)serviceGetPriorityDirectory.getResult());
+        Priority searchParameter = new Priority(null, DEFAULT_PRIORITY_NAME, null);
+
+        BaseService priorityService = FactoryServicesConfiguration.getServiceGetPriorityDirectory();
+        priorityService.execute();
+        String priorityDirectory = (String)priorityService.getResult();
+
+        PriorityDAO priorityDao = DAOFactory.getPriorityDAO();
+        _result = priorityDao.loadPriority(priorityDirectory, searchParameter);
     }
 
-    public List<Priority> getResult() {
-        return _priorityList;
+    @Override
+    public Priority getResult() {
+        return _result;
     }
 }

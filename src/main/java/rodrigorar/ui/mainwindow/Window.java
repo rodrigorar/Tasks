@@ -89,7 +89,8 @@ AbstractWindow {
         panel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 
 		_buttonPanel = new ButtonPanel(_instance);
-		_listsPanel = new ListsPanel(_instance, updateList());
+		// TODO: This list should come from the updateList method
+		_listsPanel = new ListsPanel(_instance, new JList());
 
         panel.add(_buttonPanel);
         panel.add(Box.createRigidArea(new Dimension(10, 0)));

@@ -41,11 +41,15 @@ BaseDAO<Task> {
         Element priorityElement = new Element(TaskXML.PRIORITY);
         priorityElement.setText(task.getPriorityId());
 
+        Element taskListIdElement = new Element(TaskXML.TASK_LIST_ID);
+        taskListIdElement.setText(task.getTaskListId());
+
         Element taskElement = new Element(TaskXML.TASK);
         taskElement.addContent(idElement);
         taskElement.addContent(titleElement);
         taskElement.addContent(descriptionElement);
         taskElement.addContent(priorityElement);
+        taskElement.addContent(taskListIdElement);
 
         return taskElement;
     }
@@ -73,7 +77,10 @@ BaseDAO<Task> {
                 priorityId = priorityElement.getText().trim();
             }
 
-            task = new Task(id);
+            Element taskListIdElement = taskElement.getChild(TaskXML.TASK_LIST_ID);
+            String taskListId = taskListIdElement.getText().trim();
+
+            task = new Task(id, taskListId);
             task.setTitle(title);
             task.setDescription(description);
             task.setPriorityId(priorityId);
@@ -83,5 +90,9 @@ BaseDAO<Task> {
         }
 
         return task;
+    }
+
+    public void saveTask(String dataDirectory, Task task) {
+        writeToFileWithData(convertToElement(task), dataDirectory);
     }
 }

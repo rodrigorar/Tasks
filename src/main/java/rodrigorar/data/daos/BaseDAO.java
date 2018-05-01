@@ -56,6 +56,23 @@ public abstract class BaseDAO<T> {
         }
     }
 
+    protected void writeToFileWithData(Element element, String filepath) {
+        try {
+            SAXBuilder builder = new SAXBuilder();
+            File xmlFile = new File(filepath);
+            Document document = (Document)builder.build(xmlFile);
+            Element rootElement = document.getRootElement();
+            rootElement.addContent(element);
+            
+            XMLOutputter outputter = new XMLOutputter();
+
+            outputter.setFormat(Format.getPrettyFormat());
+            outputter.output(document, new FileWriter(filepath));
+        } catch (IOException | JDOMException exception ) {
+            exception.printStackTrace();
+        }
+    }
+
     public abstract T convertToObject(Element dataElement);
 
     public abstract Element convertToElement(T dataObject);
