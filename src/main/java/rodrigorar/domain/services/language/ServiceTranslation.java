@@ -37,8 +37,6 @@ implements BaseService<String> {
         serviceGetCurrentLanguage.execute();
         Language currentLanguage = serviceGetCurrentLanguage.getResult();
         _translation = currentLanguage.getTranslation(_key);
-
-        System.out.println("Executed Service for " + _key + " with result " + _translation);
     }
 
     @Override

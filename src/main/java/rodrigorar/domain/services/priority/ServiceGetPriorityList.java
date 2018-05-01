@@ -38,8 +38,6 @@ BaseService<List<Priority>> {
             FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         serviceGetPriorityDirectory.execute();
         _priorityList = daoPriority.load(serviceGetPriorityDirectory.getResult());
-
-        System.out.println("Priorites have been loaded");
     }
 
     public List<Priority> getResult() {

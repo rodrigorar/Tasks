@@ -34,14 +34,10 @@ implements BaseService<Language> {
         AppConfigurationsDAO appConfigsDao = daoFactory.getAppConfigurationsDAO();
         AppConfigurations appConfigurations = appConfigsDao.load();
 
-        System.out.println("Got configurations with " + appConfigurations.getLanguage());
-
         LanguageDAO languageDao = daoFactory.getLanguageDAO();
         String language = appConfigurations.getLanguage();
         SupportedLanguages.Languages languageEnum = SupportedLanguages.getLanguage(language);
         _currentLanguage = languageDao.load(languageEnum);
-
-        System.out.println("System language is currently " + _currentLanguage);
     }
 
     @Override
