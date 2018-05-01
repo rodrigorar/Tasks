@@ -39,10 +39,10 @@ BaseService<Priority> {
         ServiceGetPriorityDirectory serviceGetPriorityDirectory =
             FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         serviceGetPriorityDirectory.execute();
-        String dataDirectory = serviceGetPriorityDirectory.getResult();
+        String priorityDirectory = serviceGetPriorityDirectory.getResult();
 
         PriorityDAO priorityDao = DAOFactory.getPriorityDAO();
-        _result = priorityDao.loadPriority(dataDirectory, searchParameter);
+        _result = priorityDao.loadPriority(priorityDirectory, searchParameter);
     }
 
     public Priority getResult() {

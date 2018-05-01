@@ -62,11 +62,14 @@ AbstractPanel {
                 try {
                     if (_task == null) {
                         _task = _operations.createTask(
-                            _titlePanel.getText(), _descriptionPanel.getText().trim()
+                            _titlePanel.getText(),
+                            _descriptionPanel.getText().trim(),
+                            _priorityPanel.getPriorityId()
                         );
                     } else {
                         _task.setTitle(_titlePanel.getText());
                         _task.setDescription(_descriptionPanel.getText().trim());
+                        _task.setPriorityId(_priorityPanel.getPriorityId());
                     }
                 } catch (InvalidTitleException exception) {
                     exception.printStackTrace();

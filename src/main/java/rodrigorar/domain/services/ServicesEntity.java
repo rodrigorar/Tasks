@@ -33,11 +33,11 @@ IService {
         load(dataDirectory);
     }
 
-    public Task newTask(String title, String description) {
+    public Task newTask(String title, String description, String priorityId) {
         Task newTask = null;
 
         try {
-            newTask = new Task(title, description);
+            newTask = new Task(title, description, priorityId);
             _taskList.addTask(newTask);
         } catch (InvalidTitleException exception) {
             exception.printStackTrace();

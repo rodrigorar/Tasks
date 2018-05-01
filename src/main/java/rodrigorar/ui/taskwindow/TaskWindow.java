@@ -59,7 +59,7 @@ AbstractWindow {
 
         _titlePanel = new TitlePanel(task.getTitle(), false);
 		_descriptionPanel = new DescriptionPanel(task.getDescription(), false);
-		_priorityPanel = new PriorityPanel(null, false); // TODO: Needs to received priorityId
+		_priorityPanel = new PriorityPanel(_task.getPriorityId(), false);
 
         initUI();
     }

@@ -30,9 +30,9 @@ public class ServicesOperations
 implements
 IService {
 
-    public Task createTask(String title, String description) {
+    public Task createTask(String title, String description, String priorityId) {
         ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
-        return entityServices.newTask(title, description);
+        return entityServices.newTask(title, description, priorityId);
     }
 
     public Task findTask(String taskId) {

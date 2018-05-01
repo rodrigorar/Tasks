@@ -33,12 +33,19 @@ IEntity {
         _id = id;
     }
 
-    public Task(String title, String description)
+    public Task(String title, String description, String priorityId)
     throws
     InvalidTitleException {
         _id = IdGenerator.generateTaskId();
         this.setTitle(title);
         this.setDescription(description);
+        this.setPriorityId(priorityId);
+    }
+
+    public Task(String title, String description)
+    throws
+    InvalidTitleException {
+        this(title, description, null);
     }
 
     public String getId() {

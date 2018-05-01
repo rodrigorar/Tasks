@@ -37,13 +37,12 @@ import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.templates.FormPanelTemplate;
 import rodrigorar.utils.Constants.Labels;
 
-// TODO: The constants in this class need to be translated.
 public class PriorityPanel
 extends AbstractPanel
 implements FormPanelTemplate {
     private Priority _priority;
 
-    private JComboBox _priorityCombo;
+    private JComboBox<String> _priorityCombo;
 
     public JLabel createNameLabel() {
         ServiceTranslation serviceTranslation =
@@ -56,15 +55,14 @@ implements FormPanelTemplate {
     public JComboBox createPriorityComboBox(Priority priority, Boolean editable) {
         ServiceGetPriorityList service = FactoryServicesPriority.getServiceGetPriorityList();
         service.execute();
-
-        // Get Priorities Names
+        
         List<Priority> priorityList = service.getResult();
         List<String> priorities = new LinkedList<String>();
         for (Priority priorityItem : priorityList) {
             priorities.add(priorityItem.getName());
         }
 
-        _priorityCombo = new JComboBox(priorities.toArray(new String[priorities.size()]));
+        _priorityCombo = new JComboBox<String>(priorities.toArray(new String[priorities.size()]));
         _priorityCombo.setMaximumSize(new Dimension(100, 30));
         _priorityCombo.setEnabled(editable);
 
@@ -75,9 +73,14 @@ implements FormPanelTemplate {
         _priorityCombo.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent event) {
-                // TODO: Get the new priority object from the service layer.
-                // TODO: Set the new priority has the current value
-                System.out.println("Priority: " + String.valueOf(_priorityCombo.getSelectedItem()));
+                // TODO: Refactor the for cicle out of here and into a service.
+                String priorityName = (String)_priorityCombo.getSelectedItem();
+                for (Priority priority : priorityList) {
+                    if (priority.getName() == priorityName) {
+                        _priority = priority;
+                        break;
+                    }
+                }
             }
         });
 

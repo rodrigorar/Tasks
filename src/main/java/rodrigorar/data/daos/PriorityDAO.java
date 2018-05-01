@@ -70,24 +70,26 @@ BaseDAO<Priority> {
             for (Element priorityElement : priorityElementList) {
                 Priority priority = convertToObject(priorityElement);
                 priorityList.add(priority);
-
-                System.out.println("Priority: " + priority.getName());
             }
         }
 
         return priorityList;
     }
 
-    public Priority loadPriority(String dataDirectory, Priority searchParameter) {
+    public Priority loadPriority(String priorityDirectory, Priority searchParameter) {
         Priority priority = null;
 
-        Element rootElement = getRootElement(dataDirectory);
+        Element rootElement = getRootElement(priorityDirectory);
         if (rootElement != null) {
             List<Element> priorityElementList = rootElement.getChildren(PriorityXML.PRIORITY);
             for (Element element : priorityElementList) {
                 Priority tempPriority = convertToObject(element);
 
-                if (tempPriority.equals(searchParameter)) {
+                if (tempPriority.getId().equals(searchParameter.getId())) {
+                    priority = tempPriority;
+                    break;
+                }
+                if (tempPriority.getName().equals(searchParameter.getName())) {
                     priority = tempPriority;
                     break;
                 }

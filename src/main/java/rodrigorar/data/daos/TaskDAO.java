@@ -45,6 +45,7 @@ BaseDAO<Task> {
         taskElement.addContent(idElement);
         taskElement.addContent(titleElement);
         taskElement.addContent(descriptionElement);
+        taskElement.addContent(priorityElement);
 
         return taskElement;
     }
