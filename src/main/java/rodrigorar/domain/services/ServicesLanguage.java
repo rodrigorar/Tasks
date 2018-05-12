@@ -21,12 +21,12 @@ import java.util.List;
 
 import rodrigorar.data.DAOFactory;
 import rodrigorar.data.daos.LanguageDAO;
-import rodrigorar.domain.interfaces.IService;
-import rodrigorar.domain.services.ServicesFactory;
-import rodrigorar.domain.services.ServicesAppConfigurations;
 import rodrigorar.domain.SupportedLanguages;
 import rodrigorar.domain.SupportedLanguages.Languages;
+import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.interfaces.IService;
 import rodrigorar.domain.pojos.Language;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
 
 public class ServicesLanguage
 implements
@@ -34,13 +34,16 @@ IService {
     private Language _activeLanguage;
 
     public ServicesLanguage() {
-        LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
-        ServicesAppConfigurations configServices =
-            ServicesFactory.getInstance().getConfigurationServices();
-
+        LanguageDAO languageDAO = DAOFactory.getLanguageDAO();
+        
+        BaseService<?> getCurrentLanguageService =
+	        	FactoryServicesConfiguration.getServiceGetCurrentLanguage();
+        getCurrentLanguageService.execute();
         _activeLanguage =
             languageDAO.load(
-                SupportedLanguages.getLanguage(configServices.getLanguage())
+                SupportedLanguages.getLanguage(
+                		(String)getCurrentLanguageService.getResult()
+                	)
             );
     }
 
@@ -49,7 +52,7 @@ IService {
     }
 
     public void setActiveLanguage(String languageId) {
-        LanguageDAO languageDAO = DAOFactory.getInstance().getLanguageDAO();
+        LanguageDAO languageDAO = DAOFactory.getLanguageDAO();
         _activeLanguage =
             languageDAO.load(
                 SupportedLanguages.getLanguage(languageId)

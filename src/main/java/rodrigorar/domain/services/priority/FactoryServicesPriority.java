@@ -16,9 +16,6 @@
 
 package rodrigorar.domain.services.priority;
 
-import java.util.List;
-import java.util.LinkedList;
-
 import rodrigorar.domain.interfaces.BaseService;
 
 public class FactoryServicesPriority {
@@ -31,7 +28,7 @@ public class FactoryServicesPriority {
         return new ServiceGetPriority(priorityId);
     }
 
-    public static BaseService getServiceDefaultPriority() {
+    public static BaseService<?> getServiceDefaultPriority() {
         return new ServiceDefaultPriority();
     }
 }

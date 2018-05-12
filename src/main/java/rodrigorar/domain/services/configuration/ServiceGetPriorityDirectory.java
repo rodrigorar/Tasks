@@ -27,8 +27,7 @@ implements BaseService<String> {
 
     @Override
     public void execute() {
-        DAOFactory factory = DAOFactory.getInstance();
-        AppConfigurationsDAO appConfigsDao = factory.getAppConfigurationsDAO();
+        AppConfigurationsDAO appConfigsDao = DAOFactory.getAppConfigurationsDAO();
         AppConfigurations appConfigs = appConfigsDao.load();
         _result = appConfigs.getPriorityDirectory();
     }

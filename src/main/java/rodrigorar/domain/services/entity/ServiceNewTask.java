@@ -46,7 +46,7 @@ implements BaseService<Task> {
     @Override
     public void execute() {
         if (_priorityId == null) {
-            BaseService priorityService = FactoryServicesPriority.getServiceDefaultPriority();
+            BaseService<?> priorityService = FactoryServicesPriority.getServiceDefaultPriority();
             priorityService.execute();
             Priority priority = (Priority)priorityService.getResult();
             _priorityId = priority.getId();
@@ -58,7 +58,7 @@ implements BaseService<Task> {
             _result = new Task("tasklist-000001", _title, _description, _priorityId);
             TaskDAO taskDao = DAOFactory.getTaskDAO();
 
-            BaseService dataDirectoryService =
+            BaseService<?> dataDirectoryService =
                 FactoryServicesConfiguration.getServiceGetDataDirectory();
             dataDirectoryService.execute();
             String dataDirectory = (String)dataDirectoryService.getResult();

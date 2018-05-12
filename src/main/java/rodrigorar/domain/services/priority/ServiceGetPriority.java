@@ -35,7 +35,7 @@ BaseService<Priority> {
     public void execute() {
         Priority searchParameter = new Priority(_priorityId, null, null);
 
-        BaseService serviceGetPriorityDirectory =
+        BaseService<?> serviceGetPriorityDirectory =
             FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         serviceGetPriorityDirectory.execute();
         String priorityDirectory = (String)serviceGetPriorityDirectory.getResult();

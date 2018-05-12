@@ -24,15 +24,15 @@ public class FactoryServicesConfiguration {
         return new ServiceGetCurrentLanguage();
     }
 
-    public static BaseService getServiceGetDataDirectory() {
+    public static BaseService<?> getServiceGetDataDirectory() {
         return new ServiceGetDataDirectory();
     }
 
-    public static BaseService getServiceGetPriorityDirectory() {
+    public static BaseService<?> getServiceGetPriorityDirectory() {
         return new ServiceGetPriorityDirectory();
     }
 
-    public static BaseService getServiceGetBaseDirectory() {
+    public static BaseService<?> getServiceGetBaseDirectory() {
         return new ServiceGetBaseDirectory();
     }
 }

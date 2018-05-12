@@ -20,11 +20,11 @@ import rodrigorar.domain.interfaces.BaseService;
 
 public class FactoryServicesEntity {
 
-    public static BaseService getServiceNewTask(String title, String description) {
+    public static BaseService<?> getServiceNewTask(String title, String description) {
         return new ServiceNewTask(title, description);
     }
 
-    public static BaseService getServiceNewTask(String title, String description, String priorityId) {
+    public static BaseService<?> getServiceNewTask(String title, String description, String priorityId) {
         return new ServiceNewTask(title, description, priorityId);
     }
 }

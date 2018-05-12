@@ -30,11 +30,10 @@ implements BaseService<Language> {
 
     @Override
     public void execute() {
-        DAOFactory daoFactory = DAOFactory.getInstance();
-        AppConfigurationsDAO appConfigsDao = daoFactory.getAppConfigurationsDAO();
+        AppConfigurationsDAO appConfigsDao = DAOFactory.getAppConfigurationsDAO();
         AppConfigurations appConfigurations = appConfigsDao.load();
 
-        LanguageDAO languageDao = daoFactory.getLanguageDAO();
+        LanguageDAO languageDao = DAOFactory.getLanguageDAO();
         String language = appConfigurations.getLanguage();
         SupportedLanguages.Languages languageEnum = SupportedLanguages.getLanguage(language);
         _currentLanguage = languageDao.load(languageEnum);

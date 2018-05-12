@@ -32,7 +32,7 @@ implements BaseService<Priority> {
     public void execute() {
         Priority searchParameter = new Priority(null, DEFAULT_PRIORITY_NAME, null);
 
-        BaseService priorityService = FactoryServicesConfiguration.getServiceGetPriorityDirectory();
+        BaseService<?> priorityService = FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         priorityService.execute();
         String priorityDirectory = (String)priorityService.getResult();
 

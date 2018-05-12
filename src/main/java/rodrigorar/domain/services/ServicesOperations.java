@@ -19,8 +19,10 @@ package rodrigorar.domain.services;
 import java.util.List;
 import java.util.LinkedList;
 
+import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.interfaces.IService;
 import rodrigorar.domain.services.ServicesFactory;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
 import rodrigorar.domain.services.ServicesEntity;
 import rodrigorar.domain.services.ServicesAppConfigurations;
 import rodrigorar.domain.pojos.Task;
@@ -69,10 +71,14 @@ IService {
 
     public void save() {
         ServicesEntity entityServices = ServicesFactory.getInstance().getEntityServices();
+        
+        BaseService<?> getDataDirectoryService = 
+        		FactoryServicesConfiguration.getServiceGetDataDirectory();
+        getDataDirectoryService.execute();
+        entityServices.save((String)getDataDirectoryService.getResult());
+        
         ServicesAppConfigurations configServices =
-            ServicesFactory.getInstance().getConfigurationServices();
-
-        entityServices.save(configServices.getDataDirectory());
+        		ServicesFactory.getInstance().getConfigurationServices();
         configServices.save();
     }
 

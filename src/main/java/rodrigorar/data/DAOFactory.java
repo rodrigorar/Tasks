@@ -60,17 +60,8 @@ public class DAOFactory {
         return new TaskDAO();
     }
 
-    // TODO: Refactor this so it has only one return statement.
-    public LanguageDAO getLanguageDAO() {
-        for (BaseDAO<?> iterator : _daoList) {
-            if (iterator instanceof LanguageDAO) {
-                return (LanguageDAO)iterator;
-            }
-        }
-
-        LanguageDAO rValue = new LanguageDAO();
-        _daoList.add(rValue);
-        return rValue;
+    public static LanguageDAO getLanguageDAO() {
+        return new LanguageDAO();
     }
 
     public static AppConfigurationsDAO getAppConfigurationsDAO() {

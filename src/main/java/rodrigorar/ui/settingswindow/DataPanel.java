@@ -31,9 +31,10 @@ import javax.swing.JFileChooser;
 import javax.swing.JFrame;
 import javax.swing.JTextField;
 
-import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.utils.Constants.Labels;
 
@@ -42,7 +43,6 @@ extends
 AbstractPanel {
     public static final long serialVersionUID = 1L;
 
-    private ServicesAppConfigurations _configurationServices;
     private ServicesLanguage _languageServices;
 
     private String _dataDirectory;
@@ -60,8 +60,12 @@ AbstractPanel {
         JFrame frame = new JFrame(_languageServices.getTranslation(Labels.FILE_BROWSER));
         frame.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
         frame.setLocationRelativeTo(null);
-
-        JFileChooser fileChooser = new JFileChooser(_configurationServices.getDataDirectory());
+        BaseService<?> getDataDirectoryService =
+        		FactoryServicesConfiguration.getServiceGetDataDirectory();
+        getDataDirectoryService.execute();
+        
+        JFileChooser fileChooser = 
+        		new JFileChooser((String)getDataDirectoryService.getResult());
         frame.getContentPane().add(fileChooser, BorderLayout.CENTER);
 
         fileChooser.addActionListener(new ActionListener() {
@@ -100,8 +104,12 @@ AbstractPanel {
 
     private JTextField directory() {
         JTextField directory = new JTextField();
-
-        directory.setText(_configurationServices.getDataDirectory());
+        	
+        BaseService<?> getDataDirectoryService =
+        		FactoryServicesConfiguration.getServiceGetDataDirectory();
+        getDataDirectoryService.execute();
+        
+        directory.setText((String)getDataDirectoryService.getResult());
         directory.setBorder(BorderFactory.createLineBorder(Color.BLACK));
         directory.setMaximumSize(new Dimension(2000, 25));
 
@@ -113,7 +121,6 @@ AbstractPanel {
     }
 
     public DataPanel() {
-        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
         _languageServices = ServicesFactory.getInstance().getLanguageServices();
 
         configure();

@@ -31,9 +31,8 @@ BaseService<List<Priority>> {
     private List<Priority> _priorityList;
 
     public void execute() {
-        DAOFactory factory = DAOFactory.getInstance();
-        PriorityDAO daoPriority = factory.getPriorityDAO();
-        BaseService serviceGetPriorityDirectory =
+        PriorityDAO daoPriority = DAOFactory.getPriorityDAO();
+        BaseService<?> serviceGetPriorityDirectory =
             FactoryServicesConfiguration.getServiceGetPriorityDirectory();
         serviceGetPriorityDirectory.execute();
         _priorityList = daoPriority.load((String)serviceGetPriorityDirectory.getResult());

@@ -31,21 +31,9 @@ IService {
         _appConfigurations = appConfigsDAO.load();
     }
 
-    public AppConfigurations getAppConfigurations() {
-    	return _appConfigurations;
-    }
-
-    public String getDataDirectory() { // DONE
-    	return _appConfigurations.getDataDirectory();
-    }
-
     public void setDataDirectory(String dataDirectory) {
     	_appConfigurations.setDataDirectory(dataDirectory);
         save();
-    }
-
-    public String getLanguage() {
-    	return _appConfigurations.getLanguage();
     }
 
     // TODO: Refactor this so the save is called in a central location
@@ -62,11 +50,6 @@ IService {
     public void setPriorityDirectory(String priorityDirectory) {
         _appConfigurations.setPriorityDirectory(priorityDirectory);
         save();
-    }
-
-    public String getPriorityDirectory() { // DONE
-        System.out.println("Priority Directory " + _appConfigurations.getPriorityDirectory());
-        return _appConfigurations.getPriorityDirectory();
     }
 
     public void save() {

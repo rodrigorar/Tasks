@@ -72,6 +72,7 @@ AbstractPanel {
                         System.out.println("Executing Service for New Task");
                         newTaskService.execute();
                     } else {
+                        // TODO: There needs to exist a service for updating tasks.
                         _task.setTitle(_titlePanel.getText());
                         _task.setDescription(_descriptionPanel.getText().trim());
                         _task.setPriorityId(_priorityPanel.getPriorityId());

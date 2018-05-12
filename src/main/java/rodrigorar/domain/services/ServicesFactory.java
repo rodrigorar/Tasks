@@ -16,12 +16,12 @@
 
 package rodrigorar.domain.services;
 
-import java.util.List;
 import java.util.LinkedList;
+import java.util.List;
 
+import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.interfaces.IService;
-import rodrigorar.domain.services.ServicesOperations;
-import rodrigorar.domain.services.ServicesOperations;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
 
 public class ServicesFactory {
     private static ServicesFactory _instance;
@@ -81,9 +81,13 @@ public class ServicesFactory {
                 return (ServicesEntity)iterator;
             }
         }
-
-        ServicesAppConfigurations configs = this.getConfigurationServices();
-        ServicesEntity rValue = new ServicesEntity(configs.getDataDirectory());
+        
+        BaseService<?> getDataDirectoryService = 
+        		FactoryServicesConfiguration.getServiceGetDataDirectory();
+        getDataDirectoryService.execute();
+        
+        ServicesEntity rValue = 
+        		new ServicesEntity((String)getDataDirectoryService.getResult());
         _servicesList.add(rValue);
         return rValue;
     }
