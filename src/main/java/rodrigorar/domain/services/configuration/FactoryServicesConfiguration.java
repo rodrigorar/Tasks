@@ -31,4 +31,8 @@ public class FactoryServicesConfiguration {
     public static BaseService getServiceGetPriorityDirectory() {
         return new ServiceGetPriorityDirectory();
     }
+
+    public static BaseService getServiceGetBaseDirectory() {
+        return new ServiceGetBaseDirectory();
+    }
 }

@@ -27,7 +27,7 @@ IService {
     private AppConfigurations _appConfigurations;
 
     public ServicesAppConfigurations() {
-        AppConfigurationsDAO appConfigsDAO = DAOFactory.getInstance().getAppConfigurationsDAO();
+        AppConfigurationsDAO appConfigsDAO = DAOFactory.getAppConfigurationsDAO();
         _appConfigurations = appConfigsDAO.load();
     }
 
@@ -35,7 +35,7 @@ IService {
     	return _appConfigurations;
     }
 
-    public String getDataDirectory() {
+    public String getDataDirectory() { // DONE
     	return _appConfigurations.getDataDirectory();
     }
 
@@ -54,10 +54,6 @@ IService {
         save();
     }
 
-    public String getBaseDirectory() {
-    	return _appConfigurations.getBaseDirectory();
-    }
-
     public void setBaseDirectory(String baseDirectory) {
     	_appConfigurations.setBaseDirectory(baseDirectory);
         save();
@@ -68,7 +64,7 @@ IService {
         save();
     }
 
-    public String getPriorityDirectory() {
+    public String getPriorityDirectory() { // DONE
         System.out.println("Priority Directory " + _appConfigurations.getPriorityDirectory());
         return _appConfigurations.getPriorityDirectory();
     }

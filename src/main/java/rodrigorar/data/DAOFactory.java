@@ -73,17 +73,8 @@ public class DAOFactory {
         return rValue;
     }
 
-    // TODO: Refactor this so it has only one return statement.
-    public AppConfigurationsDAO getAppConfigurationsDAO() {
-        for (BaseDAO<?> iterator : _daoList) {
-            if (iterator instanceof AppConfigurationsDAO) {
-                return (AppConfigurationsDAO)iterator;
-            }
-        }
-
-        AppConfigurationsDAO rValue = new AppConfigurationsDAO();
-        _daoList.add(rValue);
-        return rValue;
+    public static AppConfigurationsDAO getAppConfigurationsDAO() {
+        return new AppConfigurationsDAO();
     }
 
     public static PriorityDAO getPriorityDAO() {

@@ -14,36 +14,28 @@
 * limitations under the License.
 *******************************************************************************/
 
-package rodrigorar.data.daos;
+package rodrigorar.domain.services.configuration;
 
-import org.junit.Test;
-import static org.junit.Assert.assertEquals;
-
-import rodrigorar.data.daos.AppConfigurationsDAO;
+import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.pojos.AppConfigurations;
-import rodrigorar.utils.SystemUtils;
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.AppConfigurationsDAO;
 
-public class TestAppConfigurationsDAO {
+public class ServiceGetBaseDirectory
+implements BaseService<String> {
 
-    @Test
-    public void testConvertToElement() {
-        // TODO
+    private String _result;
+
+    @Override
+    public void execute() {
+        AppConfigurationsDAO configsDAO = DAOFactory.getAppConfigurationsDAO();
+
+        AppConfigurations configs = configsDAO.load();
+        _result = configs.getBaseDirectory();
     }
 
-    @Test
-    public void testConvertToObject() {
-        // TODO
+    @Override
+    public String getResult() {
+        return _result;
     }
-
-    @Test
-    public void testLoad() {
-        AppConfigurationsDAO dao = new AppConfigurationsDAO();
-
-        AppConfigurations configurations = dao.load();
-
-        assertEquals(configurations.getBaseDirectory(), SystemUtils.getDefaultLinuxDirectory());
-        assertEquals(configurations.getDataDirectory(), SystemUtils.getDefaultLinuxData());
-        assertEquals(configurations.getLanguage(), SystemUtils.getDefaultLanguage());
-    }
-
 }
