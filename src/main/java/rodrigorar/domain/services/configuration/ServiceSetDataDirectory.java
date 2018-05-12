@@ -16,28 +16,34 @@
 
 package rodrigorar.domain.services.configuration;
 
+import rodrigorar.data.DAOFactory;
+import rodrigorar.data.daos.AppConfigurationsDAO;
 import rodrigorar.domain.interfaces.BaseService;
+import rodrigorar.domain.pojos.AppConfigurations;
 
-public class FactoryServicesConfiguration {
+public class ServiceSetDataDirectory 
+implements BaseService<String> {
 
-    public static ServiceGetCurrentLanguage getServiceGetCurrentLanguage() {
-        return new ServiceGetCurrentLanguage();
-    }
+	private final String _dataDirectory;
+	private String _result;
+	
+	public ServiceSetDataDirectory(String dataDirectory) {
+		_dataDirectory = dataDirectory;
+	}
+	
+	@Override
+	public void execute() {
+		AppConfigurationsDAO configsDAO = DAOFactory.getAppConfigurationsDAO(); 
+		AppConfigurations configs = configsDAO.load();
+		configs.setDataDirectory(_dataDirectory);
+		configsDAO.save(configs);
+		System.out.println("Data Directory Saved");
+		_result = configs.getDataDirectory();
+	}
 
-    public static BaseService<?> getServiceGetDataDirectory() {
-        return new ServiceGetDataDirectory();
-    }
+	@Override
+	public String getResult() {
+		return _result;
+	}
 
-    public static BaseService<?> getServiceSetDataDirectory(String dataDirectory) {
-    	return new ServiceSetDataDirectory(dataDirectory);
-    }
-
-    public static BaseService<?> getServiceGetPriorityDirectory() {
-        return new ServiceGetPriorityDirectory();
-    }
-
-    public static BaseService<?> getServiceGetBaseDirectory() {
-        return new ServiceGetBaseDirectory();
-    }
-    
 }

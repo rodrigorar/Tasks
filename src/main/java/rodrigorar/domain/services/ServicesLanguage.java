@@ -39,10 +39,11 @@ IService {
         BaseService<?> getCurrentLanguageService =
 	        	FactoryServicesConfiguration.getServiceGetCurrentLanguage();
         getCurrentLanguageService.execute();
+        Language currentLanguage = (Language)getCurrentLanguageService.getResult();
         _activeLanguage =
             languageDAO.load(
                 SupportedLanguages.getLanguage(
-                		(String)getCurrentLanguageService.getResult()
+                		currentLanguage.getSimpleName()
                 	)
             );
     }

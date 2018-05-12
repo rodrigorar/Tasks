@@ -24,9 +24,11 @@ import javax.swing.Box;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
+import rodrigorar.domain.interfaces.BaseService;
 import rodrigorar.domain.services.ServicesAppConfigurations;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
+import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
 import rodrigorar.ui.AbstractPanel;
 import rodrigorar.ui.AbstractWindow;
 import rodrigorar.utils.Constants.Labels;
@@ -55,7 +57,12 @@ AbstractPanel {
             @Override
             public void actionPerformed(ActionEvent event) {
                 if (dataPanel.getDataDirectory() != null) {
-                    _configurationServices.setDataDirectory(dataPanel.getDataDirectory());
+                	BaseService<?> setDataDirectoryService = 
+                			FactoryServicesConfiguration
+                				.getServiceSetDataDirectory(
+                						dataPanel.getDataDirectory()
+                					);
+                    setDataDirectoryService.execute();
                 }
 
                 if (languagePanel.getCurrentLanguage() != null) {

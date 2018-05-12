@@ -79,7 +79,7 @@ IService {
         
         ServicesAppConfigurations configServices =
         		ServicesFactory.getInstance().getConfigurationServices();
-        configServices.save();
+//        configServices.save();
     }
 
 }

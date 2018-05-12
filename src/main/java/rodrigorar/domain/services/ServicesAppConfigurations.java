@@ -31,11 +31,6 @@ IService {
         _appConfigurations = appConfigsDAO.load();
     }
 
-    public void setDataDirectory(String dataDirectory) {
-    	_appConfigurations.setDataDirectory(dataDirectory);
-        save();
-    }
-
     // TODO: Refactor this so the save is called in a central location
     public void setLanguage(String language) {
     	_appConfigurations.setLanguage(language);
