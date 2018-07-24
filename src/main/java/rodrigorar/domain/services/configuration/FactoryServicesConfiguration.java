@@ -24,6 +24,10 @@ public class FactoryServicesConfiguration {
         return new ServiceGetCurrentLanguage();
     }
 
+    public static BaseService<?> getServicesSetCurrentLanguage(String currentLanguage) {
+    	return new ServiceSetCurrentLanguage(currentLanguage);
+    }
+
     public static BaseService<?> getServiceGetDataDirectory() {
         return new ServiceGetDataDirectory();
     }

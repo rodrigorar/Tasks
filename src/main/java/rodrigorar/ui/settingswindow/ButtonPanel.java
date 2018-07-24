@@ -25,7 +25,7 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 
 import rodrigorar.domain.interfaces.BaseService;
-import rodrigorar.domain.services.ServicesAppConfigurations;
+import rodrigorar.domain.pojos.Language;
 import rodrigorar.domain.services.ServicesFactory;
 import rodrigorar.domain.services.ServicesLanguage;
 import rodrigorar.domain.services.configuration.FactoryServicesConfiguration;
@@ -40,7 +40,6 @@ AbstractPanel {
     private AbstractWindow _parentWindow;
 
     private ServicesLanguage _languageServices;
-    private ServicesAppConfigurations _configurationServices;
 
     @Override
     public void update() {
@@ -66,9 +65,14 @@ AbstractPanel {
                 }
 
                 if (languagePanel.getCurrentLanguage() != null) {
-                    _configurationServices.setLanguage(languagePanel.getCurrentLanguage());
+                	String newLanguage = languagePanel.getCurrentLanguage();
+                	BaseService<?> setLanguageService = 
+                			FactoryServicesConfiguration
+                				.getServicesSetCurrentLanguage(newLanguage);
+                	setLanguageService.execute();
                     System.out.println("Language: " + languagePanel.getCurrentLanguage());
-                    _languageServices.setActiveLanguage(languagePanel.getCurrentLanguage());
+                    Language newCurrentLanguage = (Language)setLanguageService.getResult();
+                    _languageServices.setActiveLanguage(newCurrentLanguage.getSimpleName());
                 }
 
                 _parentWindow.update();
@@ -90,7 +94,6 @@ AbstractPanel {
 
         _parentWindow = parentWindow;
         _languageServices = ServicesFactory.getInstance().getLanguageServices();
-        _configurationServices = ServicesFactory.getInstance().getConfigurationServices();
 
         configure();
 
